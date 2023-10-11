@@ -1,7 +1,6 @@
+import { FilmCardInfo } from "../../Data/Data";
 import FilmCard from "../../components/film-card";
 import { FilmProps } from "../../components/film-card";
-
-import { FilmCardInfo } from "../../../Mock/mocking";
 
 
 type MainPageProps = {

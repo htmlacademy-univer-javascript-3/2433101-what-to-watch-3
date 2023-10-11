@@ -1,4 +1,4 @@
-import { FilmProps } from "../src/components/film-card";
+import { FilmProps } from "../components/film-card";
 
 
 export const FilmInfo = {
