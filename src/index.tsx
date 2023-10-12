@@ -2,12 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app';
 
+import { FilmInfo } from './Data/Data';
 
-const FilmInfo = {
-  filmGenrePromo: 'Drama', 
-  filmNamePromo: 'The Grand Budapest Hotel', 
-  filmDatePromo: '2014',
-} as const;
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -15,6 +11,6 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App filmGenrePromo = {FilmInfo.filmGenrePromo} filmNamePromo = {FilmInfo.filmNamePromo} filmDatePromo = {FilmInfo.filmDatePromo}/>
+    <App filmGenrePromo={FilmInfo.filmGenrePromo} filmNamePromo={FilmInfo.filmNamePromo} filmDatePromo={FilmInfo.filmDatePromo}/>
   </React.StrictMode>
 );
