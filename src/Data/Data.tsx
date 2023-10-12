@@ -2,8 +2,8 @@ import { FilmProps } from '../components/film-card';
 
 
 export const FilmInfo = {
-  filmGenrePromo: 'Drama', 
-  filmNamePromo: 'The Grand Budapest Hotel', 
+  filmGenrePromo: 'Drama',
+  filmNamePromo: 'The Grand Budapest Hotel',
   filmDatePromo: '2014',
 } as const;
 

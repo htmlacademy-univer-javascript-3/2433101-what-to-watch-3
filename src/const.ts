@@ -1,5 +1,5 @@
 export enum AppRoute {
-  Main = '/', 
+  Main = '/',
   SignIn = '/login',
   MyList = '/mylist',
   Player = '/player/:id',
@@ -7,7 +7,7 @@ export enum AppRoute {
 }
 
 export enum AuthorizationStatus {
-  Auth = 'AUTH', 
+  Auth = 'AUTH',
   NoAuth = 'NO_AUTH',
   Unknown = 'UNKNOWN',
 }

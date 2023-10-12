@@ -20,15 +20,15 @@ function App({filmGenrePromo, filmNamePromo, filmDatePromo}: AppProps): JSX.Elem
   return (
     <BrowserRouter>
       <Routes>
-        <Route 
+        <Route
           path={AppRoute.Main}
           element={<MainPage filmGenrePromo={filmGenrePromo} filmNamePromo={filmNamePromo} filmDatePromo={filmDatePromo} />}
         />
-        <Route 
+        <Route
           path={AppRoute.SignIn}
           element={<SignIn />}
         />
-        <Route 
+        <Route
           path={AppRoute.MyList}
           element={
             <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
@@ -38,16 +38,16 @@ function App({filmGenrePromo, filmNamePromo, filmDatePromo}: AppProps): JSX.Elem
         />
         <Route path="/films">
           <Route path="/films/:id" element={<Film/>}>
-            <Route path="/films/:id/review" element={<AddReview/>}></Route> 
+            <Route path="/films/:id/review" element={<AddReview/>}></Route>
           </Route>
         </Route>
-        <Route 
+        <Route
           path={AppRoute.Player}
           element={<Player />}
         />
         <Route
           path={AppRoute.NotFoundScreen}
-          element={<NotFoundScreen />} 
+          element={<NotFoundScreen />}
         />
       </Routes>
     </BrowserRouter>

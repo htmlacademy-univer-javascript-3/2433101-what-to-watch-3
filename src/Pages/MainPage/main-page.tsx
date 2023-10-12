@@ -4,8 +4,8 @@ import { FilmProps } from '../../components/film-card';
 
 
 type MainPageProps = {
-  filmGenrePromo: string; 
-  filmNamePromo: string; 
+  filmGenrePromo: string;
+  filmNamePromo: string;
   filmDatePromo: string;
 }
 
@@ -134,10 +134,9 @@ function MainPage({filmGenrePromo, filmNamePromo, filmDatePromo}: MainPageProps)
               </a>
             </li>
           </ul>
-            
           <div className="catalog__films-list">
             {FilmCardInfo.map(({srcCard, filmName}: FilmProps) => (
-                <FilmCard key={filmName} srcCard={srcCard} filmName={filmName}/>
+              <FilmCard key={filmName} srcCard={srcCard} filmName={filmName}/>
             ))}
           </div>
           <div className="catalog__more">
