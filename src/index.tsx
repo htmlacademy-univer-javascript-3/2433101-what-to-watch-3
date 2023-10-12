@@ -11,6 +11,6 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App filmGenrePromo={FilmInfo.filmGenrePromo} filmNamePromo = {FilmInfo.filmNamePromo} filmDatePromo = {FilmInfo.filmDatePromo}/>
+    <App filmGenrePromo={FilmInfo.filmGenrePromo} filmNamePromo={FilmInfo.filmNamePromo} filmDatePromo={FilmInfo.filmDatePromo}/>
   </React.StrictMode>
 );
