@@ -1,4 +1,4 @@
-import { FilmCardProps } from "./film-list";
+import { FilmCardProps } from './film-list';
 
 
 export const MyFilmList: FilmCardProps[] = [

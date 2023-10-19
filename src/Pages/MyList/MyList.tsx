@@ -1,7 +1,6 @@
-import { Link } from "react-router-dom";
-import { FilmList } from "../../components/film-list";
-import { MyFilmListData } from "../../mocks/film-list";
-import Logo from "../../components/logo";
+import { FilmList } from '../../components/film-list';
+import { MyFilmListData } from '../../mocks/film-list';
+import Logo from '../../components/logo';
 
 type MyListProps = {
   myFilmListData: {[key: string]: string}[];

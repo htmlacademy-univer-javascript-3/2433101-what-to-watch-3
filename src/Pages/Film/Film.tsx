@@ -1,13 +1,12 @@
-import { Link } from "react-router-dom";
-import { FilmsDataType } from "../../mocks/films";
-import Logo from "../../components/logo";
+import { Link } from 'react-router-dom';
+import { FilmsDataType } from '../../mocks/films';
+import Logo from '../../components/logo';
 
 type FilmProps = {
-  filmsData: {[key: string]: FilmsDataType}
+  filmsData: {[key: string]: FilmsDataType};
   myFilmListData: number;
   activeFilm: string;
 }
-
 
 function Film({filmsData, myFilmListData, activeFilm}: FilmProps): JSX.Element {
   return (

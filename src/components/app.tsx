@@ -30,13 +30,15 @@ function App(props: AppProps): JSX.Element {
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<MainPage 
-            filmData={props.filmsData} 
-            filmListData={props.filmListData} 
-            myFilmListData={props.myFilmListData.length} 
-            activeFilm={activeFilm} 
-            chooseActiveFilm={chooseActiveFilm}
-          />}
+          element={
+            <MainPage
+              filmData={props.filmsData}
+              filmListData={props.filmListData}
+              myFilmListData={props.myFilmListData.length}
+              activeFilm={activeFilm}
+              chooseActiveFilm={chooseActiveFilm}
+            />
+          }
         />
         <Route
           path={AppRoute.SignIn}
@@ -46,8 +48,8 @@ function App(props: AppProps): JSX.Element {
           path={AppRoute.MyList}
           element={
             <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
-              <MyList 
-                myFilmListData={props.myFilmListData} 
+              <MyList
+                myFilmListData={props.myFilmListData}
                 chooseActiveFilm={chooseActiveFilm}
               />
             </PrivateRoute>

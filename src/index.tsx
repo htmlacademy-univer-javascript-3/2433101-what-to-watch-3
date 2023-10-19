@@ -11,9 +11,9 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App 
-      filmsData={FilmsData} 
-      filmListData={FilmListData} 
+    <App
+      filmsData={FilmsData}
+      filmListData={FilmListData}
       myFilmListData={MyFilmListData}
     />
   </React.StrictMode>

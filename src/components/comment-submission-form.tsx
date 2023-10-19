@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useState } from 'react';
 
 function CommentSubmissionForm(): JSX.Element {
   const [commentData, setCommentData] = useState(
@@ -11,7 +11,7 @@ function CommentSubmissionForm(): JSX.Element {
   const handleStateRating = (evt: React.MouseEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => {
     const {name, value} = evt.currentTarget;
     setCommentData({...commentData, [name]: value});
-  }
+  };
 
   return (
     <div className="add-review">

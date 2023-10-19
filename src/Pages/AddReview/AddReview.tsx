@@ -1,9 +1,9 @@
-import { FilmsDataType } from "../../mocks/films";
-import Logo from "../../components/logo";
-import CommentSubmissionForm from "../../components/comment-submission-form";
+import { FilmsDataType } from '../../mocks/films';
+import Logo from '../../components/logo';
+import CommentSubmissionForm from '../../components/comment-submission-form';
 
 type AddReviewProps = {
-  filmsData: {[key: string]: FilmsDataType}
+  filmsData: {[key: string]: FilmsDataType};
   activeFilm: string;
 }
 

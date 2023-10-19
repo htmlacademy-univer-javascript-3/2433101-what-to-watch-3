@@ -1,4 +1,4 @@
-import FilmCard from "./film-card";
+import FilmCard from './film-card';
 
 
 type FilmListProps = {
