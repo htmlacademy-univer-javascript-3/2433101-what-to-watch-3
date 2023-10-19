@@ -1,11 +1,15 @@
-export type FilmProps = {
-  srcCard: string;
+import { Link } from "react-router-dom";
+
+type FilmCardProps = {
+  filmId: string;
   filmName: string;
+  srcCard: string;
+  chooseActiveFilm: (filmId: string) => void;
 }
 
-function FilmCard({srcCard, filmName}: FilmProps): JSX.Element {
+function FilmCard({filmId, filmName, srcCard, chooseActiveFilm}: FilmCardProps): JSX.Element {
   return (
-    <article className="small-film-card catalog__films-card">
+    <article id={filmId} className="small-film-card catalog__films-card">
       <div className="small-film-card__image">
         <img
           src={srcCard}
@@ -15,9 +19,9 @@ function FilmCard({srcCard, filmName}: FilmProps): JSX.Element {
         />
       </div>
       <h3 className="small-film-card__title">
-        <a className="small-film-card__link" href="film-page.html">
+        <Link onClick={() => chooseActiveFilm(filmId)} className="small-film-card__link" to={`/films/${filmId}`}>
           {filmName}
-        </a>
+        </Link>
       </h3>
     </article>
   );

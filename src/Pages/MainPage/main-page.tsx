@@ -1,33 +1,30 @@
-import { FilmCardInfo } from '../../Data/Data';
-import FilmCard from '../../components/film-card';
-import { FilmProps } from '../../components/film-card';
+import { Link } from 'react-router-dom';
+import { FilmList } from '../../components/film-list';
+import { FilmsDataType } from '../../mocks/films';
+import Logo from '../../components/logo';
 
 
 type MainPageProps = {
-  filmGenrePromo: string;
-  filmNamePromo: string;
-  filmDatePromo: string;
+  filmData: {[key: string]: FilmsDataType};
+  filmListData: {[key: string]: string}[];
+  myFilmListData: number;
+  chooseActiveFilm: (filmId: string) => void;
+  activeFilm: string;
 }
 
-function MainPage({filmGenrePromo, filmNamePromo, filmDatePromo}: MainPageProps): JSX.Element {
+function MainPage({filmData, filmListData, myFilmListData, chooseActiveFilm, activeFilm}: MainPageProps): JSX.Element {
   return (
     <>
       <section className="film-card">
         <div className="film-card__bg">
           <img
-            src="img/bg-the-grand-budapest-hotel.jpg"
-            alt="The Grand Budapest Hotel"
+            src={filmData[activeFilm].filmBackgroundImage}
+            alt={filmData[activeFilm].filmName}
           />
         </div>
         <h1 className="visually-hidden">WTW</h1>
         <header className="page-header film-card__head">
-          <div className="logo">
-            <a className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
+          <Logo />
           <ul className="user-block">
             <li className="user-block__item">
               <div className="user-block__avatar">
@@ -48,32 +45,32 @@ function MainPage({filmGenrePromo, filmNamePromo, filmDatePromo}: MainPageProps)
           <div className="film-card__info">
             <div className="film-card__poster">
               <img
-                src="img/the-grand-budapest-hotel-poster.jpg"
-                alt="The Grand Budapest Hotel poster"
+                src={filmData[activeFilm].filmPoster}
+                alt={filmData[activeFilm].filmName}
                 width={218}
                 height={327}
               />
             </div>
             <div className="film-card__desc">
-              <h2 className="film-card__title">{filmNamePromo}</h2>
+              <h2 className="film-card__title">{filmData[activeFilm].filmName}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{filmGenrePromo}</span>
-                <span className="film-card__year">{filmDatePromo}</span>
+                <span className="film-card__genre">{filmData[activeFilm].genre}</span>
+                <span className="film-card__year">{filmData[activeFilm].date}</span>
               </p>
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button">
+                <Link className="btn btn--play film-card__button" type="button" to={`/player/${activeFilm}`}>
                   <svg viewBox="0 0 19 19" width={19} height={19}>
                     <use xlinkHref="#play-s" />
                   </svg>
                   <span>Play</span>
-                </button>
-                <button className="btn btn--list film-card__button" type="button">
+                </Link>
+                <Link className="btn btn--list film-card__button" type="button" to="/mylist">
                   <svg viewBox="0 0 19 20" width={19} height={20}>
                     <use xlinkHref="#add" />
                   </svg>
                   <span>My list</span>
-                  <span className="film-card__count">9</span>
-                </button>
+                  <span className="film-card__count">{myFilmListData}</span>
+                </Link>
               </div>
             </div>
           </div>
@@ -135,9 +132,7 @@ function MainPage({filmGenrePromo, filmNamePromo, filmDatePromo}: MainPageProps)
             </li>
           </ul>
           <div className="catalog__films-list">
-            {FilmCardInfo.map(({srcCard, filmName}: FilmProps) => (
-              <FilmCard key={filmName} srcCard={srcCard} filmName={filmName}/>
-            ))}
+            <FilmList filmListData={filmListData} chooseActiveFilm={chooseActiveFilm}/>
           </div>
           <div className="catalog__more">
             <button className="catalog__button" type="button">
@@ -146,13 +141,7 @@ function MainPage({filmGenrePromo, filmNamePromo, filmDatePromo}: MainPageProps)
           </div>
         </section>
         <footer className="page-footer">
-          <div className="logo">
-            <a className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
+          <Logo />
           <div className="copyright">
             <p>© 2019 What to watch Ltd.</p>
           </div>
