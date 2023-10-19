@@ -8,21 +8,37 @@ import Film from '../Pages/Film/Film';
 import AddReview from '../Pages/AddReview/AddReview';
 import Player from '../Pages/Player/Player';
 import PrivateRoute from './private-route';
+import { FilmsDataType } from '../mocks/films';
+import { useState } from 'react';
 
 
 type AppProps = {
-  filmGenrePromo: string;
-  filmNamePromo: string;
-  filmDatePromo: string;
+  filmsData: {[key: string]: FilmsDataType};
+  filmListData: {[key: string]: string}[];
+  myFilmListData: {[key: string]: string}[];
 }
 
-function App({filmGenrePromo, filmNamePromo, filmDatePromo}: AppProps): JSX.Element {
+function App(props: AppProps): JSX.Element {
+  const [activeFilm, setActiveFilm] = useState('0');
+
+  function chooseActiveFilm(filmId: string): void {
+    setActiveFilm(filmId);
+  }
+
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<MainPage filmGenrePromo={filmGenrePromo} filmNamePromo={filmNamePromo} filmDatePromo={filmDatePromo} />}
+          element={
+            <MainPage
+              filmData={props.filmsData}
+              filmListData={props.filmListData}
+              myFilmListData={props.myFilmListData.length}
+              activeFilm={activeFilm}
+              chooseActiveFilm={chooseActiveFilm}
+            />
+          }
         />
         <Route
           path={AppRoute.SignIn}
@@ -31,19 +47,19 @@ function App({filmGenrePromo, filmNamePromo, filmDatePromo}: AppProps): JSX.Elem
         <Route
           path={AppRoute.MyList}
           element={
-            <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
-              <MyList />
+            <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+              <MyList
+                myFilmListData={props.myFilmListData}
+                chooseActiveFilm={chooseActiveFilm}
+              />
             </PrivateRoute>
           }
         />
-        <Route path="/films">
-          <Route path="/films/:id" element={<Film/>}>
-            <Route path="/films/:id/review" element={<AddReview/>}></Route>
-          </Route>
-        </Route>
+        <Route path="/films/:id" element={<Film filmsData={props.filmsData} myFilmListData={props.myFilmListData.length} activeFilm={activeFilm}/>}/>
+        <Route path="/films/:id/review" element={<AddReview filmsData={props.filmsData} activeFilm={activeFilm}/>}/>
         <Route
           path={AppRoute.Player}
-          element={<Player />}
+          element={<Player filmVideo={props.filmsData[activeFilm].filmVideo} filmPoster={props.filmsData[activeFilm].filmPoster}/>}
         />
         <Route
           path={AppRoute.NotFoundScreen}

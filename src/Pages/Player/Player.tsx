@@ -1,10 +1,17 @@
-function Player(): JSX.Element {
+import { Link } from 'react-router-dom';
+
+type PlayerProps = {
+  filmVideo: string;
+  filmPoster: string;
+}
+
+function Player({filmVideo, filmPoster}: PlayerProps): JSX.Element {
   return (
     <div className="player">
-      <video src="#" className="player__video" poster="img/player-poster.jpg" />
-      <button type="button" className="player__exit">
+      <video src={filmVideo} className="player__video" poster={filmPoster} />
+      <Link type="button" className="player__exit" to='/'>
         Exit
-      </button>
+      </Link>
       <div className="player__controls">
         <div className="player__controls-row">
           <div className="player__time">
