@@ -1,6 +1,6 @@
 import { FilmsDataType } from '../../mocks/films';
-import Logo from '../../components/logo';
 import CommentSubmissionForm from '../../components/comment-submission-form';
+import { LogoTop } from '../../components/logo';
 
 type AddReviewProps = {
   filmsData: {[key: string]: FilmsDataType};
@@ -19,7 +19,7 @@ function AddReview({filmsData, activeFilm}: AddReviewProps): JSX.Element {
         </div>
         <h1 className="visually-hidden">WTW</h1>
         <header className="page-header">
-          <Logo />
+          <LogoTop />
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">

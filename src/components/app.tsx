@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import MainPage from '../Pages/MainPage/main-page';
+import MainPage from '../Pages/MainPage/MainPage';
 import { AppRoute, AuthorizationStatus } from '../const';
 import SignIn from '../Pages/SignIn/SignIn';
 import NotFoundScreen from '../Pages/NotFoundScreen/NotFoundScreen';
