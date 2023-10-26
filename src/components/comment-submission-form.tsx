@@ -1,7 +1,8 @@
 import { ChangeEvent, useState } from 'react';
 
 function CommentSubmissionForm(): JSX.Element {
-  const [rating, setRating] = useState(0);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [_, setRating] = useState(0);
   const [comment, setComment] = useState('');
 
   function handleRating(e: React.MouseEvent<HTMLInputElement>) {

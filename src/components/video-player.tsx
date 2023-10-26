@@ -10,13 +10,16 @@ export default function VideoPlayer({isActive, srcVideo, srcImage}: TVideoPlayer
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
-    const timer: NodeJS.Timeout = setInterval(() => {  
+    const timer: NodeJS.Timeout = setInterval(() => {
       if (isActive && videoRef.current) {
         videoRef.current.play();
-      }else if (isActive == false && videoRef.current) {
+      } else if (isActive === false && videoRef.current) {
         videoRef.current.load();
-      }}, 1000);
-    return () => {clearInterval(timer)};
+      }
+    }, 1000);
+    return () => {
+      clearInterval(timer);
+    };
   }, [isActive]);
 
   return (
