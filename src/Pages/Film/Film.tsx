@@ -1,14 +1,14 @@
 import { Link } from 'react-router-dom';
-import { FilmsDataType } from '../../mocks/films';
+import { TFilmsData } from '../../mocks/films';
 import { LogoBottom, LogoTop } from '../../components/logo';
 
-type FilmProps = {
-  filmsData: {[key: string]: FilmsDataType};
+type TFilm = {
+  filmsData: {[key: string]: TFilmsData};
   myFilmListData: number;
   activeFilm: string;
 }
 
-function Film({filmsData, myFilmListData, activeFilm}: FilmProps): JSX.Element {
+function Film({filmsData, myFilmListData, activeFilm}: TFilm): JSX.Element {
   return (
     <>
       <section className="film-card film-card--full">

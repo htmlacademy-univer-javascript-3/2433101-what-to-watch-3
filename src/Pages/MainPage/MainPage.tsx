@@ -1,18 +1,18 @@
 import { Link } from 'react-router-dom';
 import { FilmList } from '../../components/film-list';
-import { FilmsDataType } from '../../mocks/films';
+import { TFilmsData } from '../../mocks/films';
 import { LogoTop, LogoBottom } from '../../components/logo';
 
 
-type MainPageProps = {
-  filmData: {[key: string]: FilmsDataType};
+type TMainPage = {
+  filmData: {[key: string]: TFilmsData};
   filmListData: {[key: string]: string}[];
   myFilmListData: number;
   chooseActiveFilm: (filmId: string) => void;
   activeFilm: string;
 }
 
-function MainPage({filmData, filmListData, myFilmListData, chooseActiveFilm, activeFilm}: MainPageProps): JSX.Element {
+function MainPage({filmData, filmListData, myFilmListData, chooseActiveFilm, activeFilm}: TMainPage): JSX.Element {
   return (
     <>
       <section className="film-card">

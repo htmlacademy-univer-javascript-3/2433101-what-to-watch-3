@@ -2,12 +2,12 @@ import { FilmList } from '../../components/film-list';
 import { LogoTop, LogoBottom } from '../../components/logo';
 import { MyFilmListData } from '../../mocks/film-list';
 
-type MyListProps = {
+type TMyList = {
   myFilmListData: {[key: string]: string}[];
   chooseActiveFilm: (filmId: string) => void;
 }
 
-function MyList({myFilmListData, chooseActiveFilm}: MyListProps): JSX.Element {
+function MyList({myFilmListData, chooseActiveFilm}: TMyList): JSX.Element {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">

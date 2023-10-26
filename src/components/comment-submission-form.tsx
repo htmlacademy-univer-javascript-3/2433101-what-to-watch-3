@@ -1,17 +1,16 @@
 import { ChangeEvent, useState } from 'react';
 
 function CommentSubmissionForm(): JSX.Element {
-  const [commentData, setCommentData] = useState(
-    {
-      rating: '0',
-      comment: '',
-    }
-  );
+  const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState('');
 
-  const handleStateRating = (evt: React.MouseEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => {
-    const {name, value} = evt.currentTarget;
-    setCommentData({...commentData, [name]: value});
-  };
+  function handleRating(e: React.MouseEvent<HTMLInputElement>) {
+    setRating(Number(e.currentTarget.value));
+  }
+
+  function handleComment(e: ChangeEvent<HTMLTextAreaElement>) {
+    setComment(e.currentTarget.value);
+  }
 
   return (
     <div className="add-review">
@@ -24,7 +23,7 @@ function CommentSubmissionForm(): JSX.Element {
               type="radio"
               name="rating"
               defaultValue={10}
-              onClick={handleStateRating}
+              onClick={handleRating}
             />
             <label className="rating__label" htmlFor="star-10">
               Rating 10
@@ -35,7 +34,7 @@ function CommentSubmissionForm(): JSX.Element {
               type="radio"
               name="rating"
               defaultValue={9}
-              onClick={handleStateRating}
+              onClick={handleRating}
             />
             <label className="rating__label" htmlFor="star-9">
               Rating 9
@@ -46,8 +45,7 @@ function CommentSubmissionForm(): JSX.Element {
               type="radio"
               name="rating"
               defaultValue={8}
-              onClick={handleStateRating}
-              // defaultChecked=""
+              onClick={handleRating}
             />
             <label className="rating__label" htmlFor="star-8">
               Rating 8
@@ -58,7 +56,7 @@ function CommentSubmissionForm(): JSX.Element {
               type="radio"
               name="rating"
               defaultValue={7}
-              onClick={handleStateRating}
+              onClick={handleRating}
             />
             <label className="rating__label" htmlFor="star-7">
               Rating 7
@@ -69,7 +67,7 @@ function CommentSubmissionForm(): JSX.Element {
               type="radio"
               name="rating"
               defaultValue={6}
-              onClick={handleStateRating}
+              onClick={handleRating}
             />
             <label className="rating__label" htmlFor="star-6">
               Rating 6
@@ -80,7 +78,7 @@ function CommentSubmissionForm(): JSX.Element {
               type="radio"
               name="rating"
               defaultValue={5}
-              onClick={handleStateRating}
+              onClick={handleRating}
             />
             <label className="rating__label" htmlFor="star-5">
               Rating 5
@@ -91,7 +89,7 @@ function CommentSubmissionForm(): JSX.Element {
               type="radio"
               name="rating"
               defaultValue={4}
-              onClick={handleStateRating}
+              onClick={handleRating}
             />
             <label className="rating__label" htmlFor="star-4">
               Rating 4
@@ -102,7 +100,7 @@ function CommentSubmissionForm(): JSX.Element {
               type="radio"
               name="rating"
               defaultValue={3}
-              onClick={handleStateRating}
+              onClick={handleRating}
             />
             <label className="rating__label" htmlFor="star-3">
               Rating 3
@@ -113,7 +111,7 @@ function CommentSubmissionForm(): JSX.Element {
               type="radio"
               name="rating"
               defaultValue={2}
-              onClick={handleStateRating}
+              onClick={handleRating}
             />
             <label className="rating__label" htmlFor="star-2">
               Rating 2
@@ -124,7 +122,7 @@ function CommentSubmissionForm(): JSX.Element {
               type="radio"
               name="rating"
               defaultValue={1}
-              onClick={handleStateRating}
+              onClick={handleRating}
             />
             <label className="rating__label" htmlFor="star-1">
               Rating 1
@@ -137,8 +135,8 @@ function CommentSubmissionForm(): JSX.Element {
             name="review-text"
             id="review-text"
             placeholder="Review text"
-            defaultValue={''}
-            onChange={handleStateRating}
+            defaultValue={comment}
+            onChange={handleComment}
           />
           <div className="add-review__submit">
             <button className="add-review__btn" type="submit">

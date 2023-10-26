@@ -1,4 +1,4 @@
-export type FilmsDataType = {
+export type TFilmsData = {
   filmName: string;
   genre: string;
   date: string;
@@ -10,10 +10,10 @@ export type FilmsDataType = {
   filmPoster: string;
   filmBackgroundImage: string;
   filmBackgrondColor: string;
-  filmVideo: string;
+  srcVideo: string;
 };
 
-export const FilmsData: {[key: string]: FilmsDataType} = {
+export const FilmsData: {[key: string]: TFilmsData} = {
   '0': {
     filmName: 'Fantastic Beasts: The Crimes of Grindelwald',
     genre: 'Fantasy',
@@ -26,7 +26,7 @@ export const FilmsData: {[key: string]: FilmsDataType} = {
     filmPoster: 'https://13.design.pages.academy/static/film/poster/Fantastic_Beasts.jpg',
     filmBackgroundImage: 'https://13.design.pages.academy/static/film/background/Fantastic_Beasts.jpg',
     filmBackgrondColor: '#B6A99F',
-    filmVideo: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    srcVideo: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
   },
   '1': {
     filmName: 'Bohemian Rhapsody',
@@ -40,7 +40,7 @@ export const FilmsData: {[key: string]: FilmsDataType} = {
     filmPoster: 'https://13.design.pages.academy/static/film/poster/Bohemian_Rhapsody.jpg',
     filmBackgroundImage: 'https://13.design.pages.academy/static/film/background/Bohemian_Rhapsody.jpg',
     filmBackgrondColor: '#929FA5',
-    filmVideo: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    srcVideo: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
   },
   '2': {
     filmName: 'Macbeth',
@@ -54,7 +54,7 @@ export const FilmsData: {[key: string]: FilmsDataType} = {
     filmPoster: 'https://13.design.pages.academy/static/film/poster/Macbeth.jpg',
     filmBackgroundImage: 'https://13.design.pages.academy/static/film/background/Macbeth.jpg',
     filmBackgrondColor: '#F1E9CE',
-    filmVideo: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    srcVideo: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
   },
   '3': {
     filmName: 'Aviator',
@@ -68,7 +68,7 @@ export const FilmsData: {[key: string]: FilmsDataType} = {
     filmPoster: 'https://13.design.pages.academy/static/film/poster/Aviator.jpg',
     filmBackgroundImage: 'https://13.design.pages.academy/static/film/background/Aviator.jpg',
     filmBackgrondColor: '#D6CDAF',
-    filmVideo: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    srcVideo: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
   },
   '4': {
     filmName: 'We need to talk about Kevin',
@@ -82,7 +82,7 @@ export const FilmsData: {[key: string]: FilmsDataType} = {
     filmPoster: 'https://13.design.pages.academy/static/film/poster/We_need_to_talk_about_Kevin.jpg',
     filmBackgroundImage: 'https://13.design.pages.academy/static/film/background/We_need_to_talk_about_Kevin.jpg',
     filmBackgrondColor: '#E1DFDE',
-    filmVideo: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    srcVideo: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
   },
   '5': {
     filmName: 'What We Do in the Shadows',
@@ -96,7 +96,7 @@ export const FilmsData: {[key: string]: FilmsDataType} = {
     filmPoster: 'https://13.design.pages.academy/static/film/poster/What-We-Do-in-the-Shadows.jpg',
     filmBackgroundImage: 'https://13.design.pages.academy/static/film/background/What-We-Do-in-the-Shadows.jpg',
     filmBackgrondColor: '#A39E81',
-    filmVideo: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    srcVideo: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
   },
   '6': {
     filmName: 'The Revenant',
@@ -110,7 +110,7 @@ export const FilmsData: {[key: string]: FilmsDataType} = {
     filmPoster: 'https://13.design.pages.academy/static/film/poster/Revenant.jpg',
     filmBackgroundImage: 'https://13.design.pages.academy/static/film/background/Revenant.jpg',
     filmBackgrondColor: '#92918B',
-    filmVideo: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    srcVideo: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
   },
   '7': {
     filmName: 'Peter Howitt',
@@ -124,6 +124,6 @@ export const FilmsData: {[key: string]: FilmsDataType} = {
     filmPoster: 'https://13.design.pages.academy/static/film/poster/Johnny_English.jpg',
     filmBackgroundImage: 'https://13.design.pages.academy/static/film/background/Johnny_English.jpg',
     filmBackgrondColor: '#F0DBA2',
-    filmVideo: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
+    srcVideo: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
   },
 } as const;
