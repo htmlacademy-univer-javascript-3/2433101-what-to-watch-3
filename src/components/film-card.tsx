@@ -1,22 +1,26 @@
 import { Link } from 'react-router-dom';
+import VideoPlayer from './video-player';
+import { useState } from 'react';
 
-type FilmCardProps = {
+type TFilmCard = {
   filmId: string;
   filmName: string;
-  srcCard: string;
+  srcImage: string;
+  srcVideo: string;
   chooseActiveFilm: (filmId: string) => void;
 }
 
-function FilmCard({filmId, filmName, srcCard, chooseActiveFilm}: FilmCardProps): JSX.Element {
+function FilmCard({filmId, filmName, srcImage, srcVideo, chooseActiveFilm}: TFilmCard): JSX.Element {
+  const [isAimmig, setIsAimming] = useState(false);
+
+  function handleIsAimming() {
+    setIsAimming(!isAimmig);
+  }
+
   return (
-    <article id={filmId} className="small-film-card catalog__films-card">
+    <article id={filmId} onMouseEnter={() => handleIsAimming()} onMouseLeave={() => handleIsAimming()} className="small-film-card catalog__films-card">
       <div className="small-film-card__image">
-        <img
-          src={srcCard}
-          alt={filmName}
-          width={280}
-          height={175}
-        />
+        <VideoPlayer isActive={isAimmig} srcVideo={srcVideo} srcImage={srcImage}/>
       </div>
       <h3 className="small-film-card__title">
         <Link onClick={() => chooseActiveFilm(filmId)} className="small-film-card__link" to={`/films/${filmId}`}>

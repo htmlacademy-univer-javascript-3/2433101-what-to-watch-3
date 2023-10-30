@@ -1,17 +1,17 @@
 import { FilmList } from '../../components/film-list';
+import { LogoTop, LogoBottom } from '../../components/logo';
 import { MyFilmListData } from '../../mocks/film-list';
-import Logo from '../../components/logo';
 
-type MyListProps = {
+type TMyList = {
   myFilmListData: {[key: string]: string}[];
   chooseActiveFilm: (filmId: string) => void;
 }
 
-function MyList({myFilmListData, chooseActiveFilm}: MyListProps): JSX.Element {
+function MyList({myFilmListData, chooseActiveFilm}: TMyList): JSX.Element {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
-        <Logo />
+        <LogoTop />
         <h1 className="page-title user-page__title">
           My list <span className="user-page__film-count">{myFilmListData.length}</span>
         </h1>
@@ -32,12 +32,7 @@ function MyList({myFilmListData, chooseActiveFilm}: MyListProps): JSX.Element {
           <FilmList filmListData={MyFilmListData} chooseActiveFilm={chooseActiveFilm}/>
         </div>
       </section>
-      <footer className="page-footer">
-        <Logo />
-        <div className="copyright">
-          <p>© 2019 What to watch Ltd.</p>
-        </div>
-      </footer>
+      <LogoBottom />
     </div>
   );
 }

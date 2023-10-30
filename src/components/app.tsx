@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import MainPage from '../Pages/MainPage/main-page';
+import MainPage from '../Pages/MainPage/MainPage';
 import { AppRoute, AuthorizationStatus } from '../const';
 import SignIn from '../Pages/SignIn/SignIn';
 import NotFoundScreen from '../Pages/NotFoundScreen/NotFoundScreen';
@@ -8,17 +8,17 @@ import Film from '../Pages/Film/Film';
 import AddReview from '../Pages/AddReview/AddReview';
 import Player from '../Pages/Player/Player';
 import PrivateRoute from './private-route';
-import { FilmsDataType } from '../mocks/films';
+import { TFilmsData } from '../mocks/films';
 import { useState } from 'react';
 
 
-type AppProps = {
-  filmsData: {[key: string]: FilmsDataType};
+type TApp = {
+  filmsData: {[key: string]: TFilmsData};
   filmListData: {[key: string]: string}[];
   myFilmListData: {[key: string]: string}[];
 }
 
-function App(props: AppProps): JSX.Element {
+function App(props: TApp): JSX.Element {
   const [activeFilm, setActiveFilm] = useState('0');
 
   function chooseActiveFilm(filmId: string): void {
@@ -55,11 +55,11 @@ function App(props: AppProps): JSX.Element {
             </PrivateRoute>
           }
         />
-        <Route path="/films/:id" element={<Film filmsData={props.filmsData} myFilmListData={props.myFilmListData.length} activeFilm={activeFilm}/>}/>
-        <Route path="/films/:id/review" element={<AddReview filmsData={props.filmsData} activeFilm={activeFilm}/>}/>
+        <Route path={AppRoute.FilmsId} element={<Film filmsData={props.filmsData} myFilmListData={props.myFilmListData.length} activeFilm={activeFilm}/>}/>
+        <Route path={AppRoute.FilmsReview} element={<AddReview filmsData={props.filmsData} activeFilm={activeFilm}/>}/>
         <Route
           path={AppRoute.Player}
-          element={<Player filmVideo={props.filmsData[activeFilm].filmVideo} filmPoster={props.filmsData[activeFilm].filmPoster}/>}
+          element={<Player filmVideo={props.filmsData[activeFilm].srcVideo} filmPoster={props.filmsData[activeFilm].filmPoster}/>}
         />
         <Route
           path={AppRoute.NotFoundScreen}

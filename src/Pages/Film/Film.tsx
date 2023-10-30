@@ -1,14 +1,14 @@
 import { Link } from 'react-router-dom';
-import { FilmsDataType } from '../../mocks/films';
-import Logo from '../../components/logo';
+import { TFilmsData } from '../../mocks/films';
+import { LogoBottom, LogoTop } from '../../components/logo';
 
-type FilmProps = {
-  filmsData: {[key: string]: FilmsDataType};
+type TFilm = {
+  filmsData: {[key: string]: TFilmsData};
   myFilmListData: number;
   activeFilm: string;
 }
 
-function Film({filmsData, myFilmListData, activeFilm}: FilmProps): JSX.Element {
+function Film({filmsData, myFilmListData, activeFilm}: TFilm): JSX.Element {
   return (
     <>
       <section className="film-card film-card--full">
@@ -21,7 +21,7 @@ function Film({filmsData, myFilmListData, activeFilm}: FilmProps): JSX.Element {
           </div>
           <h1 className="visually-hidden">WTW</h1>
           <header className="page-header film-card__head">
-            <Logo />
+            <LogoTop />
             <ul className="user-block">
               <li className="user-block__item">
                 <div className="user-block__avatar">
@@ -177,12 +177,7 @@ function Film({filmsData, myFilmListData, activeFilm}: FilmProps): JSX.Element {
             </article>
           </div>
         </section>
-        <footer className="page-footer">
-          <Logo />
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <LogoBottom />
       </div>
     </>
   );

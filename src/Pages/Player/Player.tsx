@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
 
-type PlayerProps = {
+type TPlayer = {
   filmVideo: string;
   filmPoster: string;
 }
 
-function Player({filmVideo, filmPoster}: PlayerProps): JSX.Element {
+function Player({filmVideo, filmPoster}: TPlayer): JSX.Element {
   return (
     <div className="player">
       <video src={filmVideo} className="player__video" poster={filmPoster} />

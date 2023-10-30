@@ -1,13 +1,13 @@
-import { FilmsDataType } from '../../mocks/films';
-import Logo from '../../components/logo';
+import { TFilmsData } from '../../mocks/films';
 import CommentSubmissionForm from '../../components/comment-submission-form';
+import { LogoTop } from '../../components/logo';
 
-type AddReviewProps = {
-  filmsData: {[key: string]: FilmsDataType};
+type TAddReview = {
+  filmsData: {[key: string]: TFilmsData};
   activeFilm: string;
 }
 
-function AddReview({filmsData, activeFilm}: AddReviewProps): JSX.Element {
+function AddReview({filmsData, activeFilm}: TAddReview): JSX.Element {
   return (
     <section className="film-card film-card--full">
       <div className="film-card__header">
@@ -19,7 +19,7 @@ function AddReview({filmsData, activeFilm}: AddReviewProps): JSX.Element {
         </div>
         <h1 className="visually-hidden">WTW</h1>
         <header className="page-header">
-          <Logo />
+          <LogoTop />
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">

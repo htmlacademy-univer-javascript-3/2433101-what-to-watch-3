@@ -1,38 +1,39 @@
-export type FilmCardProps = {
+export type TFilmCard = {
   filmId: string;
   filmName: string;
-  srcCard: string;
+  srcImage: string;
+  srcVideo: string;
 }
 
-export const FilmListData: FilmCardProps[] = [
-  {filmId: '0', srcCard: 'img/fantastic-beasts-the-crimes-of-grindelwald.jpg', filmName: 'Fantastic Beasts: The Crimes of Grindelwald'},
-  {filmId: '1', srcCard: 'img/bohemian-rhapsody.jpg', filmName: 'Bohemian Rhapsody'},
-  {filmId: '2', srcCard: 'img/macbeth.jpg', filmName: 'Macbeth'},
-  {filmId: '3', srcCard: 'img/aviator.jpg', filmName: 'Aviator'},
-  {filmId: '4', srcCard: 'img/we-need-to-talk-about-kevin.jpg', filmName: 'We need to talk about Kevin'},
-  {filmId: '5', srcCard: 'img/what-we-do-in-the-shadows.jpg', filmName: 'What we do in the shadows'},
-  {filmId: '6', srcCard: 'img/revenant.jpg', filmName: 'Revenant'},
-  {filmId: '7', srcCard: 'img/johnny-english.jpg', filmName: 'Johnny English'},
-  {filmId: '8', srcCard: 'img/shutter-island.jpg', filmName: 'Shutter Island'},
-  {filmId: '9', srcCard: 'img/pulp-fiction.jpg', filmName: 'Pulp Fiction'},
-  {filmId: '10', srcCard: 'img/no-country-for-old-men.jpg', filmName: 'No Country for Old Men'},
-  {filmId: '11', srcCard: 'img/snatch.jpg', filmName: 'Snatch'},
-  {filmId: '12', srcCard: 'img/moonrise-kingdom.jpg', filmName: 'Moonrise Kingdom'},
-  {filmId: '13', srcCard: 'img/seven-years-in-tibet.jpg', filmName: 'Seven Years in Tibet'},
-  {filmId: '14', srcCard: 'img/midnight-special.jpg', filmName: 'Midnight Special'},
-  {filmId: '15', srcCard: 'img/war-of-the-worlds.jpg', filmName: 'War of the Worlds'},
-  {filmId: '16', srcCard: 'img/dardjeeling-limited.jpg', filmName: 'Dardjeeling Limited'},
-  {filmId: '17', srcCard: 'img/orlando.jpg', filmName: 'Orlando'},
-  {filmId: '18', srcCard: 'img/mindhunter.jpg', filmName: 'Mindhunter'},
-  {filmId: '19', srcCard: 'img/midnight-special.jpg', filmName: 'Midnight Special'},
+export const FilmListData: TFilmCard[] = [
+  {filmId: '0', srcImage: 'img/fantastic-beasts-the-crimes-of-grindelwald.jpg', filmName: 'Fantastic Beasts: The Crimes of Grindelwald', srcVideo: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4'},
+  {filmId: '1', srcImage: 'img/bohemian-rhapsody.jpg', filmName: 'Bohemian Rhapsody', srcVideo: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4'},
+  {filmId: '2', srcImage: 'img/macbeth.jpg', filmName: 'Macbeth', srcVideo: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4'},
+  {filmId: '3', srcImage: 'img/aviator.jpg', filmName: 'Aviator', srcVideo: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4'},
+  {filmId: '4', srcImage: 'img/we-need-to-talk-about-kevin.jpg', filmName: 'We need to talk about Kevin', srcVideo: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4'},
+  {filmId: '5', srcImage: 'img/what-we-do-in-the-shadows.jpg', filmName: 'What we do in the shadows', srcVideo: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4'},
+  {filmId: '6', srcImage: 'img/revenant.jpg', filmName: 'Revenant', srcVideo: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4'},
+  {filmId: '7', srcImage: 'img/johnny-english.jpg', filmName: 'Johnny English', srcVideo: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4'},
+  {filmId: '8', srcImage: 'img/shutter-island.jpg', filmName: 'Shutter Island', srcVideo: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4'},
+  {filmId: '9', srcImage: 'img/pulp-fiction.jpg', filmName: 'Pulp Fiction', srcVideo: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4'},
+  {filmId: '10', srcImage: 'img/no-country-for-old-men.jpg', filmName: 'No Country for Old Men', srcVideo: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4'},
+  {filmId: '11', srcImage: 'img/snatch.jpg', filmName: 'Snatch', srcVideo: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4'},
+  {filmId: '12', srcImage: 'img/moonrise-kingdom.jpg', filmName: 'Moonrise Kingdom', srcVideo: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4'},
+  {filmId: '13', srcImage: 'img/seven-years-in-tibet.jpg', filmName: 'Seven Years in Tibet', srcVideo: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4'},
+  {filmId: '14', srcImage: 'img/midnight-special.jpg', filmName: 'Midnight Special', srcVideo: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4'},
+  {filmId: '15', srcImage: 'img/war-of-the-worlds.jpg', filmName: 'War of the Worlds', srcVideo: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4'},
+  {filmId: '16', srcImage: 'img/dardjeeling-limited.jpg', filmName: 'Dardjeeling Limited', srcVideo: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4'},
+  {filmId: '17', srcImage: 'img/orlando.jpg', filmName: 'Orlando', srcVideo: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4'},
+  {filmId: '18', srcImage: 'img/mindhunter.jpg', filmName: 'Mindhunter', srcVideo: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4'},
+  {filmId: '19', srcImage: 'img/midnight-special.jpg', filmName: 'Midnight Special', srcVideo: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4'},
 ];
 
-export const MyFilmListData: FilmCardProps[] = [
-  {filmId: '0', srcCard: 'img/moonrise-kingdom.jpg', filmName: 'Moonrise Kingdom'},
-  {filmId: '1', srcCard: 'img/seven-years-in-tibet.jpg', filmName: 'Seven Years in Tibet'},
-  {filmId: '2', srcCard: 'img/midnight-special.jpg', filmName: 'Midnight Special'},
-  {filmId: '3', srcCard: 'img/war-of-the-worlds.jpg', filmName: 'War of the Worlds'},
-  {filmId: '4', srcCard: 'img/dardjeeling-limited.jpg', filmName: 'Dardjeeling Limited'},
-  {filmId: '5', srcCard: 'img/orlando.jpg', filmName: 'Orlando'},
-  {filmId: '6', srcCard: 'img/mindhunter.jpg', filmName: 'Mindhunter'},
+export const MyFilmListData: TFilmCard[] = [
+  {filmId: '0', srcImage: 'img/moonrise-kingdom.jpg', filmName: 'Moonrise Kingdom', srcVideo: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4'},
+  {filmId: '1', srcImage: 'img/seven-years-in-tibet.jpg', filmName: 'Seven Years in Tibet', srcVideo: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4'},
+  {filmId: '2', srcImage: 'img/midnight-special.jpg', filmName: 'Midnight Special', srcVideo: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4'},
+  {filmId: '3', srcImage: 'img/war-of-the-worlds.jpg', filmName: 'War of the Worlds', srcVideo: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4'},
+  {filmId: '4', srcImage: 'img/dardjeeling-limited.jpg', filmName: 'Dardjeeling Limited', srcVideo: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4'},
+  {filmId: '5', srcImage: 'img/orlando.jpg', filmName: 'Orlando', srcVideo: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4'},
+  {filmId: '6', srcImage: 'img/mindhunter.jpg', filmName: 'Mindhunter', srcVideo: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4'},
 ];

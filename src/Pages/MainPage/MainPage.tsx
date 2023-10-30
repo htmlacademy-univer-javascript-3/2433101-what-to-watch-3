@@ -1,18 +1,18 @@
 import { Link } from 'react-router-dom';
 import { FilmList } from '../../components/film-list';
-import { FilmsDataType } from '../../mocks/films';
-import Logo from '../../components/logo';
+import { TFilmsData } from '../../mocks/films';
+import { LogoTop, LogoBottom } from '../../components/logo';
 
 
-type MainPageProps = {
-  filmData: {[key: string]: FilmsDataType};
+type TMainPage = {
+  filmData: {[key: string]: TFilmsData};
   filmListData: {[key: string]: string}[];
   myFilmListData: number;
   chooseActiveFilm: (filmId: string) => void;
   activeFilm: string;
 }
 
-function MainPage({filmData, filmListData, myFilmListData, chooseActiveFilm, activeFilm}: MainPageProps): JSX.Element {
+function MainPage({filmData, filmListData, myFilmListData, chooseActiveFilm, activeFilm}: TMainPage): JSX.Element {
   return (
     <>
       <section className="film-card">
@@ -24,7 +24,7 @@ function MainPage({filmData, filmListData, myFilmListData, chooseActiveFilm, act
         </div>
         <h1 className="visually-hidden">WTW</h1>
         <header className="page-header film-card__head">
-          <Logo />
+          <LogoTop />
           <ul className="user-block">
             <li className="user-block__item">
               <div className="user-block__avatar">
@@ -140,12 +140,7 @@ function MainPage({filmData, filmListData, myFilmListData, chooseActiveFilm, act
             </button>
           </div>
         </section>
-        <footer className="page-footer">
-          <Logo />
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <LogoBottom />
       </div>
     </>
   );
