@@ -1,14 +1,22 @@
 import { Link } from 'react-router-dom';
-import { TFilmsData } from '../../mocks/films';
+import { TFilmsData, TFilmsReviews } from '../../mocks/films';
 import { LogoBottom, LogoTop } from '../../components/logo';
+import { Tabs } from '../../components/tabs/tabs';
+import { FilmListData } from '../../mocks/film-list';
+import { FilmList } from '../../components/film-list';
 
 type TFilm = {
   filmsData: {[key: string]: TFilmsData};
+  filmsReviews: {[key: string]: TFilmsReviews[]};
   myFilmListData: number;
   activeFilm: string;
+  chooseActiveFilm: (filmId: string) => void;
 }
 
-function Film({filmsData, myFilmListData, activeFilm}: TFilm): JSX.Element {
+function Film({filmsData, filmsReviews, myFilmListData, activeFilm, chooseActiveFilm}: TFilm): JSX.Element {
+  const filmGenre = filmsData[activeFilm].genre;
+  const moreLikeThisFilms = FilmListData.filter((film) => film.genre === filmGenre).slice(0, 4);
+
   return (
     <>
       <section className="film-card film-card--full">
@@ -59,122 +67,20 @@ function Film({filmsData, myFilmListData, activeFilm}: TFilm): JSX.Element {
                   <span>My list</span>
                   <span className="film-card__count">{myFilmListData}</span>
                 </Link>
-                <Link to={`/films/${activeFilm}/review`} className="btn film-card__button">
+                <Link className="btn film-card__button" to={`/films/${activeFilm}/review`}>
                   Add review
                 </Link>
               </div>
             </div>
           </div>
         </div>
-        <div className="film-card__wrap film-card__translate-top">
-          <div className="film-card__info">
-            <div className="film-card__poster film-card__poster--big">
-              <img
-                src={filmsData[activeFilm].filmPoster}
-                alt={filmsData[activeFilm].filmName}
-                width={218}
-                height={327}
-              />
-            </div>
-            <div className="film-card__desc">
-              <nav className="film-nav film-card__nav">
-                <ul className="film-nav__list">
-                  <li className="film-nav__item film-nav__item--active">
-                    <a href="#" className="film-nav__link">
-                      Overview
-                    </a>
-                  </li>
-                  <li className="film-nav__item">
-                    <a href="#" className="film-nav__link">
-                      Details
-                    </a>
-                  </li>
-                  <li className="film-nav__item">
-                    <a href="#" className="film-nav__link">
-                      Reviews
-                    </a>
-                  </li>
-                </ul>
-              </nav>
-              <div className="film-rating">
-                <div className="film-rating__score">{filmsData[activeFilm].rating}</div>
-                <p className="film-rating__meta">
-                  <span className="film-rating__level">Very good</span>
-                  <span className="film-rating__count">{filmsData[activeFilm].ratingTable}</span>
-                </p>
-              </div>
-              <div className="film-card__text">
-                <p>
-                  {filmsData[activeFilm].description}
-                </p>
-                <p className="film-card__director">
-                  <strong>{filmsData[activeFilm].director}</strong>
-                </p>
-                <p className="film-card__starring">
-                  <strong>
-                    Starring: Bill Murray, Edward Norton, Jude Law, Willem Dafoe and
-                    other
-                  </strong>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <Tabs filmsData={filmsData} filmsReviews={filmsReviews} activeFilm={activeFilm}/>
       </section>
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
           <div className="catalog__films-list">
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img
-                  src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
-                  alt="Fantastic Beasts: The Crimes of Grindelwald"
-                  width={280}
-                  height={175}
-                />
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">
-                  Fantastic Beasts: The Crimes of Grindelwald
-                </a>
-              </h3>
-            </article>
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img
-                  src="img/bohemian-rhapsody.jpg"
-                  alt="Bohemian Rhapsody"
-                  width={280}
-                  height={175}
-                />
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">
-                  Bohemian Rhapsody
-                </a>
-              </h3>
-            </article>
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/macbeth.jpg" alt="Macbeth" width={280} height={175} />
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">
-                  Macbeth
-                </a>
-              </h3>
-            </article>
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/aviator.jpg" alt="Aviator" width={280} height={175} />
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">
-                  Aviator
-                </a>
-              </h3>
-            </article>
+            <FilmList filmListData={moreLikeThisFilms} chooseActiveFilm={chooseActiveFilm}/>
           </div>
         </section>
         <LogoBottom />

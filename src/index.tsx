@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app';
 
-import { FilmsData } from './mocks/films';
+import { FilmsData, FilmsReviews } from './mocks/films';
 import { FilmListData, MyFilmListData } from './mocks/film-list';
 
 const root = ReactDOM.createRoot(
@@ -13,6 +13,7 @@ root.render(
   <React.StrictMode>
     <App
       filmsData={FilmsData}
+      filmsReviews={FilmsReviews}
       filmListData={FilmListData}
       myFilmListData={MyFilmListData}
     />
