@@ -11,14 +11,14 @@ type TFilmCard = {
 }
 
 function FilmCard({filmId, filmName, srcImage, srcVideo, chooseActiveFilm}: TFilmCard): JSX.Element {
-  const [isAimmig, setIsAimming] = useState(false);
+  const [isAimmig, setIsHover] = useState(false);
 
-  function handleIsAimming() {
-    setIsAimming(!isAimmig);
+  function handleIsHover() {
+    setIsHover(!isAimmig);
   }
 
   return (
-    <article id={filmId} onMouseEnter={() => handleIsAimming()} onMouseLeave={() => handleIsAimming()} className="small-film-card catalog__films-card">
+    <article id={filmId} onMouseEnter={() => handleIsHover()} onMouseLeave={() => handleIsHover()} className="small-film-card catalog__films-card">
       <div className="small-film-card__image">
         <VideoPlayer isActive={isAimmig} srcVideo={srcVideo} srcImage={srcImage}/>
       </div>
