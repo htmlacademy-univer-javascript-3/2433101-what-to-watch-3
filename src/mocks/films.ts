@@ -17,7 +17,7 @@ export type TFilmsData = {
 export const FilmsData: {[key: string]: TFilmsData} = {
   '0': {
     filmName: 'Fantastic Beasts: The Crimes of Grindelwald',
-    genre: 'Fantasy',
+    genre: 'Sci-Fi',
     date:'2018',
     director: 'David Yates',
     starring:'Bill Murray, Edward Norton, Jude Law, Willem Dafoe, Saoirse Ronan, Tony Revoloru, Tilda Swinton, Tom Wilkinson, Owen Wilkinson, Adrien Brody, Ralph Fiennes, Jeff Goldblum',
@@ -32,7 +32,7 @@ export const FilmsData: {[key: string]: TFilmsData} = {
   },
   '1': {
     filmName: 'Bohemian Rhapsody',
-    genre: 'Drama',
+    genre: 'Documentary',
     date:'2018',
     director: 'Bryan Singer',
     starring:'Bill Murray, Edward Norton, Jude Law, Willem Dafoe, Saoirse Ronan, Tony Revoloru, Tilda Swinton, Tom Wilkinson, Owen Wilkinson, Adrien Brody, Ralph Fiennes, Jeff Goldblum',
@@ -47,7 +47,7 @@ export const FilmsData: {[key: string]: TFilmsData} = {
   },
   '2': {
     filmName: 'Macbeth',
-    genre: 'Drama',
+    genre: 'Dramas',
     date:'2015',
     director: 'Justin Kurzel',
     starring:'Bill Murray, Edward Norton, Jude Law, Willem Dafoe, Saoirse Ronan, Tony Revoloru, Tilda Swinton, Tom Wilkinson, Owen Wilkinson, Adrien Brody, Ralph Fiennes, Jeff Goldblum',
@@ -62,7 +62,7 @@ export const FilmsData: {[key: string]: TFilmsData} = {
   },
   '3': {
     filmName: 'Aviator',
-    genre: 'Drama',
+    genre: 'Dramas',
     date:'2014',
     director: 'Martin Scorsese',
     starring:'Bill Murray, Edward Norton, Jude Law, Willem Dafoe, Saoirse Ronan, Tony Revoloru, Tilda Swinton, Tom Wilkinson, Owen Wilkinson, Adrien Brody, Ralph Fiennes, Jeff Goldblum',
@@ -77,7 +77,7 @@ export const FilmsData: {[key: string]: TFilmsData} = {
   },
   '4': {
     filmName: 'We need to talk about Kevin',
-    genre: 'Drama',
+    genre: 'Documentary',
     date:'2011',
     director: 'Lynne Ramsay',
     starring:'Bill Murray, Edward Norton, Jude Law, Willem Dafoe, Saoirse Ronan, Tony Revoloru, Tilda Swinton, Tom Wilkinson, Owen Wilkinson, Adrien Brody, Ralph Fiennes, Jeff Goldblum',
@@ -92,7 +92,7 @@ export const FilmsData: {[key: string]: TFilmsData} = {
   },
   '5': {
     filmName: 'What We Do in the Shadows',
-    genre: 'Comedy',
+    genre: 'Comedies',
     date:'2019',
     director: 'Jemaine Clement',
     starring:'Bill Murray, Edward Norton, Jude Law, Willem Dafoe, Saoirse Ronan, Tony Revoloru, Tilda Swinton, Tom Wilkinson, Owen Wilkinson, Adrien Brody, Ralph Fiennes, Jeff Goldblum',
@@ -107,7 +107,7 @@ export const FilmsData: {[key: string]: TFilmsData} = {
   },
   '6': {
     filmName: 'The Revenant',
-    genre: 'Action',
+    genre: 'Crime',
     date:'2015',
     director: 'Alejandro G. Iñárritu',
     starring:'Bill Murray, Edward Norton, Jude Law, Willem Dafoe, Saoirse Ronan, Tony Revoloru, Tilda Swinton, Tom Wilkinson, Owen Wilkinson, Adrien Brody, Ralph Fiennes, Jeff Goldblum',
@@ -121,7 +121,7 @@ export const FilmsData: {[key: string]: TFilmsData} = {
     srcVideo: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
   },
   '7': {
-    filmName: 'Peter Howitt',
+    filmName: 'Comedies',
     genre: 'Comedy',
     date:'2003',
     director: 'Alejandro G. Iñárritu',

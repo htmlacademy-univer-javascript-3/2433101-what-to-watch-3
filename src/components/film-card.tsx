@@ -11,16 +11,16 @@ type TFilmCard = {
 }
 
 function FilmCard({filmId, filmName, srcImage, srcVideo, chooseActiveFilm}: TFilmCard): JSX.Element {
-  const [isAimmig, setIsHover] = useState(false);
+  const [isHover, setIsHover] = useState(false);
 
   function handleIsHover() {
-    setIsHover(!isAimmig);
+    setIsHover(!isHover);
   }
 
   return (
     <article id={filmId} onMouseEnter={() => handleIsHover()} onMouseLeave={() => handleIsHover()} className="small-film-card catalog__films-card">
       <div className="small-film-card__image">
-        <VideoPlayer isActive={isAimmig} srcVideo={srcVideo} srcImage={srcImage}/>
+        <VideoPlayer isActive={isHover} srcVideo={srcVideo} srcImage={srcImage}/>
       </div>
       <h3 className="small-film-card__title">
         <Link onClick={() => chooseActiveFilm(filmId)} className="small-film-card__link" to={`/films/${filmId}`}>

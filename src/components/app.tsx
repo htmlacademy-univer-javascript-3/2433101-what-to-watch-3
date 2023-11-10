@@ -15,12 +15,11 @@ import { useState } from 'react';
 type TApp = {
   filmsData: {[key: string]: TFilmsData};
   filmsReviews: {[key: string]: TFilmsReviews[]};
-  filmListData: {[key: string]: string}[];
   myFilmListData: {[key: string]: string}[];
 }
 
 function App(props: TApp): JSX.Element {
-  const [activeFilm, setActiveFilm] = useState('0');
+  const [activeFilm, setActiveFilm] = useState('1');
 
   function chooseActiveFilm(filmId: string): void {
     setActiveFilm(filmId);
@@ -34,7 +33,6 @@ function App(props: TApp): JSX.Element {
           element={
             <MainPage
               filmData={props.filmsData}
-              filmListData={props.filmListData}
               myFilmListData={props.myFilmListData.length}
               activeFilm={activeFilm}
               chooseActiveFilm={chooseActiveFilm}

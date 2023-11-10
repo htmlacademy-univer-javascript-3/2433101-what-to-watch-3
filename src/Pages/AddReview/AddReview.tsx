@@ -1,6 +1,8 @@
 import { TFilmsData } from '../../mocks/films';
 import CommentSubmissionForm from '../../components/comment-submission-form';
 import { LogoTop } from '../../components/logo';
+import { Link } from 'react-router-dom';
+import { AppRoute } from '../../const';
 
 type TAddReview = {
   filmsData: {[key: string]: TFilmsData};
@@ -23,9 +25,9 @@ function AddReview({filmsData, activeFilm}: TAddReview): JSX.Element {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <a href="film-page.html" className="breadcrumbs__link">
+                <Link to={AppRoute.FilmsId} className="breadcrumbs__link">
                   {filmsData[activeFilm].filmName}
-                </a>
+                </Link>
               </li>
               <li className="breadcrumbs__item">
                 <a className="breadcrumbs__link">Add review</a>
