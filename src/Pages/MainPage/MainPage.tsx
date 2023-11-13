@@ -3,7 +3,12 @@ import { TFilmsData } from '../../mocks/films';
 import { LogoTop, LogoBottom } from '../../components/logo';
 import { GenreList } from '../../components/genre-list';
 import { useAppSelector } from '../../components/hooks';
+import { FilmList } from '../../components/film-list';
+import { ShowMore } from '../../components/show-more';
+import { useState } from 'react';
 
+
+const defaultVisibleCountFilms = 8;
 
 type TMainPage = {
   filmData: {[key: string]: TFilmsData};
@@ -14,6 +19,14 @@ type TMainPage = {
 
 function MainPage({filmData, myFilmListData, chooseActiveFilm, activeFilm}: TMainPage): JSX.Element {
   const filmListDataByGenre = useAppSelector((state) => state.filmListData);
+
+  const [visibleCountFilms, setVisibleCountFilms] = useState(defaultVisibleCountFilms);
+  const handleShowMoreClick = () => {
+    setVisibleCountFilms(visibleCountFilms + 8);
+  };
+  const handleShowLessClick = () => {
+    setVisibleCountFilms(defaultVisibleCountFilms);
+  };
 
   return (
     <>
@@ -79,7 +92,14 @@ function MainPage({filmData, myFilmListData, chooseActiveFilm, activeFilm}: TMai
         </div>
       </section>
       <div className="page-content">
-        <GenreList filmListData={filmListDataByGenre} chooseActiveFilm={chooseActiveFilm}/>
+        <section className="catalog">
+          <h2 className="catalog__title visually-hidden">Catalog</h2>
+          <GenreList handleShowLessClick={handleShowLessClick}/>
+          <div className="catalog__films-list">
+            <FilmList filmListData={filmListDataByGenre} chooseActiveFilm={chooseActiveFilm} visibleCountFilms={visibleCountFilms}/>
+          </div>
+          {visibleCountFilms < filmListDataByGenre.length && <ShowMore handleShowMoreClick={handleShowMoreClick}/>}
+        </section>
         <LogoBottom />
       </div>
     </>
