@@ -15,7 +15,7 @@ type TFilm = {
 
 function Film({filmsData, filmsReviews, myFilmListData, activeFilm, chooseActiveFilm}: TFilm): JSX.Element {
   const filmListDataByGenre = useAppSelector((state) => state.filmListByGenreData);
-  
+
   const filmGenre = filmsData[activeFilm].genre;
   const moreLikeThisFilms = filmListDataByGenre.filter((film) => film.genre === filmGenre).slice(0, 4);
 
