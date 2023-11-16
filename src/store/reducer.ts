@@ -1,16 +1,20 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeFilmListByGenreAction, changeGenreAction } from './action';
-import { FilmListData, TFilmCard } from '../mocks/film-list';
+import { changeFilmListByGenreAction, changeGenreAction, loadFilms, setFilmDataLoadingStatus } from './action';
+import { TFilms } from '../components/types/films';
 
 
 type TInitialState = {
   genre: string;
-  filmListData: TFilmCard[];
+  filmListData: TFilms[];
+  filmListByGenreData: TFilms[];
+  isFilmDataLoadingStatus: boolean;
 }
 
 const initialState: TInitialState = {
   genre: 'All genres',
-  filmListData: FilmListData,
+  filmListData: [],
+  filmListByGenreData: [],
+  isFilmDataLoadingStatus: false,
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -19,8 +23,15 @@ export const reducer = createReducer(initialState, (builder) => {
       state.genre = action.payload;
     })
     .addCase(changeFilmListByGenreAction, (state) => {
-      state.filmListData = state.genre === 'All genres'
-        ? FilmListData
-        : FilmListData.filter((film) => film.genre === state.genre);
+      state.filmListByGenreData = state.genre === 'All genres'
+        ? state.filmListData
+        : state.filmListData.filter((film) => film.genre === state.genre);
+    })
+    .addCase(loadFilms, (state, action) => {
+      state.filmListData = action.payload;
+      state.filmListByGenreData = action.payload;
+    })
+    .addCase(setFilmDataLoadingStatus, (state, action) => {
+      state.isFilmDataLoadingStatus = action.payload;
     });
 });

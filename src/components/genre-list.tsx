@@ -28,7 +28,7 @@ export function GenreList({handleShowLessClick}: TGenreList): JSX.Element {
       </li>
       <li className="catalog__genres-item">
         <Link to='/' className="catalog__genres-link" onClick={() => {
-          hundleChangeGenre('Comedies');
+          hundleChangeGenre('Comedy');
           handleShowLessClick();
         }}
         >
@@ -46,16 +46,16 @@ export function GenreList({handleShowLessClick}: TGenreList): JSX.Element {
       </li>
       <li className="catalog__genres-item">
         <Link to='/' className="catalog__genres-link" onClick={() => {
-          hundleChangeGenre('Documentary');
+          hundleChangeGenre('Fantasy');
           handleShowLessClick();
         }}
         >
-          Documentary
+          Fantasies
         </Link>
       </li>
       <li className="catalog__genres-item">
         <Link to='/' className="catalog__genres-link" onClick={() => {
-          hundleChangeGenre('Dramas');
+          hundleChangeGenre('Drama');
           handleShowLessClick();
         }}
         >
@@ -64,43 +64,25 @@ export function GenreList({handleShowLessClick}: TGenreList): JSX.Element {
       </li>
       <li className="catalog__genres-item">
         <Link to='/' className="catalog__genres-link" onClick={() => {
-          hundleChangeGenre('Horror');
+          hundleChangeGenre('Action');
           handleShowLessClick();
         }}
         >
-          Horror
+          Actions
         </Link>
       </li>
       <li className="catalog__genres-item">
         <Link to='/' className="catalog__genres-link" onClick={() => {
-          hundleChangeGenre('Kids Family');
+          hundleChangeGenre('Adventure');
           handleShowLessClick();
         }}
         >
-          Kids &amp; Family
+          Adventure
         </Link>
       </li>
       <li className="catalog__genres-item">
         <Link to='/' className="catalog__genres-link" onClick={() => {
-          hundleChangeGenre('Romance');
-          handleShowLessClick();
-        }}
-        >
-          Romance
-        </Link>
-      </li>
-      <li className="catalog__genres-item">
-        <Link to='/' className="catalog__genres-link" onClick={() => {
-          hundleChangeGenre('Sci-Fi');
-          handleShowLessClick();
-        }}
-        >
-          Sci-Fi
-        </Link>
-      </li>
-      <li className="catalog__genres-item">
-        <Link to='/' className="catalog__genres-link" onClick={() => {
-          hundleChangeGenre('Thrillers');
+          hundleChangeGenre('Thriller');
           handleShowLessClick();
         }}
         >

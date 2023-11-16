@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 import { TFilmsData, TFilmsReviews } from '../../mocks/films';
 import { LogoBottom, LogoTop } from '../../components/logo';
 import { Tabs } from '../../components/tabs/tabs';
-import { FilmListData } from '../../mocks/film-list';
 import { FilmList } from '../../components/film-list';
+import { useAppSelector } from '../../components/hooks';
 
 type TFilm = {
   filmsData: {[key: string]: TFilmsData};
@@ -14,8 +14,10 @@ type TFilm = {
 }
 
 function Film({filmsData, filmsReviews, myFilmListData, activeFilm, chooseActiveFilm}: TFilm): JSX.Element {
+  const filmListDataByGenre = useAppSelector((state) => state.filmListByGenreData);
+
   const filmGenre = filmsData[activeFilm].genre;
-  const moreLikeThisFilms = FilmListData.filter((film) => film.genre === filmGenre).slice(0, 4);
+  const moreLikeThisFilms = filmListDataByGenre.filter((film) => film.genre === filmGenre).slice(0, 4);
 
   return (
     <>

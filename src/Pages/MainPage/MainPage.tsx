@@ -18,7 +18,7 @@ type TMainPage = {
 }
 
 function MainPage({filmData, myFilmListData, chooseActiveFilm, activeFilm}: TMainPage): JSX.Element {
-  const filmListDataByGenre = useAppSelector((state) => state.filmListData);
+  const filmListDataByGenre = useAppSelector((state) => state.filmListByGenreData);
 
   const [visibleCountFilms, setVisibleCountFilms] = useState(defaultVisibleCountFilms);
   const handleShowMoreClick = () => {
