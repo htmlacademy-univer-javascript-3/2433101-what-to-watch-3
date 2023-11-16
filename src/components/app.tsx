@@ -10,6 +10,8 @@ import Player from '../Pages/Player/Player';
 import PrivateRoute from './private-route';
 import { TFilmsData, TFilmsReviews } from '../mocks/films';
 import { useState } from 'react';
+import { useAppSelector } from './hooks';
+import { LoadingScreen } from '../Pages/LoadingScreen/LoadingScreen';
 
 
 type TApp = {
@@ -23,6 +25,13 @@ function App(props: TApp): JSX.Element {
 
   function chooseActiveFilm(filmId: string): void {
     setActiveFilm(filmId);
+  }
+
+  const isFilmDataLoadingStatus = useAppSelector((state) => state.isFilmDataLoadingStatus);
+  if (isFilmDataLoadingStatus) {
+    return (
+      <LoadingScreen />
+    );
   }
 
   return (
