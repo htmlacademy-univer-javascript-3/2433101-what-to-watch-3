@@ -20,3 +20,4 @@ export enum APIRoute {
   Films = '/films',
 }
 
+export const defaultVisibleCountFilms = 8;

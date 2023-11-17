@@ -1,16 +1,15 @@
 import { FilmList } from '../../components/film-list';
-import { useAppSelector } from '../../components/hooks';
 import { LogoTop, LogoBottom } from '../../components/logo';
+import { TFilms } from '../../components/types/films';
 
 
 type TMyList = {
   myFilmListData: {[key: string]: string}[];
+  filmListDataByGenre: TFilms[];
   chooseActiveFilm: (filmId: string) => void;
 }
 
-function MyList({myFilmListData, chooseActiveFilm}: TMyList): JSX.Element {
-  const filmListDataByGenre = useAppSelector((state) => state.filmListByGenreData);
-
+function MyList({myFilmListData, filmListDataByGenre, chooseActiveFilm}: TMyList): JSX.Element {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">

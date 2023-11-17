@@ -2,24 +2,23 @@ import { Link } from 'react-router-dom';
 import { TFilmsData } from '../../mocks/films';
 import { LogoTop, LogoBottom } from '../../components/logo';
 import { GenreList } from '../../components/genre-list';
-import { useAppSelector } from '../../components/hooks';
 import { FilmList } from '../../components/film-list';
 import { ShowMore } from '../../components/show-more';
 import { useState } from 'react';
+import { TFilms } from '../../components/types/films';
+import { defaultVisibleCountFilms } from '../../const';
+import { UserBlock } from '../../components/user-block';
 
-
-const defaultVisibleCountFilms = 8;
 
 type TMainPage = {
   filmData: {[key: string]: TFilmsData};
+  filmListDataByGenre: TFilms[];
   myFilmListData: number;
   chooseActiveFilm: (filmId: string) => void;
   activeFilm: string;
 }
 
-function MainPage({filmData, myFilmListData, chooseActiveFilm, activeFilm}: TMainPage): JSX.Element {
-  const filmListDataByGenre = useAppSelector((state) => state.filmListByGenreData);
-
+function MainPage({filmData, filmListDataByGenre, myFilmListData, chooseActiveFilm, activeFilm}: TMainPage): JSX.Element {
   const [visibleCountFilms, setVisibleCountFilms] = useState(defaultVisibleCountFilms);
   const handleShowMoreClick = () => {
     setVisibleCountFilms(visibleCountFilms + 8);
@@ -40,21 +39,7 @@ function MainPage({filmData, myFilmListData, chooseActiveFilm, activeFilm}: TMai
         <h1 className="visually-hidden">WTW</h1>
         <header className="page-header film-card__head">
           <LogoTop />
-          <ul className="user-block">
-            <li className="user-block__item">
-              <div className="user-block__avatar">
-                <img
-                  src="img/avatar.jpg"
-                  alt="User avatar"
-                  width={63}
-                  height={63}
-                />
-              </div>
-            </li>
-            <li className="user-block__item">
-              <a className="user-block__link">Sign out</a>
-            </li>
-          </ul>
+          <UserBlock />
         </header>
         <div className="film-card__wrap">
           <div className="film-card__info">
