@@ -1,6 +1,14 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { getToken } from './token';
 import { StatusCodes } from 'http-status-codes';
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
+type TDetailMessage = {
+  type: string;
+  message: string;
+}
 
 const BASE_URL = 'https://13.design.pages.academy/wtw';
 const REQUEST_TIMEOUT = 5000;
@@ -21,22 +29,20 @@ export const createApi = (): AxiosInstance => {
   api.interceptors.request.use(
     (config: AxiosRequestConfig) => {
       const token = getToken();
-
       if (token && config.headers) {
         config.headers['x-token'] = token;
       }
-
       return config;
     }
   );
 
   api.interceptors.response.use(
     (response) => response,
-    (error: AxiosError<{error: string}>) => {
+    (error: AxiosError<TDetailMessage>) => {
       if (error.response && shouldDisplayError(error.response)) {
-        toast.warn(error.response.data.error);
+        const detailMessage = (error.response.data);
+        toast.warn(detailMessage.message);
       }
-
       throw error;
     }
   );

@@ -22,14 +22,16 @@ export function UserBlock() {
               />
             </div>
           </li>
-          <li className="user-block__item" onClick={() => {dispatch(logoutAction());}}>
+          <li className="user-block__item" onClick={() => {
+            dispatch(logoutAction());
+          }}
+          >
             <Link to={AppRoute.SignIn} className="user-block__link">Sign out</Link>
           </li>
         </> :
         <li className="user-block__item">
           <Link to={AppRoute.SignIn} className="user-block__link">Sign in</Link>
-        </li>
-      }
+        </li>}
     </ul>
   );
 }

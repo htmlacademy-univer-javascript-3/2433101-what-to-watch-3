@@ -1,31 +1,24 @@
-import { FormEvent, useRef } from 'react';
+import { useState } from 'react';
 import { LogoBottom, LogoTop } from '../../components/logo';
 import { loginAction } from '../../store/api-actions';
 import { AppRoute } from '../../const';
 import { useAppDispatch } from '../../components/hooks';
 import { useNavigate } from 'react-router-dom';
-import { AuthData } from '../../components/types/auth-data';
-
 
 function SignIn(): JSX.Element {
-  const loginRef = useRef<HTMLInputElement | null>(null);
-  const passwordRef = useRef<HTMLInputElement | null>(null);
+  const [login, setLogin] = useState('');
+  const [password, setPassword] = useState('');
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const onSubmit = (authData: AuthData) => {
-    dispatch(loginAction(authData));
-  };
-
-  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
-    evt.preventDefault();
-
-    if (loginRef.current !== null && passwordRef.current !== null) {
-      onSubmit({
-        login: loginRef.current.value,
-        password: passwordRef.current.value,
-      });
+  const handleSubmit = () => {
+    if (login !== '' && password !== '') {
+      dispatch(loginAction({
+        login,
+        password
+      }));
+      navigate(AppRoute.Main);
     }
   };
 
@@ -36,11 +29,12 @@ function SignIn(): JSX.Element {
         <h1 className="page-title user-page__title">Sign in</h1>
       </header>
       <div className="sign-in user-page__content">
-        <form action="#" className="sign-in__form" onSubmit={handleSubmit}>
+        <form action="#" className="sign-in__form">
           <div className="sign-in__fields">
             <div className="sign-in__field">
               <input
-                ref={loginRef}
+                onChange={(e) => setLogin(e.target.value)}
+                value={login}
                 className="sign-in__input"
                 type="email"
                 placeholder="Email address"
@@ -56,7 +50,8 @@ function SignIn(): JSX.Element {
             </div>
             <div className="sign-in__field">
               <input
-                ref={passwordRef}
+                onChange={(e) => setPassword(e.target.value)}
+                value={password}
                 className="sign-in__input"
                 type="password"
                 placeholder="Password"
@@ -72,7 +67,7 @@ function SignIn(): JSX.Element {
             </div>
           </div>
           <div className="sign-in__submit">
-            <button className="sign-in__btn" type="submit" onClick={() => navigate(AppRoute.Main)}>
+            <button className="sign-in__btn" type="submit" onClick={handleSubmit}>
               Sign in
             </button>
           </div>
