@@ -3,19 +3,18 @@ import { TFilmsData, TFilmsReviews } from '../../mocks/films';
 import { LogoBottom, LogoTop } from '../../components/logo';
 import { Tabs } from '../../components/tabs/tabs';
 import { FilmList } from '../../components/film-list';
-import { useAppSelector } from '../../components/hooks';
+import { TFilms } from '../../components/types/films';
 
 type TFilm = {
   filmsData: {[key: string]: TFilmsData};
   filmsReviews: {[key: string]: TFilmsReviews[]};
+  filmListDataByGenre: TFilms[];
   myFilmListData: number;
   activeFilm: string;
   chooseActiveFilm: (filmId: string) => void;
 }
 
-function Film({filmsData, filmsReviews, myFilmListData, activeFilm, chooseActiveFilm}: TFilm): JSX.Element {
-  const filmListDataByGenre = useAppSelector((state) => state.filmListByGenreData);
-
+function Film({filmsData, filmsReviews, filmListDataByGenre, myFilmListData, activeFilm, chooseActiveFilm}: TFilm): JSX.Element {
   const filmGenre = filmsData[activeFilm].genre;
   const moreLikeThisFilms = filmListDataByGenre.filter((film) => film.genre === filmGenre).slice(0, 4);
 
