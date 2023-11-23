@@ -18,8 +18,8 @@ const initialState: TInitialState = {
   genre: 'All genres',
   filmListData: [],
   filmListByGenreData: [],
-  filmPromo: undefined,
-  filmsFilmId: undefined,
+  filmPromo: {} as TFilmPromo,
+  filmsFilmId: {} as TFilmsFilmId,
   authorizationStatus: AuthorizationStatus.Unknown,
   isFilmDataLoadingStatus: false,
 };

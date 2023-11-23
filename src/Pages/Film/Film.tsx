@@ -1,11 +1,13 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { TFilmsData, TFilmsReviews } from '../../mocks/films';
 import { LogoBottom, LogoTop } from '../../components/logo';
 import { Tabs } from '../../components/tabs/tabs';
 import { FilmList } from '../../components/film-list';
 import { TFilms } from '../../components/types/films';
 import { useAppDispatch, useAppSelector } from '../../components/hooks';
+import { useEffect } from 'react';
 import { fetchFilmsFilmIdAction } from '../../store/api-actions';
+import NotFoundScreen from '../NotFoundScreen/NotFoundScreen';
 
 
 type TFilm = {
@@ -17,18 +19,23 @@ type TFilm = {
   chooseActiveFilm: (filmId: string) => void;
 }
 
-function Film({filmsData, filmsReviews, filmListByGenreData, myFilmListData, activeFilm, chooseActiveFilm}: TFilm): JSX.Element {
+function Film({filmsData, filmsReviews, filmListByGenreData, myFilmListData, activeFilm, chooseActiveFilm }: TFilm): JSX.Element {
   const filmsFilmId = useAppSelector((state) => state.filmsFilmId);
-  
-  
-  // const filmGenre = filmsData[activeFilm].genre;
   const filmGenre = filmsFilmId?.genre;
+
+  const { id } = useParams();
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (id) {
+      dispatch(fetchFilmsFilmIdAction(id));
+    }
+  }, [dispatch, id]);
+  
   const moreLikeThisFilms = filmListByGenreData.filter((film) => film.genre === filmGenre).slice(0, 4);
 
-
-  const dispatch = useAppDispatch();
-  function handleFilmsFilmId(id: string) {
-    dispatch(fetchFilmsFilmIdAction(id));
+  if (!id || !filmsFilmId) {
+    return <NotFoundScreen />;
   }
 
   return (
@@ -37,8 +44,8 @@ function Film({filmsData, filmsReviews, filmListByGenreData, myFilmListData, act
         <div className="film-card__hero">
           <div className="film-card__bg">
             <img
-              src={filmsData[activeFilm].filmBackgroundImage}
-              alt={filmsData[activeFilm].filmName}
+              src={filmsFilmId?.backgroundImage}
+              alt={filmsFilmId?.name}
             />
           </div>
           <h1 className="visually-hidden">WTW</h1>
@@ -62,13 +69,13 @@ function Film({filmsData, filmsReviews, filmListByGenreData, myFilmListData, act
           </header>
           <div className="film-card__wrap">
             <div className="film-card__desc">
-              <h2 className="film-card__title">{filmsData[activeFilm].filmName}</h2>
+              <h2 className="film-card__title">{filmsFilmId?.name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{filmsData[activeFilm].genre}</span>
-                <span className="film-card__year">{filmsData[activeFilm].date}</span>
+                <span className="film-card__genre">{filmsFilmId?.genre}</span>
+                <span className="film-card__year">{filmsFilmId?.released}</span>
               </p>
               <div className="film-card__buttons">
-                <Link className="btn btn--play film-card__button" type="button" to={`/player/${activeFilm}`}>
+                <Link className="btn btn--play film-card__button" type="button" to={`/player/${filmsFilmId?.id}`}>
                   <svg viewBox="0 0 19 19" width={19} height={19}>
                     <use xlinkHref="#play-s" />
                   </svg>
@@ -81,7 +88,7 @@ function Film({filmsData, filmsReviews, filmListByGenreData, myFilmListData, act
                   <span>My list</span>
                   <span className="film-card__count">{myFilmListData}</span>
                 </Link>
-                <Link className="btn film-card__button" to={`/films/${activeFilm}/review`}>
+                <Link className="btn film-card__button" to={`/films/${filmsFilmId?.id}/review`}>
                   Add review
                 </Link>
               </div>

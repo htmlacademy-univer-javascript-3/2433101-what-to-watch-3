@@ -12,10 +12,10 @@ import { useAppSelector } from '../../components/hooks';
 
 type TMainPage = {
   filmListByGenreData: TFilms[];
-  chooseActiveFilm: (filmId: string) => void;
+  // chooseActiveFilm: (filmId: string) => void;
 }
 
-function MainPage({filmListByGenreData, chooseActiveFilm}: TMainPage): JSX.Element {
+function MainPage({filmListByGenreData }: TMainPage): JSX.Element {
   const [visibleCountFilms, setVisibleCountFilms] = useState(defaultVisibleCountFilms);
   const handleShowMoreClick = () => {
     setVisibleCountFilms(visibleCountFilms + 8);
