@@ -1,22 +1,21 @@
-import { TFilmsData } from '../../mocks/films';
 import CommentSubmissionForm from '../../components/comment-submission-form';
 import { LogoTop } from '../../components/logo';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
+import { TFilmsFilmId } from '../../components/types/films';
 
 type TAddReview = {
-  filmsData: {[key: string]: TFilmsData};
-  activeFilm: string;
+  filmsFilmId: TFilmsFilmId;
 }
 
-function AddReview({filmsData, activeFilm}: TAddReview): JSX.Element {
+function AddReview({filmsFilmId}: TAddReview): JSX.Element {
   return (
     <section className="film-card film-card--full">
       <div className="film-card__header">
         <div className="film-card__bg">
           <img
-            src={filmsData[activeFilm].filmBackgroundImage}
-            alt={filmsData[activeFilm].filmName}
+            src={filmsFilmId.backgroundImage}
+            alt={filmsFilmId.name}
           />
         </div>
         <h1 className="visually-hidden">WTW</h1>
@@ -26,7 +25,7 @@ function AddReview({filmsData, activeFilm}: TAddReview): JSX.Element {
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
                 <Link to={AppRoute.FilmsId} className="breadcrumbs__link">
-                  {filmsData[activeFilm].filmName}
+                  {filmsFilmId.name}
                 </Link>
               </li>
               <li className="breadcrumbs__item">
@@ -52,8 +51,8 @@ function AddReview({filmsData, activeFilm}: TAddReview): JSX.Element {
         </header>
         <div className="film-card__poster film-card__poster--small">
           <img
-            src={filmsData[activeFilm].filmPoster}
-            alt={filmsData[activeFilm].filmName}
+            src={filmsFilmId.posterImage}
+            alt={filmsFilmId.name}
             width={218}
             height={327}
           />

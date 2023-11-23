@@ -12,7 +12,6 @@ import { useAppSelector } from '../../components/hooks';
 
 type TMainPage = {
   filmListByGenreData: TFilms[];
-  // chooseActiveFilm: (filmId: string) => void;
 }
 
 function MainPage({filmListByGenreData }: TMainPage): JSX.Element {
@@ -80,7 +79,7 @@ function MainPage({filmListByGenreData }: TMainPage): JSX.Element {
           <h2 className="catalog__title visually-hidden">Catalog</h2>
           <GenreList handleShowLessClick={handleShowLessClick}/>
           <div className="catalog__films-list">
-            <FilmList filmListData={filmListByGenreData} chooseActiveFilm={chooseActiveFilm} visibleCountFilms={visibleCountFilms}/>
+            <FilmList filmListData={filmListByGenreData} visibleCountFilms={visibleCountFilms}/>
           </div>
           {visibleCountFilms < filmListByGenreData.length && <ShowMore handleShowMoreClick={handleShowMoreClick}/>}
         </section>

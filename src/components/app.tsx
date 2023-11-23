@@ -21,15 +21,10 @@ type TApp = {
 
 function App(props: TApp): JSX.Element {
   const filmListByGenreData = useAppSelector((state) => state.filmListByGenreData);
-
-  // const [activeFilm, setActiveFilm] = useState('1');
-
-  // function chooseActiveFilm(filmId: string): void {
-  //   setActiveFilm(filmId);
-  // }
+  const filmsFilmId = useAppSelector((state) => state.filmsFilmId);
 
   const isFilmDataLoadingStatus = useAppSelector((state) => state.isFilmDataLoadingStatus);
-  if (isFilmDataLoadingStatus) {
+  if (isFilmDataLoadingStatus || !filmsFilmId) {
     return (
       <LoadingScreen />
     );
@@ -63,18 +58,15 @@ function App(props: TApp): JSX.Element {
         />
         <Route 
           path={AppRoute.FilmsId} 
-          // element={<Film filmsData={props.filmsData} filmsReviews={props.filmsReviews} filmListByGenreData={filmListByGenreData} myFilmListData={props.myFilmListData.length} activeFilm={activeFilm} chooseActiveFilm={chooseActiveFilm} />}
-          element={<Film />}
+          element={<Film filmsFilmId={filmsFilmId} filmListByGenreData={filmListByGenreData} myFilmListData={props.myFilmListData.length} />}
         />
         <Route 
           path={AppRoute.FilmsReview} 
-          // element={<AddReview filmsData={props.filmsData} activeFilm={activeFilm}/>}
-          element={<AddReview />}
+          element={<AddReview filmsFilmId={filmsFilmId} />}
         />
         <Route
           path={AppRoute.Player}
-          // element={<Player filmVideo={props.filmsData[activeFilm].srcVideo} filmPoster={props.filmsData[activeFilm].filmPoster}/>}
-          element={<Player />}
+          element={<Player filmsFilmId={filmsFilmId} />}
         />
         <Route
           path={AppRoute.NotFoundScreen}

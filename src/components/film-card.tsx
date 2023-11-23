@@ -7,10 +7,9 @@ type TFilmCard = {
   name: string;
   previewImage: string;
   previewVideoLink: string;
-  chooseActiveFilm: (filmId: string) => void;
 }
 
-function FilmCard({id, name, previewImage, previewVideoLink, chooseActiveFilm}: TFilmCard): JSX.Element {
+function FilmCard({id, name, previewImage, previewVideoLink}: TFilmCard): JSX.Element {
   const [isHover, setIsHover] = useState(false);
 
   function handleIsHover() {
@@ -23,7 +22,7 @@ function FilmCard({id, name, previewImage, previewVideoLink, chooseActiveFilm}: 
         <VideoPlayer isActive={isHover} srcVideo={previewVideoLink} srcImage={previewImage}/>
       </div>
       <h3 className="small-film-card__title">
-        <Link onClick={() => chooseActiveFilm(id)} className="small-film-card__link" to={`/films/${id}`}>
+        <Link className="small-film-card__link" to={`/films/${id}`}>
           {name}
         </Link>
       </h3>

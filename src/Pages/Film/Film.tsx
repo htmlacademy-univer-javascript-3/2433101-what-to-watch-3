@@ -1,26 +1,21 @@
 import { Link, useParams } from 'react-router-dom';
-import { TFilmsData, TFilmsReviews } from '../../mocks/films';
 import { LogoBottom, LogoTop } from '../../components/logo';
 import { Tabs } from '../../components/tabs/tabs';
 import { FilmList } from '../../components/film-list';
-import { TFilms } from '../../components/types/films';
-import { useAppDispatch, useAppSelector } from '../../components/hooks';
+import { TFilms, TFilmsFilmId } from '../../components/types/films';
+import { useAppDispatch } from '../../components/hooks';
 import { useEffect } from 'react';
 import { fetchFilmsFilmIdAction } from '../../store/api-actions';
 import NotFoundScreen from '../NotFoundScreen/NotFoundScreen';
 
 
 type TFilm = {
-  filmsData: {[key: string]: TFilmsData};
-  filmsReviews: {[key: string]: TFilmsReviews[]};
+  filmsFilmId: TFilmsFilmId;
   filmListByGenreData: TFilms[];
   myFilmListData: number;
-  activeFilm: string;
-  chooseActiveFilm: (filmId: string) => void;
 }
 
-function Film({filmsData, filmsReviews, filmListByGenreData, myFilmListData, activeFilm, chooseActiveFilm }: TFilm): JSX.Element {
-  const filmsFilmId = useAppSelector((state) => state.filmsFilmId);
+function Film({filmsFilmId, filmListByGenreData, myFilmListData}: TFilm): JSX.Element {
   const filmGenre = filmsFilmId?.genre;
 
   const { id } = useParams();
@@ -95,13 +90,13 @@ function Film({filmsData, filmsReviews, filmListByGenreData, myFilmListData, act
             </div>
           </div>
         </div>
-        <Tabs filmsData={filmsData} filmsReviews={filmsReviews} activeFilm={activeFilm}/>
+        <Tabs filmsFilmId={filmsFilmId}/>
       </section>
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
           <div className="catalog__films-list">
-            <FilmList filmListData={moreLikeThisFilms} chooseActiveFilm={chooseActiveFilm}/>
+            <FilmList filmListData={moreLikeThisFilms}/>
           </div>
         </section>
         <LogoBottom />
