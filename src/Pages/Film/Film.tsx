@@ -4,19 +4,32 @@ import { LogoBottom, LogoTop } from '../../components/logo';
 import { Tabs } from '../../components/tabs/tabs';
 import { FilmList } from '../../components/film-list';
 import { TFilms } from '../../components/types/films';
+import { useAppDispatch, useAppSelector } from '../../components/hooks';
+import { fetchFilmsFilmIdAction } from '../../store/api-actions';
+
 
 type TFilm = {
   filmsData: {[key: string]: TFilmsData};
   filmsReviews: {[key: string]: TFilmsReviews[]};
-  filmListDataByGenre: TFilms[];
+  filmListByGenreData: TFilms[];
   myFilmListData: number;
   activeFilm: string;
   chooseActiveFilm: (filmId: string) => void;
 }
 
-function Film({filmsData, filmsReviews, filmListDataByGenre, myFilmListData, activeFilm, chooseActiveFilm}: TFilm): JSX.Element {
-  const filmGenre = filmsData[activeFilm].genre;
-  const moreLikeThisFilms = filmListDataByGenre.filter((film) => film.genre === filmGenre).slice(0, 4);
+function Film({filmsData, filmsReviews, filmListByGenreData, myFilmListData, activeFilm, chooseActiveFilm}: TFilm): JSX.Element {
+  const filmsFilmId = useAppSelector((state) => state.filmsFilmId);
+  
+  
+  // const filmGenre = filmsData[activeFilm].genre;
+  const filmGenre = filmsFilmId?.genre;
+  const moreLikeThisFilms = filmListByGenreData.filter((film) => film.genre === filmGenre).slice(0, 4);
+
+
+  const dispatch = useAppDispatch();
+  function handleFilmsFilmId(id: string) {
+    dispatch(fetchFilmsFilmIdAction(id));
+  }
 
   return (
     <>

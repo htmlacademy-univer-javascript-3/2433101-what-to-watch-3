@@ -6,11 +6,12 @@ import { FilmsData, FilmsReviews } from './mocks/films';
 import { MyFilmListData } from './mocks/film-list';
 import { Provider } from 'react-redux';
 import { store } from './store';
-import { checkAuthAction, fetchFilmsAction } from './store/api-actions';
+import { checkAuthAction, fetchFilmPromoAction, fetchFilmsAction } from './store/api-actions';
 import { ToastContainer } from 'react-toastify';
 
 
 store.dispatch(fetchFilmsAction());
+store.dispatch(fetchFilmPromoAction());
 store.dispatch(checkAuthAction());
 
 const root = ReactDOM.createRoot(

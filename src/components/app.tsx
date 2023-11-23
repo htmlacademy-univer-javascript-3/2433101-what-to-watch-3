@@ -9,9 +9,10 @@ import AddReview from '../Pages/AddReview/AddReview';
 import Player from '../Pages/Player/Player';
 import { TFilmsData, TFilmsReviews } from '../mocks/films';
 import { useState } from 'react';
-import { useAppSelector } from './hooks';
+import { useAppDispatch, useAppSelector } from './hooks';
 import { LoadingScreen } from '../Pages/LoadingScreen/LoadingScreen';
 import PrivateRoute from './private-route';
+import { fetchFilmsFilmIdAction } from '../store/api-actions';
 
 
 type TApp = {
@@ -21,13 +22,21 @@ type TApp = {
 }
 
 function App(props: TApp): JSX.Element {
-  const filmListDataByGenre = useAppSelector((state) => state.filmListByGenreData);
+  const filmListByGenreData = useAppSelector((state) => state.filmListByGenreData);
 
   const [activeFilm, setActiveFilm] = useState('1');
 
   function chooseActiveFilm(filmId: string): void {
     setActiveFilm(filmId);
   }
+
+
+  // const filmsFilmId = useAppSelector((state) => state.filmsFilmId);
+
+  // const dispatch = useAppDispatch();
+  // function handleFilmsFilmId(id: string) {
+  //   dispatch(fetchFilmsFilmIdAction(id));
+  // }
 
   const isFilmDataLoadingStatus = useAppSelector((state) => state.isFilmDataLoadingStatus);
   if (isFilmDataLoadingStatus) {
@@ -43,10 +52,7 @@ function App(props: TApp): JSX.Element {
           path={AppRoute.Main}
           element={
             <MainPage
-              filmData={props.filmsData}
-              filmListDataByGenre={filmListDataByGenre}
-              myFilmListData={props.myFilmListData.length}
-              activeFilm={activeFilm}
+              filmListByGenreData={filmListByGenreData}
               chooseActiveFilm={chooseActiveFilm}
             />
           }
@@ -61,13 +67,13 @@ function App(props: TApp): JSX.Element {
             <PrivateRoute>
               <MyList
                 myFilmListData={props.myFilmListData}
-                filmListDataByGenre={filmListDataByGenre}
+                filmListByGenreData={filmListByGenreData}
                 chooseActiveFilm={chooseActiveFilm}
               />
             </PrivateRoute>
           }
         />
-        <Route path={AppRoute.FilmsId} element={<Film filmsData={props.filmsData} filmsReviews={props.filmsReviews} filmListDataByGenre={filmListDataByGenre} myFilmListData={props.myFilmListData.length} activeFilm={activeFilm} chooseActiveFilm={chooseActiveFilm}/>}/>
+        <Route path={AppRoute.FilmsId} element={<Film filmsData={props.filmsData} filmsReviews={props.filmsReviews} filmListByGenreData={filmListByGenreData} myFilmListData={props.myFilmListData.length} activeFilm={activeFilm} chooseActiveFilm={chooseActiveFilm}/>}/>
         <Route path={AppRoute.FilmsReview} element={<AddReview filmsData={props.filmsData} activeFilm={activeFilm}/>}/>
         <Route
           path={AppRoute.Player}

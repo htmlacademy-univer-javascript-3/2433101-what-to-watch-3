@@ -1,9 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AppDispatch, State } from '../components/types/state';
 import { AxiosInstance } from 'axios';
-import { loadFilmsAction, requireAuthorizationAction, setFilmDataLoadingStatusAction } from './action';
+import { loadFilmPromoAction, loadFilmsAction, loadFilmsFilmIdAction, requireAuthorizationAction, setFilmDataLoadingStatusAction } from './action';
 import { APIRoute, AuthorizationStatus } from '../const';
-import { TFilms } from '../components/types/films';
+import { TFilmPromo, TFilms, TFilmsFilmId } from '../components/types/films';
 import { AuthData } from '../components/types/auth-data';
 import { dropToken, saveToken } from '../components/services/token';
 import { UserData } from '../components/types/user-data';
@@ -20,6 +20,34 @@ export const fetchFilmsAction = createAsyncThunk<void, undefined, {
     const {data} = await api.get<TFilms[]>(APIRoute.Films);
     dispatch(setFilmDataLoadingStatusAction(false));
     dispatch(loadFilmsAction(data));
+  },
+);
+
+export const fetchFilmPromoAction = createAsyncThunk<void, undefined, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'films/fetchFilmPromo',
+  async (_arg, {dispatch, extra: api}) => {
+    dispatch(setFilmDataLoadingStatusAction(true));
+    const {data} = await api.get<TFilmPromo>(APIRoute.FilmPromo);
+    dispatch(setFilmDataLoadingStatusAction(false));
+    dispatch(loadFilmPromoAction(data));
+  },
+);
+
+export const fetchFilmsFilmIdAction = createAsyncThunk<void, string, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchFilmsFilmId',
+  async (id, {dispatch, extra: api}) => {
+    dispatch(setFilmDataLoadingStatusAction(true));
+    const {data} = await api.get<TFilmsFilmId>(`${APIRoute.Films}/${id}`);
+    dispatch(setFilmDataLoadingStatusAction(false));
+    dispatch(loadFilmsFilmIdAction(data));
   },
 );
 

@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { TFilmsData } from '../../mocks/films';
 import { LogoTop, LogoBottom } from '../../components/logo';
 import { GenreList } from '../../components/genre-list';
 import { FilmList } from '../../components/film-list';
@@ -8,17 +7,15 @@ import { useState } from 'react';
 import { TFilms } from '../../components/types/films';
 import { defaultVisibleCountFilms } from '../../const';
 import { UserBlock } from '../../components/user-block';
+import { useAppSelector } from '../../components/hooks';
 
 
 type TMainPage = {
-  filmData: {[key: string]: TFilmsData};
-  filmListDataByGenre: TFilms[];
-  myFilmListData: number;
+  filmListByGenreData: TFilms[];
   chooseActiveFilm: (filmId: string) => void;
-  activeFilm: string;
 }
 
-function MainPage({filmData, filmListDataByGenre, myFilmListData, chooseActiveFilm, activeFilm}: TMainPage): JSX.Element {
+function MainPage({filmListByGenreData, chooseActiveFilm}: TMainPage): JSX.Element {
   const [visibleCountFilms, setVisibleCountFilms] = useState(defaultVisibleCountFilms);
   const handleShowMoreClick = () => {
     setVisibleCountFilms(visibleCountFilms + 8);
@@ -27,13 +24,15 @@ function MainPage({filmData, filmListDataByGenre, myFilmListData, chooseActiveFi
     setVisibleCountFilms(defaultVisibleCountFilms);
   };
 
+  const filmPromo = useAppSelector((state) => state.filmPromo);
+
   return (
     <>
       <section className="film-card">
         <div className="film-card__bg">
           <img
-            src={filmData[activeFilm].filmBackgroundImage}
-            alt={filmData[activeFilm].filmName}
+            src={filmPromo?.backgroundImage}
+            alt={filmPromo?.name}
           />
         </div>
         <h1 className="visually-hidden">WTW</h1>
@@ -45,20 +44,20 @@ function MainPage({filmData, filmListDataByGenre, myFilmListData, chooseActiveFi
           <div className="film-card__info">
             <div className="film-card__poster">
               <img
-                src={filmData[activeFilm].filmPoster}
-                alt={filmData[activeFilm].filmName}
+                src={filmPromo?.posterImage}
+                alt={filmPromo?.name}
                 width={218}
                 height={327}
               />
             </div>
             <div className="film-card__desc">
-              <h2 className="film-card__title">{filmData[activeFilm].filmName}</h2>
+              <h2 className="film-card__title">{filmPromo?.name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{filmData[activeFilm].genre}</span>
-                <span className="film-card__year">{filmData[activeFilm].date}</span>
+                <span className="film-card__genre">{filmPromo?.genre}</span>
+                <span className="film-card__year">{filmPromo?.released}</span>
               </p>
               <div className="film-card__buttons">
-                <Link className="btn btn--play film-card__button" type="button" to={`/player/${activeFilm}`}>
+                <Link className="btn btn--play film-card__button" type="button" to={`/player/${filmPromo?.id}`}>
                   <svg viewBox="0 0 19 19" width={19} height={19}>
                     <use xlinkHref="#play-s" />
                   </svg>
@@ -69,7 +68,7 @@ function MainPage({filmData, filmListDataByGenre, myFilmListData, chooseActiveFi
                     <use xlinkHref="#add" />
                   </svg>
                   <span>My list</span>
-                  <span className="film-card__count">{myFilmListData}</span>
+                  <span className="film-card__count">test</span>
                 </Link>
               </div>
             </div>
@@ -81,9 +80,9 @@ function MainPage({filmData, filmListDataByGenre, myFilmListData, chooseActiveFi
           <h2 className="catalog__title visually-hidden">Catalog</h2>
           <GenreList handleShowLessClick={handleShowLessClick}/>
           <div className="catalog__films-list">
-            <FilmList filmListData={filmListDataByGenre} chooseActiveFilm={chooseActiveFilm} visibleCountFilms={visibleCountFilms}/>
+            <FilmList filmListData={filmListByGenreData} chooseActiveFilm={chooseActiveFilm} visibleCountFilms={visibleCountFilms}/>
           </div>
-          {visibleCountFilms < filmListDataByGenre.length && <ShowMore handleShowMoreClick={handleShowMoreClick}/>}
+          {visibleCountFilms < filmListByGenreData.length && <ShowMore handleShowMoreClick={handleShowMoreClick}/>}
         </section>
         <LogoBottom />
       </div>

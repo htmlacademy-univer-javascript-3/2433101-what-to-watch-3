@@ -18,6 +18,7 @@ export enum APIRoute {
   Login = '/login',
   Logout = '/logout',
   Films = '/films',
+  FilmPromo = '/Promo',
 }
 
 export const defaultVisibleCountFilms = 8;

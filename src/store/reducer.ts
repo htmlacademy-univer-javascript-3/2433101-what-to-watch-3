@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeFilmListByGenreAction, changeGenreAction, loadFilmsAction, requireAuthorizationAction, setFilmDataLoadingStatusAction } from './action';
-import { TFilms } from '../components/types/films';
+import { changeFilmListByGenreAction, changeGenreAction, loadFilmPromoAction, loadFilmsAction, loadFilmsFilmIdAction, requireAuthorizationAction, setFilmDataLoadingStatusAction } from './action';
+import { TFilmPromo, TFilms, TFilmsFilmId } from '../components/types/films';
 import { AuthorizationStatus } from '../const';
 
 
@@ -8,6 +8,8 @@ type TInitialState = {
   genre: string;
   filmListData: TFilms[];
   filmListByGenreData: TFilms[];
+  filmPromo?: TFilmPromo;
+  filmsFilmId?: TFilmsFilmId;
   authorizationStatus: AuthorizationStatus;
   isFilmDataLoadingStatus: boolean;
 }
@@ -16,6 +18,8 @@ const initialState: TInitialState = {
   genre: 'All genres',
   filmListData: [],
   filmListByGenreData: [],
+  filmPromo: undefined,
+  filmsFilmId: undefined,
   authorizationStatus: AuthorizationStatus.Unknown,
   isFilmDataLoadingStatus: false,
 };
@@ -33,6 +37,12 @@ export const reducer = createReducer(initialState, (builder) => {
     .addCase(loadFilmsAction, (state, action) => {
       state.filmListData = action.payload;
       state.filmListByGenreData = action.payload;
+    })
+    .addCase(loadFilmPromoAction, (state, action) => {
+      state.filmPromo = action.payload;
+    })
+    .addCase(loadFilmsFilmIdAction, (state, action) => {
+      state.filmsFilmId = action.payload;
     })
     .addCase(setFilmDataLoadingStatusAction, (state, action) => {
       state.isFilmDataLoadingStatus = action.payload;

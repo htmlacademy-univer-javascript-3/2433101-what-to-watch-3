@@ -5,11 +5,11 @@ import { TFilms } from '../../components/types/films';
 
 type TMyList = {
   myFilmListData: {[key: string]: string}[];
-  filmListDataByGenre: TFilms[];
+  filmListByGenreData: TFilms[];
   chooseActiveFilm: (filmId: string) => void;
 }
 
-function MyList({myFilmListData, filmListDataByGenre, chooseActiveFilm}: TMyList): JSX.Element {
+function MyList({myFilmListData, filmListByGenreData, chooseActiveFilm}: TMyList): JSX.Element {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -31,7 +31,7 @@ function MyList({myFilmListData, filmListDataByGenre, chooseActiveFilm}: TMyList
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
         <div className="catalog__films-list">
-          <FilmList filmListData={filmListDataByGenre} chooseActiveFilm={chooseActiveFilm}/>
+          <FilmList filmListData={filmListByGenreData} chooseActiveFilm={chooseActiveFilm}/>
         </div>
       </section>
       <LogoBottom />
