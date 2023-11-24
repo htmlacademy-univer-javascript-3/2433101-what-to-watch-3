@@ -58,7 +58,7 @@ function App(props: TApp): JSX.Element {
         />
         <Route 
           path={AppRoute.FilmsId} 
-          element={<Film filmsFilmId={filmsFilmId} filmListByGenreData={filmListByGenreData} myFilmListData={props.myFilmListData.length} />}
+          element={<Film filmsFilmId={filmsFilmId} myFilmListData={props.myFilmListData.length} />}
         />
         <Route 
           path={AppRoute.FilmsReview} 

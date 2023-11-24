@@ -2,32 +2,32 @@ import { Link, useParams } from 'react-router-dom';
 import { LogoBottom, LogoTop } from '../../components/logo';
 import { Tabs } from '../../components/tabs/tabs';
 import { FilmList } from '../../components/film-list';
-import { TFilms, TFilmsFilmId } from '../../components/types/films';
-import { useAppDispatch } from '../../components/hooks';
+import { TFilmsFilmId } from '../../components/types/films';
+import { useAppDispatch, useAppSelector } from '../../components/hooks';
 import { useEffect } from 'react';
-import { fetchFilmsFilmIdAction } from '../../store/api-actions';
+import { fetchCommentsAction, fetchFilmsFilmIdAction, fetchSimilarFilmsAction } from '../../store/api-actions';
 import NotFoundScreen from '../NotFoundScreen/NotFoundScreen';
+import { defaultVisibleSimilarFilms } from '../../const';
 
 
 type TFilm = {
   filmsFilmId: TFilmsFilmId;
-  filmListByGenreData: TFilms[];
   myFilmListData: number;
 }
 
-function Film({filmsFilmId, filmListByGenreData, myFilmListData}: TFilm): JSX.Element {
-  const filmGenre = filmsFilmId?.genre;
-
+function Film({filmsFilmId, myFilmListData}: TFilm): JSX.Element {
   const { id } = useParams();
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (id) {
       dispatch(fetchFilmsFilmIdAction(id));
+      dispatch(fetchSimilarFilmsAction(id));
+      dispatch(fetchCommentsAction(id));
     }
   }, [dispatch, id]);
-  
-  const moreLikeThisFilms = filmListByGenreData.filter((film) => film.genre === filmGenre).slice(0, 4);
+
+  const similarFilms = useAppSelector((state) => state.similarFilms);
 
   if (!id || !filmsFilmId) {
     return <NotFoundScreen />;
@@ -39,8 +39,8 @@ function Film({filmsFilmId, filmListByGenreData, myFilmListData}: TFilm): JSX.El
         <div className="film-card__hero">
           <div className="film-card__bg">
             <img
-              src={filmsFilmId?.backgroundImage}
-              alt={filmsFilmId?.name}
+              src={filmsFilmId.backgroundImage}
+              alt={filmsFilmId.name}
             />
           </div>
           <h1 className="visually-hidden">WTW</h1>
@@ -64,13 +64,13 @@ function Film({filmsFilmId, filmListByGenreData, myFilmListData}: TFilm): JSX.El
           </header>
           <div className="film-card__wrap">
             <div className="film-card__desc">
-              <h2 className="film-card__title">{filmsFilmId?.name}</h2>
+              <h2 className="film-card__title">{filmsFilmId.name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{filmsFilmId?.genre}</span>
-                <span className="film-card__year">{filmsFilmId?.released}</span>
+                <span className="film-card__genre">{filmsFilmId.genre}</span>
+                <span className="film-card__year">{filmsFilmId.released}</span>
               </p>
               <div className="film-card__buttons">
-                <Link className="btn btn--play film-card__button" type="button" to={`/player/${filmsFilmId?.id}`}>
+                <Link className="btn btn--play film-card__button" type="button" to={`/player/${filmsFilmId.id}`}>
                   <svg viewBox="0 0 19 19" width={19} height={19}>
                     <use xlinkHref="#play-s" />
                   </svg>
@@ -83,7 +83,7 @@ function Film({filmsFilmId, filmListByGenreData, myFilmListData}: TFilm): JSX.El
                   <span>My list</span>
                   <span className="film-card__count">{myFilmListData}</span>
                 </Link>
-                <Link className="btn film-card__button" to={`/films/${filmsFilmId?.id}/review`}>
+                <Link className="btn film-card__button" to={`/films/${filmsFilmId.id}/review`}>
                   Add review
                 </Link>
               </div>
@@ -96,7 +96,7 @@ function Film({filmsFilmId, filmListByGenreData, myFilmListData}: TFilm): JSX.El
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
           <div className="catalog__films-list">
-            <FilmList filmListData={moreLikeThisFilms}/>
+            <FilmList filmListData={similarFilms} visibleCountFilms={defaultVisibleSimilarFilms}/>
           </div>
         </section>
         <LogoBottom />

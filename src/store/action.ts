@@ -1,5 +1,5 @@
 import { createAction } from '@reduxjs/toolkit';
-import { TFilmPromo, TFilms, TFilmsFilmId } from '../components/types/films';
+import { TComments, TFilmPromo, TFilms, TFilmsFilmId, TSimilarFilms } from '../components/types/films';
 import { AuthorizationStatus } from '../const';
 
 
@@ -9,6 +9,8 @@ export const changeFilmListByGenreAction = createAction('CHANGE_FILMLIST');
 export const loadFilmsAction = createAction<TFilms[]>('data/loadFilms');
 export const loadFilmPromoAction = createAction<TFilmPromo>('data/loadFilmPromo');
 export const loadFilmsFilmIdAction = createAction<TFilmsFilmId>('data/loadFilmsFilmId');
+export const loadSimilarFilmsAction = createAction<TSimilarFilms[]>('data/loadSimilarFilms');
+export const loadCommentsAction = createAction<TComments[]>('data/loadComments');
 
 export const setFilmDataLoadingStatusAction = createAction<boolean>('data/setFilmDataLoadingStatus');
 

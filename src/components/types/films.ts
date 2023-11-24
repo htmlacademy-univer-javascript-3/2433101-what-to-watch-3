@@ -7,14 +7,14 @@ export type TFilms = {
 }
 
 export type TFilmPromo = {
-  id: string,
-  name: string,
-  posterImage: string,
-  backgroundImage: string,
-  videoLink: string,
-  genre: string,
-  released: number,
-  isFavorite: boolean,
+  id: string;
+  name: string;
+  posterImage: string;
+  backgroundImage: string;
+  videoLink: string;
+  genre: string;
+  released: number;
+  isFavorite: boolean;
 }
 
 export type TFilmsFilmId = {
@@ -33,4 +33,20 @@ export type TFilmsFilmId = {
   genre: string;
   released: number;
   isFavorite: boolean;
+}
+
+export type TSimilarFilms = {
+  id: string;
+  name: string;
+  previewImage: string;
+  previewVideoLink: string;
+  genre: string;
+}
+
+export type TComments = {
+  id: string;
+  date: string;
+  user: string;
+  comment: string;
+  rating: number;
 }

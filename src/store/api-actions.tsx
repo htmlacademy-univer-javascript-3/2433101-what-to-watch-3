@@ -1,9 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AppDispatch, State } from '../components/types/state';
 import { AxiosInstance } from 'axios';
-import { loadFilmPromoAction, loadFilmsAction, loadFilmsFilmIdAction, requireAuthorizationAction, setFilmDataLoadingStatusAction } from './action';
+import { loadCommentsAction, loadFilmPromoAction, loadFilmsAction, loadFilmsFilmIdAction, loadSimilarFilmsAction, requireAuthorizationAction, setFilmDataLoadingStatusAction } from './action';
 import { APIRoute, AuthorizationStatus } from '../const';
-import { TFilmPromo, TFilms, TFilmsFilmId } from '../components/types/films';
+import { TComments, TFilmPromo, TFilms, TFilmsFilmId, TSimilarFilms } from '../components/types/films';
 import { AuthData } from '../components/types/auth-data';
 import { dropToken, saveToken } from '../components/services/token';
 import { UserData } from '../components/types/user-data';
@@ -37,6 +37,19 @@ export const fetchFilmPromoAction = createAsyncThunk<void, undefined, {
   },
 );
 
+export const fetchSimilarFilmsAction = createAsyncThunk<void, string, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchSimilarFilms',
+  async (id, {dispatch, extra: api}) => {
+    const {data} = await api.get<TSimilarFilms[]>(`${APIRoute.Films}/${id}/similar`);
+    dispatch(loadSimilarFilmsAction(data));
+  },
+);
+
+
 export const fetchFilmsFilmIdAction = createAsyncThunk<void, string, {
   dispatch: AppDispatch;
   state: State;
@@ -44,10 +57,20 @@ export const fetchFilmsFilmIdAction = createAsyncThunk<void, string, {
 }>(
   'data/fetchFilmsFilmId',
   async (id, {dispatch, extra: api}) => {
-    dispatch(setFilmDataLoadingStatusAction(true));
     const {data} = await api.get<TFilmsFilmId>(`${APIRoute.Films}/${id}`);
-    dispatch(setFilmDataLoadingStatusAction(false));
     dispatch(loadFilmsFilmIdAction(data));
+  },
+);
+  
+export const fetchCommentsAction = createAsyncThunk<void, string, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchComments',
+  async (id, {dispatch, extra: api}) => {
+    const {data} = await api.get<TComments[]>(`${APIRoute.Films}/${id}/similar`);
+    dispatch(loadCommentsAction(data));
   },
 );
 

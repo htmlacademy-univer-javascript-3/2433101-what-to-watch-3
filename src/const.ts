@@ -22,3 +22,4 @@ export enum APIRoute {
 }
 
 export const defaultVisibleCountFilms = 8;
+export const defaultVisibleSimilarFilms = 4;
