@@ -69,7 +69,7 @@ export const fetchCommentsAction = createAsyncThunk<void, string, {
 }>(
   'data/fetchComments',
   async (id, {dispatch, extra: api}) => {
-    const {data} = await api.get<TComments[]>(`${APIRoute.Films}/${id}/similar`);
+    const {data} = await api.get<TComments[]>(`${APIRoute.Comments}/${id}`);
     dispatch(loadCommentsAction(data));
   },
 );

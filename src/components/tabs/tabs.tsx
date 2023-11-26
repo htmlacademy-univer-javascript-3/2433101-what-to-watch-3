@@ -3,14 +3,15 @@ import { Link } from 'react-router-dom';
 import { MoviePageOverview } from './movie-page-overview';
 import { MoviePageDatails } from './movie-page-details';
 import { MoviePageReviews } from './movie-page-reviews';
-import { TFilmsFilmId } from '../types/films';
+import { TComments, TFilmsFilmId } from '../types/films';
 
 
 type TTabs = {
   filmsFilmId: TFilmsFilmId;
+  comments: TComments[];
 }
 
-export function Tabs({filmsFilmId}: TTabs): JSX.Element {
+export function Tabs({filmsFilmId, comments}: TTabs): JSX.Element {
   const [activeTab, setActiveTab] = useState('overview');
 
   const handleActiveTab = (activeTabName: string) => {
@@ -55,7 +56,7 @@ export function Tabs({filmsFilmId}: TTabs): JSX.Element {
             <MoviePageDatails filmsFilmId={filmsFilmId}/>
           )}
           {activeTab === 'reviews' && (
-            <MoviePageReviews />
+            <MoviePageReviews comments={comments}/>
           )}
         </div>
       </div>

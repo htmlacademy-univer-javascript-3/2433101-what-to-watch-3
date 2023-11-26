@@ -26,8 +26,9 @@ function Film({filmsFilmId, myFilmListData}: TFilm): JSX.Element {
       dispatch(fetchCommentsAction(id));
     }
   }, [dispatch, id]);
-
+  
   const similarFilms = useAppSelector((state) => state.similarFilms);
+  const comments = useAppSelector((state) => state.comments);
 
   if (!id || !filmsFilmId) {
     return <NotFoundScreen />;
@@ -90,7 +91,7 @@ function Film({filmsFilmId, myFilmListData}: TFilm): JSX.Element {
             </div>
           </div>
         </div>
-        <Tabs filmsFilmId={filmsFilmId}/>
+        <Tabs filmsFilmId={filmsFilmId} comments={comments}/>
       </section>
       <div className="page-content">
         <section className="catalog catalog--like-this">
