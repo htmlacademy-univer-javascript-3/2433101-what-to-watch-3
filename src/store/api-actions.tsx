@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AppDispatch, State } from '../components/types/state';
 import { AxiosInstance } from 'axios';
-import { loadCommentsAction, loadFilmPromoAction, loadFilmsAction, loadFilmsFilmIdAction, loadSimilarFilmsAction, requireAuthorizationAction, setFilmDataLoadingStatusAction } from './action';
+import { addCommentAction, loadCommentsAction, loadFilmPromoAction, loadFilmsAction, loadFilmsFilmIdAction, loadSimilarFilmsAction, requireAuthorizationAction, setFilmDataLoadingStatusAction } from './action';
 import { APIRoute, AuthorizationStatus } from '../const';
 import { TComments, TFilmPromo, TFilms, TFilmsFilmId, TSimilarFilms } from '../components/types/films';
 import { AuthData } from '../components/types/auth-data';
@@ -71,6 +71,18 @@ export const fetchCommentsAction = createAsyncThunk<void, string, {
   async (id, {dispatch, extra: api}) => {
     const {data} = await api.get<TComments[]>(`${APIRoute.Comments}/${id}`);
     dispatch(loadCommentsAction(data));
+  },
+);
+
+export const postCommentAction = createAsyncThunk<void, TComments, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/postComments',
+  async ({id, comment, rating}, {dispatch, extra: api}) => {
+    const {data} = await api.post<TComments>(`${APIRoute.Comments}/${id}`, {comment, rating});
+    dispatch(addCommentAction(data));
   },
 );
 

@@ -7,15 +7,12 @@ import MyList from '../Pages/MyList/MyList';
 import Film from '../Pages/Film/Film';
 import AddReview from '../Pages/AddReview/AddReview';
 import Player from '../Pages/Player/Player';
-import { TFilmsData, TFilmsReviews } from '../mocks/films';
 import { useAppSelector } from './hooks';
 import { LoadingScreen } from '../Pages/LoadingScreen/LoadingScreen';
 import PrivateRoute from './private-route';
 
 
 type TApp = {
-  filmsData: {[key: string]: TFilmsData};
-  filmsReviews: {[key: string]: TFilmsReviews[]};
   myFilmListData: {[key: string]: string}[];
 }
 

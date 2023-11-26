@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app';
-
-import { FilmsData, FilmsReviews } from './mocks/films';
 import { MyFilmListData } from './mocks/film-list';
 import { Provider } from 'react-redux';
 import { store } from './store';
@@ -23,8 +21,6 @@ root.render(
     <Provider store={store}>
       <ToastContainer/>
       <App
-        filmsData={FilmsData}
-        filmsReviews={FilmsReviews}
         myFilmListData={MyFilmListData}
       />
     </Provider>

@@ -1,8 +1,11 @@
 import { ChangeEvent, useState } from 'react';
+import { useAppDispatch } from './hooks';
+import { postCommentAction } from '../store/api-actions';
 
 function CommentSubmissionForm(): JSX.Element {
+  const dispatch = useAppDispatch();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [_, setRating] = useState(0);
+  const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
 
   function handleRating(e: React.MouseEvent<HTMLInputElement>) {
@@ -11,6 +14,12 @@ function CommentSubmissionForm(): JSX.Element {
 
   function handleComment(e: ChangeEvent<HTMLTextAreaElement>) {
     setComment(e.currentTarget.value);
+  }
+
+  const handleSubmitForm = () => {
+    if (rating != 0 && comment != '') {
+      dispatch(postCommentAction(rating, comment));
+    }
   }
 
   return (

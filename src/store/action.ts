@@ -10,7 +10,9 @@ export const loadFilmsAction = createAction<TFilms[]>('data/loadFilms');
 export const loadFilmPromoAction = createAction<TFilmPromo>('data/loadFilmPromo');
 export const loadFilmsFilmIdAction = createAction<TFilmsFilmId>('data/loadFilmsFilmId');
 export const loadSimilarFilmsAction = createAction<TSimilarFilms[]>('data/loadSimilarFilms');
+
 export const loadCommentsAction = createAction<TComments[]>('data/loadComments');
+export const addCommentAction = createAction<TComments>('data/addComment');
 
 export const setFilmDataLoadingStatusAction = createAction<boolean>('data/setFilmDataLoadingStatus');
 
