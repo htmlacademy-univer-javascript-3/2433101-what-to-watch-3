@@ -50,3 +50,9 @@ export type TComments = {
   comment: string;
   rating: number;
 }
+
+export type TPostComment = {
+  id: string;
+  comment: string;
+  rating: number;
+}

@@ -3,7 +3,7 @@ import { AppDispatch, State } from '../components/types/state';
 import { AxiosInstance } from 'axios';
 import { addCommentAction, loadCommentsAction, loadFilmPromoAction, loadFilmsAction, loadFilmsFilmIdAction, loadSimilarFilmsAction, requireAuthorizationAction, setFilmDataLoadingStatusAction } from './action';
 import { APIRoute, AuthorizationStatus } from '../const';
-import { TComments, TFilmPromo, TFilms, TFilmsFilmId, TSimilarFilms } from '../components/types/films';
+import { TComments, TFilmPromo, TFilms, TFilmsFilmId, TPostComment, TSimilarFilms } from '../components/types/films';
 import { AuthData } from '../components/types/auth-data';
 import { dropToken, saveToken } from '../components/services/token';
 import { UserData } from '../components/types/user-data';
@@ -74,7 +74,7 @@ export const fetchCommentsAction = createAsyncThunk<void, string, {
   },
 );
 
-export const postCommentAction = createAsyncThunk<void, TComments, {
+export const postCommentAction = createAsyncThunk<void, TPostComment, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;

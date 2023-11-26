@@ -1,12 +1,17 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, FormEventHandler, useState } from 'react';
 import { useAppDispatch } from './hooks';
 import { postCommentAction } from '../store/api-actions';
 
-function CommentSubmissionForm(): JSX.Element {
+
+type TCommentSubmissionForm = {
+  id: string;
+}
+
+function CommentSubmissionForm({id}: TCommentSubmissionForm): JSX.Element {
   const dispatch = useAppDispatch();
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [rating, setRating] = useState(0);
+
   const [comment, setComment] = useState('');
+  const [rating, setRating] = useState(0);
 
   function handleRating(e: React.MouseEvent<HTMLInputElement>) {
     setRating(Number(e.currentTarget.value));
@@ -16,15 +21,16 @@ function CommentSubmissionForm(): JSX.Element {
     setComment(e.currentTarget.value);
   }
 
-  const handleSubmitForm = () => {
-    if (rating != 0 && comment != '') {
-      dispatch(postCommentAction(rating, comment));
+  const handleSubmitForm: FormEventHandler = (e) => {
+    e.preventDefault();
+    if (comment != '' && rating != 0) {
+      dispatch(postCommentAction({id, comment, rating}));
     }
-  }
+  };
 
   return (
     <div className="add-review">
-      <form action="#" className="add-review__form">
+      <form action="#" className="add-review__form" onSubmit={handleSubmitForm}>
         <div className="rating">
           <div className="rating__stars">
             <input

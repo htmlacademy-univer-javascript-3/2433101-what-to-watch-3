@@ -7,7 +7,8 @@ import { useAppDispatch, useAppSelector } from '../../components/hooks';
 import { useEffect } from 'react';
 import { fetchCommentsAction, fetchFilmsFilmIdAction, fetchSimilarFilmsAction } from '../../store/api-actions';
 import NotFoundScreen from '../NotFoundScreen/NotFoundScreen';
-import { defaultVisibleSimilarFilms } from '../../const';
+import { AuthorizationStatus, defaultVisibleSimilarFilms } from '../../const';
+import { UserBlock } from '../../components/user-block';
 
 
 type TFilm = {
@@ -29,6 +30,7 @@ function Film({filmsFilmId, myFilmListData}: TFilm): JSX.Element {
   
   const similarFilms = useAppSelector((state) => state.similarFilms);
   const comments = useAppSelector((state) => state.comments);
+  const isAuthorization = useAppSelector((state) => state.authorizationStatus === AuthorizationStatus.Auth);
 
   if (!id || !filmsFilmId) {
     return <NotFoundScreen />;
@@ -47,21 +49,7 @@ function Film({filmsFilmId, myFilmListData}: TFilm): JSX.Element {
           <h1 className="visually-hidden">WTW</h1>
           <header className="page-header film-card__head">
             <LogoTop />
-            <ul className="user-block">
-              <li className="user-block__item">
-                <div className="user-block__avatar">
-                  <img
-                    src="img/avatar.jpg"
-                    alt="User avatar"
-                    width={63}
-                    height={63}
-                  />
-                </div>
-              </li>
-              <li className="user-block__item">
-                <a className="user-block__link">Sign out</a>
-              </li>
-            </ul>
+            <UserBlock />
           </header>
           <div className="film-card__wrap">
             <div className="film-card__desc">
@@ -84,9 +72,9 @@ function Film({filmsFilmId, myFilmListData}: TFilm): JSX.Element {
                   <span>My list</span>
                   <span className="film-card__count">{myFilmListData}</span>
                 </Link>
-                <Link className="btn film-card__button" to={`/films/${filmsFilmId.id}/review`}>
+                {isAuthorization && <Link className="btn film-card__button" to={`/films/${filmsFilmId.id}/review`}>
                   Add review
-                </Link>
+                </Link>}
               </div>
             </div>
           </div>
