@@ -1,12 +1,11 @@
-import { TFilmsData } from '../../mocks/films';
+import { TFilmsFilmId } from '../types/films';
 
 
 type TMoviePageOverview = {
-  filmsData: {[key: string]: TFilmsData};
-  activeFilm: string;
+  filmsFilmId: TFilmsFilmId;
 }
 
-export function MoviePageOverview({filmsData, activeFilm}: TMoviePageOverview): JSX.Element {
+export function MoviePageOverview({filmsFilmId}: TMoviePageOverview): JSX.Element {
   const getRatingLevel = (score: number) => {
     if (score >= 0 && score < 4) {
       return 'Bad';
@@ -22,27 +21,27 @@ export function MoviePageOverview({filmsData, activeFilm}: TMoviePageOverview): 
     <>
       <div className="film-rating">
         <div className="film-rating__score">
-          {filmsData[activeFilm].rating}
+          {filmsFilmId.rating}
         </div>
         <p className="film-rating__meta">
-          <span className="film-rating__level">{getRatingLevel(filmsData[activeFilm].rating)}</span>
+          <span className="film-rating__level">{getRatingLevel(filmsFilmId.rating)}</span>
           <span className="film-rating__count">
-            {filmsData[activeFilm].ratingTable}
+            {filmsFilmId.scoresCount}
           </span>
         </p>
       </div>
       <div className="film-card__text">
         <p>
-          {filmsData[activeFilm].description}
+          {filmsFilmId.description}
         </p>
         <p className="film-card__director">
           <strong>
-            Director: {filmsData[activeFilm].director}
+            Director: {filmsFilmId.director}
           </strong>
         </p>
         <p className="film-card__starring">
           <strong>
-            Starring: {filmsData[activeFilm].starring}
+            Starring: {filmsFilmId.starring}
           </strong>
         </p>
       </div>

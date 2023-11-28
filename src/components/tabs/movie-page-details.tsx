@@ -1,17 +1,15 @@
-import { TFilmsData } from '../../mocks/films';
+import { TFilmsFilmId } from '../types/films';
 
 type TMoviePageDatails = {
-  filmsData: {[key: string]: TFilmsData};
-  activeFilm: string;
+  filmsFilmId: TFilmsFilmId;
 }
 
-export function MoviePageDatails({filmsData, activeFilm}: TMoviePageDatails): JSX.Element {
-  const starringArray = filmsData[activeFilm].starring.split(', ');
-  const formattedStarring = starringArray.map((actor, index) => (
+export function MoviePageDatails({filmsFilmId}: TMoviePageDatails): JSX.Element {
+  const formattedStarring = filmsFilmId.starring.map((actor, index) => (
     <>
-      {actor}{index !== starringArray.length - 1 && ', '}
-      {index !== starringArray.length - 1 && <br />}
-      {index !== starringArray.length - 1 && ' '}
+      {actor}{index !== filmsFilmId.starring.length - 1 && ', '}
+      {index !== filmsFilmId.starring.length - 1 && <br />}
+      {index !== filmsFilmId.starring.length - 1 && ' '}
     </>
   ));
 
@@ -20,7 +18,7 @@ export function MoviePageDatails({filmsData, activeFilm}: TMoviePageDatails): JS
       <div className="film-card__text-col">
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Director</strong>
-          <span className="film-card__details-value">{filmsData[activeFilm].director}</span>
+          <span className="film-card__details-value">{filmsFilmId.director}</span>
         </p>
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Starring</strong>
@@ -32,15 +30,15 @@ export function MoviePageDatails({filmsData, activeFilm}: TMoviePageDatails): JS
       <div className="film-card__text-col">
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Run Time</strong>
-          <span className="film-card__details-value">{filmsData[activeFilm].runTime}</span>
+          <span className="film-card__details-value">{filmsFilmId.runTime}</span>
         </p>
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Genre</strong>
-          <span className="film-card__details-value">{filmsData[activeFilm].genre}</span>
+          <span className="film-card__details-value">{filmsFilmId.genre}</span>
         </p>
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Released</strong>
-          <span className="film-card__details-value">{filmsData[activeFilm].date}</span>
+          <span className="film-card__details-value">{filmsFilmId.released}</span>
         </p>
       </div>
     </div>

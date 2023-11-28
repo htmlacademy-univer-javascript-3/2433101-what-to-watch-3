@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeFilmListByGenreAction, changeGenreAction, loadFilmsAction, requireAuthorizationAction, setFilmDataLoadingStatusAction } from './action';
-import { TFilms } from '../components/types/films';
+import { changeFilmListByGenreAction, changeGenreAction, loadCommentsAction, loadFilmPromoAction, loadFilmsAction, loadFilmsFilmIdAction, loadSimilarFilmsAction, requireAuthorizationAction, setFilmDataLoadingStatusAction } from './action';
+import { TComments, TFilmPromo, TFilms, TFilmsFilmId, TSimilarFilms } from '../components/types/films';
 import { AuthorizationStatus } from '../const';
 
 
@@ -8,6 +8,10 @@ type TInitialState = {
   genre: string;
   filmListData: TFilms[];
   filmListByGenreData: TFilms[];
+  similarFilms: TSimilarFilms[];
+  filmPromo?: TFilmPromo;
+  filmsFilmId?: TFilmsFilmId;
+  comments: TComments[];
   authorizationStatus: AuthorizationStatus;
   isFilmDataLoadingStatus: boolean;
 }
@@ -16,6 +20,10 @@ const initialState: TInitialState = {
   genre: 'All genres',
   filmListData: [],
   filmListByGenreData: [],
+  similarFilms: [],
+  filmPromo: {} as TFilmPromo,
+  filmsFilmId: {} as TFilmsFilmId,
+  comments: [],
   authorizationStatus: AuthorizationStatus.Unknown,
   isFilmDataLoadingStatus: false,
 };
@@ -33,6 +41,18 @@ export const reducer = createReducer(initialState, (builder) => {
     .addCase(loadFilmsAction, (state, action) => {
       state.filmListData = action.payload;
       state.filmListByGenreData = action.payload;
+    })
+    .addCase(loadSimilarFilmsAction, (state, action) => {
+      state.similarFilms = action.payload;
+    })
+    .addCase(loadFilmPromoAction, (state, action) => {
+      state.filmPromo = action.payload;
+    })
+    .addCase(loadFilmsFilmIdAction, (state, action) => {
+      state.filmsFilmId = action.payload;
+    })
+    .addCase(loadCommentsAction, (state, action) => {
+      state.comments = action.payload;
     })
     .addCase(setFilmDataLoadingStatusAction, (state, action) => {
       state.isFilmDataLoadingStatus = action.payload;

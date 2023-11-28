@@ -1,22 +1,38 @@
-import { TFilmsData } from '../../mocks/films';
 import CommentSubmissionForm from '../../components/comment-submission-form';
 import { LogoTop } from '../../components/logo';
-import { Link } from 'react-router-dom';
-import { AppRoute } from '../../const';
+import { Link, useParams } from 'react-router-dom';
+import { UserBlock } from '../../components/user-block';
+import { useAppDispatch, useAppSelector } from '../../components/hooks';
+import NotFoundScreen from '../NotFoundScreen/NotFoundScreen';
+import { useEffect } from 'react';
+import { fetchFilmsFilmIdAction } from '../../store/api-actions';
 
-type TAddReview = {
-  filmsData: {[key: string]: TFilmsData};
-  activeFilm: string;
-}
 
-function AddReview({filmsData, activeFilm}: TAddReview): JSX.Element {
+function AddReview(): JSX.Element {
+  const {id} = useParams();
+  const filmsFilmId = useAppSelector((state) => state.filmsFilmId);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (id) {
+      dispatch(fetchFilmsFilmIdAction(id));
+    }
+  }, [id, dispatch]);
+
+  if (!filmsFilmId || !id) {
+    return <NotFoundScreen />;
+  }
+
   return (
-    <section className="film-card film-card--full">
+    <section
+      className="film-card film-card--full"
+      style={{ backgroundColor: filmsFilmId.backgroundColor }}
+    >
       <div className="film-card__header">
         <div className="film-card__bg">
           <img
-            src={filmsData[activeFilm].filmBackgroundImage}
-            alt={filmsData[activeFilm].filmName}
+            src={filmsFilmId.backgroundImage}
+            alt={filmsFilmId.name}
           />
         </div>
         <h1 className="visually-hidden">WTW</h1>
@@ -25,8 +41,8 @@ function AddReview({filmsData, activeFilm}: TAddReview): JSX.Element {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <Link to={AppRoute.FilmsId} className="breadcrumbs__link">
-                  {filmsData[activeFilm].filmName}
+                <Link to={`/films/${id}`} className="breadcrumbs__link">
+                  {filmsFilmId.name}
                 </Link>
               </li>
               <li className="breadcrumbs__item">
@@ -34,32 +50,18 @@ function AddReview({filmsData, activeFilm}: TAddReview): JSX.Element {
               </li>
             </ul>
           </nav>
-          <ul className="user-block">
-            <li className="user-block__item">
-              <div className="user-block__avatar">
-                <img
-                  src="img/avatar.jpg"
-                  alt="User avatar"
-                  width={63}
-                  height={63}
-                />
-              </div>
-            </li>
-            <li className="user-block__item">
-              <a className="user-block__link">Sign out</a>
-            </li>
-          </ul>
+          <UserBlock />
         </header>
         <div className="film-card__poster film-card__poster--small">
           <img
-            src={filmsData[activeFilm].filmPoster}
-            alt={filmsData[activeFilm].filmName}
+            src={filmsFilmId.posterImage}
+            alt={filmsFilmId.name}
             width={218}
             height={327}
           />
         </div>
       </div>
-      <CommentSubmissionForm />
+      <CommentSubmissionForm id={filmsFilmId.id}/>
     </section>
   );
 }

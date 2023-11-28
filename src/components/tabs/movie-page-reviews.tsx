@@ -1,22 +1,18 @@
-import { TFilmsReviews } from '../../mocks/films';
+import { TComments } from '../types/films';
 import { Review } from './review';
 
-
 type TMoviePageReviews = {
-  filmsReviews: {[key: string]: TFilmsReviews[]};
-  activeFilm: string;
+  comments: TComments[];
 }
 
-export function MoviePageReviews({filmsReviews, activeFilm}: TMoviePageReviews): JSX.Element {
-  const reviews = filmsReviews[activeFilm];
-
+export function MoviePageReviews({comments}: TMoviePageReviews): JSX.Element {
   return (
     <div className="film-card__reviews film-card__row">
       <div className="film-card__reviews-col">
-        {reviews.map((review, index) => index < reviews.length / 2 && <Review key={review.id} description={review.description} author={review.author} date={review.date} rating={review.rating}/>)}
+        {comments.map((comment, index) => index < comments.length / 2 && <Review key={comment.id} description={comment.comment} author={comment.user} date={comment.date} rating={comment.rating}/>)}
       </div>
       <div className="film-card__reviews-col">
-        {reviews.map((review, index) => index >= reviews.length / 2 && <Review key={review.id} description={review.description} author={review.author} date={review.date} rating={review.rating}/>)}
+        {comments.map((comment, index) => index >= comments.length / 2 && <Review key={comment.id} description={comment.comment} author={comment.user} date={comment.date} rating={comment.rating}/>)}
       </div>
     </div>
   );

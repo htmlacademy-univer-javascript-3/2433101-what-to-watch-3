@@ -1,14 +1,14 @@
 import { Link } from 'react-router-dom';
+import { TFilmsFilmId } from '../../components/types/films';
 
 type TPlayer = {
-  filmVideo: string;
-  filmPoster: string;
+  filmsFilmId: TFilmsFilmId;
 }
 
-function Player({filmVideo, filmPoster}: TPlayer): JSX.Element {
+function Player({filmsFilmId}: TPlayer): JSX.Element {
   return (
     <div className="player">
-      <video src={filmVideo} className="player__video" poster={filmPoster} />
+      <video src={filmsFilmId.videoLink} className="player__video" poster={filmsFilmId.posterImage} />
       <Link type="button" className="player__exit" to='/'>
         Exit
       </Link>
