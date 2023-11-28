@@ -8,6 +8,7 @@ import { TFilms } from '../../components/types/films';
 import { defaultVisibleCountFilms } from '../../const';
 import { UserBlock } from '../../components/user-block';
 import { useAppSelector } from '../../components/hooks';
+import NotFoundScreen from '../NotFoundScreen/NotFoundScreen';
 
 
 type TMainPage = {
@@ -25,13 +26,17 @@ function MainPage({filmListByGenreData }: TMainPage): JSX.Element {
 
   const filmPromo = useAppSelector((state) => state.filmPromo);
 
+  if (!filmPromo) {
+    return <NotFoundScreen />;
+  }
+
   return (
     <>
       <section className="film-card">
         <div className="film-card__bg">
           <img
-            src={filmPromo?.backgroundImage}
-            alt={filmPromo?.name}
+            src={filmPromo.backgroundImage}
+            alt={filmPromo.name}
           />
         </div>
         <h1 className="visually-hidden">WTW</h1>
@@ -43,20 +48,20 @@ function MainPage({filmListByGenreData }: TMainPage): JSX.Element {
           <div className="film-card__info">
             <div className="film-card__poster">
               <img
-                src={filmPromo?.posterImage}
-                alt={filmPromo?.name}
+                src={filmPromo.posterImage}
+                alt={filmPromo.name}
                 width={218}
                 height={327}
               />
             </div>
             <div className="film-card__desc">
-              <h2 className="film-card__title">{filmPromo?.name}</h2>
+              <h2 className="film-card__title">{filmPromo.name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{filmPromo?.genre}</span>
-                <span className="film-card__year">{filmPromo?.released}</span>
+                <span className="film-card__genre">{filmPromo.genre}</span>
+                <span className="film-card__year">{filmPromo.released}</span>
               </p>
               <div className="film-card__buttons">
-                <Link className="btn btn--play film-card__button" type="button" to={`/player/${filmPromo?.id}`}>
+                <Link className="btn btn--play film-card__button" type="button" to={`/player/${filmPromo.id}`}>
                   <svg viewBox="0 0 19 19" width={19} height={19}>
                     <use xlinkHref="#play-s" />
                   </svg>

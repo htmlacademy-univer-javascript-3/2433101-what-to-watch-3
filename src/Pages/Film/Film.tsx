@@ -13,10 +13,9 @@ import { UserBlock } from '../../components/user-block';
 
 type TFilm = {
   filmsFilmId: TFilmsFilmId;
-  myFilmListData: number;
 }
 
-function Film({filmsFilmId, myFilmListData}: TFilm): JSX.Element {
+function Film({filmsFilmId}: TFilm): JSX.Element {
   const { id } = useParams();
   const dispatch = useAppDispatch();
 
@@ -27,7 +26,7 @@ function Film({filmsFilmId, myFilmListData}: TFilm): JSX.Element {
       dispatch(fetchCommentsAction(id));
     }
   }, [dispatch, id]);
-  
+
   const similarFilms = useAppSelector((state) => state.similarFilms);
   const comments = useAppSelector((state) => state.comments);
   const isAuthorization = useAppSelector((state) => state.authorizationStatus === AuthorizationStatus.Auth);
@@ -38,7 +37,10 @@ function Film({filmsFilmId, myFilmListData}: TFilm): JSX.Element {
 
   return (
     <>
-      <section className="film-card film-card--full">
+      <section
+        className="film-card film-card--full"
+        style={{ backgroundColor: filmsFilmId.backgroundColor }}
+      >
         <div className="film-card__hero">
           <div className="film-card__bg">
             <img
@@ -70,11 +72,13 @@ function Film({filmsFilmId, myFilmListData}: TFilm): JSX.Element {
                     <use xlinkHref="#add" />
                   </svg>
                   <span>My list</span>
-                  <span className="film-card__count">{myFilmListData}</span>
+                  <span className="film-card__count">test</span>
                 </Link>
-                {isAuthorization && <Link className="btn film-card__button" to={`/films/${filmsFilmId.id}/review`}>
-                  Add review
-                </Link>}
+                {isAuthorization && (
+                  <Link className="btn film-card__button" to={`/films/${filmsFilmId.id}/review`}>
+                    Add review
+                  </Link>
+                )}
               </div>
             </div>
           </div>

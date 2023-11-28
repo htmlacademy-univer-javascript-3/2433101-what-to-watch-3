@@ -23,7 +23,7 @@ function CommentSubmissionForm({id}: TCommentSubmissionForm): JSX.Element {
 
   const handleSubmitForm: FormEventHandler = (e) => {
     e.preventDefault();
-    if (comment != '' && rating != 0) {
+    if (comment !== '' && rating !== 0) {
       dispatch(postCommentAction({id, comment, rating}));
     }
   };

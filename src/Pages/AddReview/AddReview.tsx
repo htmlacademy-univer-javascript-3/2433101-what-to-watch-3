@@ -1,17 +1,33 @@
 import CommentSubmissionForm from '../../components/comment-submission-form';
 import { LogoTop } from '../../components/logo';
-import { Link } from 'react-router-dom';
-import { AppRoute } from '../../const';
-import { TFilmsFilmId } from '../../components/types/films';
+import { Link, useParams } from 'react-router-dom';
 import { UserBlock } from '../../components/user-block';
+import { useAppDispatch, useAppSelector } from '../../components/hooks';
+import NotFoundScreen from '../NotFoundScreen/NotFoundScreen';
+import { useEffect } from 'react';
+import { fetchFilmsFilmIdAction } from '../../store/api-actions';
 
-type TAddReview = {
-  filmsFilmId: TFilmsFilmId;
-}
 
-function AddReview({filmsFilmId}: TAddReview): JSX.Element {
+function AddReview(): JSX.Element {
+  const {id} = useParams();
+  const filmsFilmId = useAppSelector((state) => state.filmsFilmId);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (id) {
+      dispatch(fetchFilmsFilmIdAction(id));
+    }
+  }, [id, dispatch]);
+
+  if (!filmsFilmId || !id) {
+    return <NotFoundScreen />;
+  }
+
   return (
-    <section className="film-card film-card--full">
+    <section
+      className="film-card film-card--full"
+      style={{ backgroundColor: filmsFilmId.backgroundColor }}
+    >
       <div className="film-card__header">
         <div className="film-card__bg">
           <img
@@ -25,7 +41,7 @@ function AddReview({filmsFilmId}: TAddReview): JSX.Element {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <Link to={AppRoute.FilmsId} className="breadcrumbs__link">
+                <Link to={`/films/${id}`} className="breadcrumbs__link">
                   {filmsFilmId.name}
                 </Link>
               </li>

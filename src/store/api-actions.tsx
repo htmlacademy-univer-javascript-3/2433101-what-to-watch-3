@@ -61,7 +61,7 @@ export const fetchFilmsFilmIdAction = createAsyncThunk<void, string, {
     dispatch(loadFilmsFilmIdAction(data));
   },
 );
-  
+
 export const fetchCommentsAction = createAsyncThunk<void, string, {
   dispatch: AppDispatch;
   state: State;

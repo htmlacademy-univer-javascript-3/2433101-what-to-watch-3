@@ -1,5 +1,5 @@
-import { TComments } from "../types/films";
-import { Review } from "./review";
+import { TComments } from '../types/films';
+import { Review } from './review';
 
 type TMoviePageReviews = {
   comments: TComments[];

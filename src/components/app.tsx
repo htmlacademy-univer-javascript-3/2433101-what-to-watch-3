@@ -32,11 +32,7 @@ function App(props: TApp): JSX.Element {
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={
-            <MainPage
-              filmListByGenreData={filmListByGenreData}
-            />
-          }
+          element={<MainPage filmListByGenreData={filmListByGenreData} />}
         />
         <Route
           path={AppRoute.SignIn}
@@ -53,13 +49,13 @@ function App(props: TApp): JSX.Element {
             </PrivateRoute>
           }
         />
-        <Route 
-          path={AppRoute.FilmsId} 
-          element={<Film filmsFilmId={filmsFilmId} myFilmListData={props.myFilmListData.length} />}
+        <Route
+          path={AppRoute.FilmsId}
+          element={<Film filmsFilmId={filmsFilmId} />}
         />
-        <Route 
-          path={AppRoute.FilmsReview} 
-          element={<AddReview filmsFilmId={filmsFilmId} />}
+        <Route
+          path={AppRoute.FilmsReview}
+          element={<AddReview />}
         />
         <Route
           path={AppRoute.Player}
