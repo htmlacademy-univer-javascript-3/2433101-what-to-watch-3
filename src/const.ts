@@ -22,5 +22,9 @@ export enum APIRoute {
   Comments = '/comments',
 }
 
+export enum NameSpace {
+  User = 'USER',
+}
+
 export const defaultVisibleCountFilms = 8;
 export const defaultVisibleSimilarFilms = 4;

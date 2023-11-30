@@ -12,11 +12,7 @@ import { LoadingScreen } from '../Pages/LoadingScreen/LoadingScreen';
 import PrivateRoute from './private-route';
 
 
-type TApp = {
-  myFilmListData: {[key: string]: string}[];
-}
-
-function App(props: TApp): JSX.Element {
+function App(): JSX.Element {
   const filmListByGenreData = useAppSelector((state) => state.filmListByGenreData);
   const filmsFilmId = useAppSelector((state) => state.filmsFilmId);
 
@@ -42,10 +38,7 @@ function App(props: TApp): JSX.Element {
           path={AppRoute.MyList}
           element={
             <PrivateRoute>
-              <MyList
-                myFilmListData={props.myFilmListData}
-                filmListByGenreData={filmListByGenreData}
-              />
+              <MyList filmListByGenreData={filmListByGenreData} />
             </PrivateRoute>
           }
         />
