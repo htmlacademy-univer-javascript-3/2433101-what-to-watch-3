@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { NameSpace } from '../../const';
-import { Genre, TFilmPromo, TFilmsFilmId } from '../../components/types/films';
+import { TFilmPromo, TFilmsFilmId } from '../../components/types/films';
 import { TLoadDataProcess } from '../../components/types/state';
 import { fetchCommentsAction, fetchFilmPromoAction, fetchFilmsAction, fetchFilmsFilmIdAction, fetchSimilarFilmsAction, postCommentAction } from '../api-actions';
 
@@ -20,7 +20,7 @@ export const loadDataProcess = createSlice({
   name: NameSpace.Data,
   initialState,
   reducers: {
-    changeGenreAction: (state, action: PayloadAction<Genre>) => {
+    changeGenreAction: (state, action: PayloadAction<string>) => {
       state.genre = action.payload;
     },
     changeFilmListByGenreAction: (state) => {
