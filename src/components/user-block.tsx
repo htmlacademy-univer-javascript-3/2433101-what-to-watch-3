@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
-import { AppRoute, AuthorizationStatus } from '../const';
+import { AppRoute, AuthorizationStatus, NameSpace } from '../const';
 import { useAppDispatch, useAppSelector } from './hooks';
 import { logoutAction } from '../store/api-actions';
 
 export function UserBlock() {
-  const autorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const autorizationStatus = useAppSelector((state) => state[NameSpace.User].authorizationStatus);
 
   const dispatch = useAppDispatch();
 

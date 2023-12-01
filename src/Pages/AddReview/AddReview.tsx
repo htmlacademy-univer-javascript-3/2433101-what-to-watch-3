@@ -6,11 +6,12 @@ import { useAppDispatch, useAppSelector } from '../../components/hooks';
 import NotFoundScreen from '../NotFoundScreen/NotFoundScreen';
 import { useEffect } from 'react';
 import { fetchFilmsFilmIdAction } from '../../store/api-actions';
+import { NameSpace } from '../../const';
 
 
 function AddReview(): JSX.Element {
   const {id} = useParams();
-  const filmsFilmId = useAppSelector((state) => state.filmsFilmId);
+  const filmsFilmId = useAppSelector((state) => state[NameSpace.Data].filmsFilmId);
   const dispatch = useAppDispatch();
 
   useEffect(() => {

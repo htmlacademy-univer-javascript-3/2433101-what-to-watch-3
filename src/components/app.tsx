@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import MainPage from '../Pages/MainPage/MainPage';
-import { AppRoute } from '../const';
+import { AppRoute, NameSpace } from '../const';
 import SignIn from '../Pages/SignIn/SignIn';
 import NotFoundScreen from '../Pages/NotFoundScreen/NotFoundScreen';
 import MyList from '../Pages/MyList/MyList';
@@ -13,10 +13,10 @@ import PrivateRoute from './private-route';
 
 
 function App(): JSX.Element {
-  const filmListByGenreData = useAppSelector((state) => state.filmListByGenreData);
-  const filmsFilmId = useAppSelector((state) => state.filmsFilmId);
+  const filmListByGenreData = useAppSelector((state) => state[NameSpace.Data].filmListByGenreData);
+  const filmsFilmId = useAppSelector((state) => state[NameSpace.Data].filmsFilmId);
 
-  const isFilmDataLoadingStatus = useAppSelector((state) => state.isFilmDataLoadingStatus);
+  const isFilmDataLoadingStatus = useAppSelector((state) => state[NameSpace.Data].isFilmDataLoadingStatus);
   if (isFilmDataLoadingStatus || !filmsFilmId) {
     return (
       <LoadingScreen />

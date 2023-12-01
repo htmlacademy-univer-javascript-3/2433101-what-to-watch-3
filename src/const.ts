@@ -24,6 +24,7 @@ export enum APIRoute {
 
 export enum NameSpace {
   User = 'USER',
+  Data = 'DATA',
 }
 
 export const defaultVisibleCountFilms = 8;

@@ -19,3 +19,14 @@ export type TDataProcess = {
   filmsFilmId?: TFilmsFilmId;
   comments: TComments[];
 }
+
+export type TLoadDataProcess = {
+  genre: string;
+  filmListData: TFilms[];
+  filmListByGenreData: TFilms[];
+  filmPromo?: TFilmPromo;
+  similarFilms: TSimilarFilms[];
+  filmsFilmId?: TFilmsFilmId;
+  comments: TComments[];
+  isFilmDataLoadingStatus: boolean;
+}

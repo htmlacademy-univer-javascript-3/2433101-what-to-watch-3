@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useAppDispatch } from './hooks';
-import { changeFilmListByGenreAction, changeGenreAction } from '../store/action';
+import { changeFilmListByGenreAction, changeGenreAction } from '../store/load-data-process/load-data-process';
 
 
 type TGenreList = {
