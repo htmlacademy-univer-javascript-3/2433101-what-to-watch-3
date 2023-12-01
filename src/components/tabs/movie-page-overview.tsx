@@ -15,7 +15,7 @@ export function MoviePageOverview({filmsFilmId}: TMoviePageOverview): JSX.Elemen
       return 'Good';
     } else if (score >= 8 && score < 10) {
       return 'Very good';
-    } else if (score == 10) {
+    } else if (score === 10) {
       return 'Awesome';
     }
     return 'Unknown';

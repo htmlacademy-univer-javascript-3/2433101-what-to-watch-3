@@ -1,6 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { NameSpace } from '../../const';
-import { TFilmPromo, TFilmsFilmId } from '../../components/types/films';
+import { Genre, TFilmPromo, TFilmsFilmId } from '../../components/types/films';
 import { TLoadDataProcess } from '../../components/types/state';
 import { fetchCommentsAction, fetchFilmPromoAction, fetchFilmsAction, fetchFilmsFilmIdAction, fetchSimilarFilmsAction, postCommentAction } from '../api-actions';
 
@@ -20,13 +20,13 @@ export const loadDataProcess = createSlice({
   name: NameSpace.Data,
   initialState,
   reducers: {
-    changeGenreAction: (state, action) => {
+    changeGenreAction: (state, action: PayloadAction<Genre>) => {
       state.genre = action.payload;
     },
     changeFilmListByGenreAction: (state) => {
       state.filmListByGenreData = state.genre === 'All genres'
-      ? state.filmListData
-      : state.filmListData.filter((film) => film.genre === state.genre);
+        ? state.filmListData
+        : state.filmListData.filter((film) => film.genre === state.genre);
     },
   },
   extraReducers(builder) {
