@@ -5,7 +5,7 @@ import { FilmList } from '../../components/film-list';
 import { ShowMore } from '../../components/show-more';
 import { useState } from 'react';
 import { TFilms } from '../../components/types/films';
-import { defaultVisibleCountFilms } from '../../const';
+import { NameSpace, defaultVisibleCountFilms } from '../../const';
 import { UserBlock } from '../../components/user-block';
 import { useAppSelector } from '../../components/hooks';
 import NotFoundScreen from '../NotFoundScreen/NotFoundScreen';
@@ -24,7 +24,7 @@ function MainPage({filmListByGenreData }: TMainPage): JSX.Element {
     setVisibleCountFilms(defaultVisibleCountFilms);
   };
 
-  const filmPromo = useAppSelector((state) => state.filmPromo);
+  const filmPromo = useAppSelector((state) => state[NameSpace.Data].filmPromo);
 
   if (!filmPromo) {
     return <NotFoundScreen />;

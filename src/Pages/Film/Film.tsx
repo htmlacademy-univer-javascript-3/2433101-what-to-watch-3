@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from '../../components/hooks';
 import { useEffect } from 'react';
 import { fetchCommentsAction, fetchFilmsFilmIdAction, fetchSimilarFilmsAction } from '../../store/api-actions';
 import NotFoundScreen from '../NotFoundScreen/NotFoundScreen';
-import { AuthorizationStatus, defaultVisibleSimilarFilms } from '../../const';
+import { AuthorizationStatus, NameSpace, defaultVisibleSimilarFilms } from '../../const';
 import { UserBlock } from '../../components/user-block';
 
 
@@ -27,9 +27,9 @@ function Film({filmsFilmId}: TFilm): JSX.Element {
     }
   }, [dispatch, id]);
 
-  const similarFilms = useAppSelector((state) => state.similarFilms);
-  const comments = useAppSelector((state) => state.comments);
-  const isAuthorization = useAppSelector((state) => state.authorizationStatus === AuthorizationStatus.Auth);
+  const similarFilms = useAppSelector((state) => state[NameSpace.Data].similarFilms);
+  const comments = useAppSelector((state) => state[NameSpace.Data].comments);
+  const isAuthorization = useAppSelector((state) => state[NameSpace.User].authorizationStatus === AuthorizationStatus.Auth);
 
   if (!id || !filmsFilmId) {
     return <NotFoundScreen />;

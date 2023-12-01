@@ -7,12 +7,16 @@ type TMoviePageOverview = {
 
 export function MoviePageOverview({filmsFilmId}: TMoviePageOverview): JSX.Element {
   const getRatingLevel = (score: number) => {
-    if (score >= 0 && score < 4) {
+    if (score >= 0 && score < 3) {
       return 'Bad';
-    } else if (score >= 4 && score < 7) {
+    } else if (score >= 3 && score < 5) {
+      return 'Normal';
+    } else if (score >= 5 && score < 8) {
       return 'Good';
-    } else if (score >= 7 && score <= 10) {
+    } else if (score >= 8 && score < 10) {
       return 'Very good';
+    } else if (score === 10) {
+      return 'Awesome';
     }
     return 'Unknown';
   };

@@ -5,17 +5,16 @@ import { UserBlock } from '../../components/user-block';
 
 
 type TMyList = {
-  myFilmListData: {[key: string]: string}[];
   filmListByGenreData: TFilms[];
 }
 
-function MyList({myFilmListData, filmListByGenreData}: TMyList): JSX.Element {
+function MyList({filmListByGenreData}: TMyList): JSX.Element {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
         <LogoTop />
         <h1 className="page-title user-page__title">
-          My list <span className="user-page__film-count">{myFilmListData.length}</span>
+          My list <span className="user-page__film-count">test</span>
         </h1>
         <UserBlock />
       </header>

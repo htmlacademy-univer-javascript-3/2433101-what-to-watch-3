@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import MainPage from '../Pages/MainPage/MainPage';
-import { AppRoute } from '../const';
+import { AppRoute, NameSpace } from '../const';
 import SignIn from '../Pages/SignIn/SignIn';
 import NotFoundScreen from '../Pages/NotFoundScreen/NotFoundScreen';
 import MyList from '../Pages/MyList/MyList';
@@ -12,15 +12,11 @@ import { LoadingScreen } from '../Pages/LoadingScreen/LoadingScreen';
 import PrivateRoute from './private-route';
 
 
-type TApp = {
-  myFilmListData: {[key: string]: string}[];
-}
+function App(): JSX.Element {
+  const filmListByGenreData = useAppSelector((state) => state[NameSpace.Data].filmListByGenreData);
+  const filmsFilmId = useAppSelector((state) => state[NameSpace.Data].filmsFilmId);
 
-function App(props: TApp): JSX.Element {
-  const filmListByGenreData = useAppSelector((state) => state.filmListByGenreData);
-  const filmsFilmId = useAppSelector((state) => state.filmsFilmId);
-
-  const isFilmDataLoadingStatus = useAppSelector((state) => state.isFilmDataLoadingStatus);
+  const isFilmDataLoadingStatus = useAppSelector((state) => state[NameSpace.Data].isFilmDataLoadingStatus);
   if (isFilmDataLoadingStatus || !filmsFilmId) {
     return (
       <LoadingScreen />
@@ -42,10 +38,7 @@ function App(props: TApp): JSX.Element {
           path={AppRoute.MyList}
           element={
             <PrivateRoute>
-              <MyList
-                myFilmListData={props.myFilmListData}
-                filmListByGenreData={filmListByGenreData}
-              />
+              <MyList filmListByGenreData={filmListByGenreData} />
             </PrivateRoute>
           }
         />
