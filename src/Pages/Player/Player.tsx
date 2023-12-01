@@ -1,11 +1,19 @@
 import { Link } from 'react-router-dom';
-import { TFilmsFilmId } from '../../components/types/films';
+import { useAppSelector } from '../../components/hooks';
+import { NameSpace } from '../../const';
+import { LoadingScreen } from '../LoadingScreen/LoadingScreen';
 
-type TPlayer = {
-  filmsFilmId: TFilmsFilmId;
-}
 
-function Player({filmsFilmId}: TPlayer): JSX.Element {
+function Player(): JSX.Element {
+  const filmsFilmId = useAppSelector((state) => state[NameSpace.Data].filmsFilmId);
+
+  const isFilmDataLoadingStatus = useAppSelector((state) => state[NameSpace.Data].isFilmDataLoadingStatus);
+  if (isFilmDataLoadingStatus || !filmsFilmId) {
+    return (
+      <LoadingScreen />
+    );
+  }
+
   return (
     <div className="player">
       <video src={filmsFilmId.videoLink} className="player__video" poster={filmsFilmId.posterImage} />

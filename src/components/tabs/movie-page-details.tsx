@@ -1,17 +1,18 @@
+import { useMemo } from 'react';
 import { TFilmsFilmId } from '../types/films';
 
 type TMoviePageDatails = {
   filmsFilmId: TFilmsFilmId;
 }
 
-export function MoviePageDatails({filmsFilmId}: TMoviePageDatails): JSX.Element {
-  const formattedStarring = filmsFilmId.starring.map((actor, index) => (
+export function MoviePageDetails({filmsFilmId}: TMoviePageDatails): JSX.Element {
+  const formattedStarring = useMemo(() => filmsFilmId.starring.map((actor, index) => (
     <>
       {actor}{index !== filmsFilmId.starring.length - 1 && ', '}
       {index !== filmsFilmId.starring.length - 1 && <br />}
       {index !== filmsFilmId.starring.length - 1 && ' '}
     </>
-  ));
+  )), [filmsFilmId]);
 
   return (
     <div className="film-card__text film-card__row">

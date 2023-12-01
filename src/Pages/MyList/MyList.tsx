@@ -1,14 +1,13 @@
 import { FilmList } from '../../components/film-list';
+import { useAppSelector } from '../../components/hooks';
 import { LogoTop, LogoBottom } from '../../components/logo';
-import { TFilms } from '../../components/types/films';
-import { UserBlock } from '../../components/user-block';
+import UserBlock from '../../components/user-block';
+import { NameSpace } from '../../const';
 
 
-type TMyList = {
-  filmListByGenreData: TFilms[];
-}
+function MyList(): JSX.Element {
+  const filmListByGenreData = useAppSelector((state) => state[NameSpace.Data].filmListByGenreData);
 
-function MyList({filmListByGenreData}: TMyList): JSX.Element {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">

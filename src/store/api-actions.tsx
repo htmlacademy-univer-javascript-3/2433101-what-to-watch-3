@@ -1,11 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AppDispatch, State } from '../components/types/state';
 import { AxiosInstance } from 'axios';
-import { APIRoute } from '../const';
+import { APIRoute, AppRoute } from '../const';
 import { TComments, TFilmPromo, TFilms, TFilmsFilmId, TPostComment, TSimilarFilms } from '../components/types/films';
 import { AuthData } from '../components/types/auth-data';
 import { dropToken, saveToken } from '../components/services/token';
 import { UserData } from '../components/types/user-data';
+import { redirectToRoute } from './action';
 
 
 export const fetchFilmsAction = createAsyncThunk<TFilms[], undefined, {
@@ -98,9 +99,10 @@ export const loginAction = createAsyncThunk<void, AuthData, {
   extra: AxiosInstance;
 }>(
   'user/login',
-  async ({login: email, password}, {extra: api}) => {
+  async ({login: email, password}, {dispatch, extra: api}) => {
     const {data: {token}} = await api.post<UserData>(APIRoute.Login, {email, password});
     saveToken(token);
+    dispatch(redirectToRoute(AppRoute.Main));
   },
 );
 

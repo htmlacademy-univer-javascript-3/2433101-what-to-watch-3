@@ -1,23 +1,20 @@
-import { Link, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { LogoBottom, LogoTop } from '../../components/logo';
 import { Tabs } from '../../components/tabs/tabs';
 import { FilmList } from '../../components/film-list';
-import { TFilmsFilmId } from '../../components/types/films';
 import { useAppDispatch, useAppSelector } from '../../components/hooks';
 import { useEffect } from 'react';
 import { fetchCommentsAction, fetchFilmsFilmIdAction, fetchSimilarFilmsAction } from '../../store/api-actions';
 import NotFoundScreen from '../NotFoundScreen/NotFoundScreen';
 import { AuthorizationStatus, NameSpace, defaultVisibleSimilarFilms } from '../../const';
-import { UserBlock } from '../../components/user-block';
+import UserBlock from '../../components/user-block';
+import { LoadingScreen } from '../LoadingScreen/LoadingScreen';
 
 
-type TFilm = {
-  filmsFilmId: TFilmsFilmId;
-}
-
-function Film({filmsFilmId}: TFilm): JSX.Element {
+function Film(): JSX.Element {
   const { id } = useParams();
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (id) {
@@ -27,12 +24,20 @@ function Film({filmsFilmId}: TFilm): JSX.Element {
     }
   }, [dispatch, id]);
 
+  const filmsFilmId = useAppSelector((state) => state[NameSpace.Data].filmsFilmId);
   const similarFilms = useAppSelector((state) => state[NameSpace.Data].similarFilms);
   const comments = useAppSelector((state) => state[NameSpace.Data].comments);
+  const isFilmDataLoadingStatus = useAppSelector((state) => state[NameSpace.Data].isFilmDataLoadingStatus);
   const isAuthorization = useAppSelector((state) => state[NameSpace.User].authorizationStatus === AuthorizationStatus.Auth);
 
   if (!id || !filmsFilmId) {
     return <NotFoundScreen />;
+  }
+
+  if (isFilmDataLoadingStatus) {
+    return (
+      <LoadingScreen />
+    );
   }
 
   return (
@@ -61,23 +66,23 @@ function Film({filmsFilmId}: TFilm): JSX.Element {
                 <span className="film-card__year">{filmsFilmId.released}</span>
               </p>
               <div className="film-card__buttons">
-                <Link className="btn btn--play film-card__button" type="button" to={`/player/${filmsFilmId.id}`}>
+                <button className="btn btn--play film-card__button" type="button" onClick={() => navigate(`/player/${filmsFilmId.id}`)}>
                   <svg viewBox="0 0 19 19" width={19} height={19}>
                     <use xlinkHref="#play-s" />
                   </svg>
                   <span>Play</span>
-                </Link>
-                <Link className="btn btn--list film-card__button" type="button" to='/mylist'>
+                </button>
+                <button className="btn btn--list film-card__button" type="button" onClick={() => navigate('/mylist')}>
                   <svg viewBox="0 0 19 20" width={19} height={20}>
                     <use xlinkHref="#add" />
                   </svg>
                   <span>My list</span>
                   <span className="film-card__count">test</span>
-                </Link>
+                </button>
                 {isAuthorization && (
-                  <Link className="btn film-card__button" to={`/films/${filmsFilmId.id}/review`}>
+                  <button className="btn film-card__button" onClick={() => navigate(`/films/${filmsFilmId.id}/review`)}>
                     Add review
-                  </Link>
+                  </button>
                 )}
               </div>
             </div>

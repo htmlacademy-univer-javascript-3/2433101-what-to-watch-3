@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MoviePageOverview } from './movie-page-overview';
-import { MoviePageDatails } from './movie-page-details';
+import { MoviePageDetails } from './movie-page-details';
 import { MoviePageReviews } from './movie-page-reviews';
 import { TComments, TFilmsFilmId } from '../types/films';
 
@@ -33,17 +33,17 @@ export function Tabs({filmsFilmId, comments}: TTabs): JSX.Element {
           <nav className="film-nav film-card__nav">
             <ul className="film-nav__list">
               <li className="film-nav__item film-nav__item--active">
-                <Link to={`/films/${filmsFilmId.id}`} className="film-nav__link" onClick={() => handleActiveTab('overview')}>
+                <Link to={`#`} className="film-nav__link" onClick={() => handleActiveTab('overview')}>
                   Overview
                 </Link>
               </li>
               <li className="film-nav__item">
-                <Link to={`/films/${filmsFilmId.id}`} className="film-nav__link" onClick={() => handleActiveTab('details')}>
+                <Link to={`#`} className="film-nav__link" onClick={() => handleActiveTab('details')}>
                   Details
                 </Link>
               </li>
               <li className="film-nav__item">
-                <Link to={`/films/${filmsFilmId.id}`} className="film-nav__link" onClick={() => handleActiveTab('reviews')}>
+                <Link to={`#`} className="film-nav__link" onClick={() => handleActiveTab('reviews')}>
                   Reviews
                 </Link>
               </li>
@@ -53,7 +53,7 @@ export function Tabs({filmsFilmId, comments}: TTabs): JSX.Element {
             <MoviePageOverview filmsFilmId={filmsFilmId}/>
           )}
           {activeTab === 'details' && (
-            <MoviePageDatails filmsFilmId={filmsFilmId}/>
+            <MoviePageDetails filmsFilmId={filmsFilmId}/>
           )}
           {activeTab === 'reviews' && (
             <MoviePageReviews comments={comments}/>

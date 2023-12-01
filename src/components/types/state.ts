@@ -22,7 +22,6 @@ export type TDataProcess = {
 
 export type TLoadDataProcess = {
   genre: string;
-  filmListData: TFilms[];
   filmListByGenreData: TFilms[];
   filmPromo?: TFilmPromo;
   similarFilms: TSimilarFilms[];

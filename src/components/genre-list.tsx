@@ -1,18 +1,18 @@
 import { Link } from 'react-router-dom';
 import { useAppDispatch } from './hooks';
-import { changeFilmListByGenreAction, changeGenreAction } from '../store/load-data-process/load-data-process';
+import { changeGenreAction } from '../store/load-data-process/load-data-process';
+import { memo } from 'react';
 
 
 type TGenreList = {
   handleShowLessClick: () => void;
 }
 
-export function GenreList({handleShowLessClick}: TGenreList): JSX.Element {
+function GenreList({handleShowLessClick}: TGenreList): JSX.Element {
   const dispatch = useAppDispatch();
 
   const hundleChangeGenre = (genre: string) => {
     dispatch(changeGenreAction(genre));
-    dispatch(changeFilmListByGenreAction());
   };
 
   return (
@@ -92,3 +92,5 @@ export function GenreList({handleShowLessClick}: TGenreList): JSX.Element {
     </ul>
   );
 }
+
+export default memo(GenreList);

@@ -1,30 +1,38 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { LogoTop, LogoBottom } from '../../components/logo';
-import { GenreList } from '../../components/genre-list';
 import { FilmList } from '../../components/film-list';
-import { ShowMore } from '../../components/show-more';
-import { useState } from 'react';
-import { TFilms } from '../../components/types/films';
+import ShowMore from '../../components/show-more';
+import { useCallback, useMemo, useState } from 'react';
 import { NameSpace, defaultVisibleCountFilms } from '../../const';
-import { UserBlock } from '../../components/user-block';
+import UserBlock from '../../components/user-block';
 import { useAppSelector } from '../../components/hooks';
 import NotFoundScreen from '../NotFoundScreen/NotFoundScreen';
+import GenreList from '../../components/genre-list';
 
 
-type TMainPage = {
-  filmListByGenreData: TFilms[];
-}
-
-function MainPage({filmListByGenreData }: TMainPage): JSX.Element {
+export default function MainPage(): JSX.Element {
   const [visibleCountFilms, setVisibleCountFilms] = useState(defaultVisibleCountFilms);
+  const navigate = useNavigate();
+
   const handleShowMoreClick = () => {
     setVisibleCountFilms(visibleCountFilms + 8);
   };
-  const handleShowLessClick = () => {
+
+  const handleShowLessClick = useCallback(() => {
     setVisibleCountFilms(defaultVisibleCountFilms);
-  };
+  }, [])
 
   const filmPromo = useAppSelector((state) => state[NameSpace.Data].filmPromo);
+  const currentGenre = useAppSelector((state) => state[NameSpace.Data].genre);
+  const filmListData = useAppSelector((state) => state[NameSpace.Data].filmListByGenreData);
+
+  const filmListByGenreData = useMemo(
+    () => currentGenre === 'All genres'
+      ? filmListData
+      : filmListData.filter((film) => film.genre === currentGenre), 
+    [filmListData, currentGenre]
+  );
+
 
   if (!filmPromo) {
     return <NotFoundScreen />;
@@ -61,19 +69,19 @@ function MainPage({filmListByGenreData }: TMainPage): JSX.Element {
                 <span className="film-card__year">{filmPromo.released}</span>
               </p>
               <div className="film-card__buttons">
-                <Link className="btn btn--play film-card__button" type="button" to={`/player/${filmPromo.id}`}>
+                <button className="btn btn--play film-card__button" type="button" onClick={() => navigate(`/player/${filmPromo.id}`)}>
                   <svg viewBox="0 0 19 19" width={19} height={19}>
                     <use xlinkHref="#play-s" />
                   </svg>
                   <span>Play</span>
-                </Link>
-                <Link className="btn btn--list film-card__button" type="button" to="/mylist">
+                </button>
+                <button className="btn btn--list film-card__button" type="button" onClick={() => navigate('/mylist')}>
                   <svg viewBox="0 0 19 20" width={19} height={20}>
                     <use xlinkHref="#add" />
                   </svg>
                   <span>My list</span>
                   <span className="film-card__count">test</span>
-                </Link>
+                </button>
               </div>
             </div>
           </div>
@@ -93,5 +101,3 @@ function MainPage({filmListByGenreData }: TMainPage): JSX.Element {
     </>
   );
 }
-
-export default MainPage;

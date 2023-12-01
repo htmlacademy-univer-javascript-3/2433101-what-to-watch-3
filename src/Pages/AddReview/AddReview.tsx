@@ -1,7 +1,7 @@
 import CommentSubmissionForm from '../../components/comment-submission-form';
 import { LogoTop } from '../../components/logo';
 import { Link, useParams } from 'react-router-dom';
-import { UserBlock } from '../../components/user-block';
+import UserBlock from '../../components/user-block';
 import { useAppDispatch, useAppSelector } from '../../components/hooks';
 import NotFoundScreen from '../NotFoundScreen/NotFoundScreen';
 import { useEffect } from 'react';

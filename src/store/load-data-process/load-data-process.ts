@@ -7,7 +7,6 @@ import { fetchCommentsAction, fetchFilmPromoAction, fetchFilmsAction, fetchFilms
 
 const initialState: TLoadDataProcess = {
   genre: 'All genres',
-  filmListData: [],
   filmListByGenreData: [],
   filmPromo: {} as TFilmPromo,
   similarFilms: [],
@@ -23,11 +22,6 @@ export const loadDataProcess = createSlice({
     changeGenreAction: (state, action: PayloadAction<string>) => {
       state.genre = action.payload;
     },
-    changeFilmListByGenreAction: (state) => {
-      state.filmListByGenreData = state.genre === 'All genres'
-        ? state.filmListData
-        : state.filmListData.filter((film) => film.genre === state.genre);
-    },
   },
   extraReducers(builder) {
     builder
@@ -36,7 +30,6 @@ export const loadDataProcess = createSlice({
       })
       .addCase(fetchFilmsAction.fulfilled, (state, action) => {
         state.isFilmDataLoadingStatus = false;
-        state.filmListData = action.payload;
         state.filmListByGenreData = action.payload;
       })
       .addCase(fetchFilmPromoAction.pending, (state) => {
@@ -61,4 +54,4 @@ export const loadDataProcess = createSlice({
   }
 });
 
-export const {changeGenreAction, changeFilmListByGenreAction} = loadDataProcess.actions;
+export const {changeGenreAction} = loadDataProcess.actions;
