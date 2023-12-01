@@ -20,7 +20,7 @@ export default function MainPage(): JSX.Element {
 
   const handleShowLessClick = useCallback(() => {
     setVisibleCountFilms(defaultVisibleCountFilms);
-  }, [])
+  }, []);
 
   const filmPromo = useAppSelector((state) => state[NameSpace.Data].filmPromo);
   const currentGenre = useAppSelector((state) => state[NameSpace.Data].genre);
@@ -29,7 +29,7 @@ export default function MainPage(): JSX.Element {
   const filmListByGenreData = useMemo(
     () => currentGenre === 'All genres'
       ? filmListData
-      : filmListData.filter((film) => film.genre === currentGenre), 
+      : filmListData.filter((film) => film.genre === currentGenre),
     [filmListData, currentGenre]
   );
 

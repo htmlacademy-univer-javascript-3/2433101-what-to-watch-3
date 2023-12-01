@@ -33,17 +33,17 @@ export function Tabs({filmsFilmId, comments}: TTabs): JSX.Element {
           <nav className="film-nav film-card__nav">
             <ul className="film-nav__list">
               <li className="film-nav__item film-nav__item--active">
-                <Link to={`#`} className="film-nav__link" onClick={() => handleActiveTab('overview')}>
+                <Link to={'#'} className="film-nav__link" onClick={() => handleActiveTab('overview')}>
                   Overview
                 </Link>
               </li>
               <li className="film-nav__item">
-                <Link to={`#`} className="film-nav__link" onClick={() => handleActiveTab('details')}>
+                <Link to={'#'} className="film-nav__link" onClick={() => handleActiveTab('details')}>
                   Details
                 </Link>
               </li>
               <li className="film-nav__item">
-                <Link to={`#`} className="film-nav__link" onClick={() => handleActiveTab('reviews')}>
+                <Link to={'#'} className="film-nav__link" onClick={() => handleActiveTab('reviews')}>
                   Reviews
                 </Link>
               </li>

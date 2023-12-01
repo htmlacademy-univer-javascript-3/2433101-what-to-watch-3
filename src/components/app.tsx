@@ -10,7 +10,7 @@ import Player from '../Pages/Player/Player';
 import PrivateRoute from './private-route';
 import HistoryRouter from './history-router';
 import { browserHistory } from './services/browser-history';
- 
+
 
 function App(): JSX.Element {
   return (
