@@ -36,23 +36,23 @@ export type TFilmsFilmId = {
 }
 
 export type TMyListFilm = {
-  id: string
-  name: string
-  previewImage: string
-  previewVideoLink: string
-  genre: string
-  posterImage: string
-  backgroundImage: string
-  backgroundColor: string
-  videoLink: string
-  description: string
-  rating: number
-  scoresCount: number
-  director: string
-  starring: [string]
-  runTime: number
-  released: number
-  isFavorite: boolean
+  id: string;
+  name: string;
+  previewImage: string;
+  previewVideoLink: string;
+  genre: string;
+  posterImage: string;
+  backgroundImage: string;
+  backgroundColor: string;
+  videoLink: string;
+  description: string;
+  rating: number;
+  scoresCount: number;
+  director: string;
+  starring: [string];
+  runTime: number;
+  released: number;
+  isFavorite: boolean;
 }
 
 export type TComments = {

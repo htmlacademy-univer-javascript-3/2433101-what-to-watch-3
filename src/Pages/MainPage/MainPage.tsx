@@ -24,20 +24,20 @@ export default function MainPage(): JSX.Element {
     setVisibleCountFilms(defaultVisibleCountFilms);
   }, []);
 
-  
+
   const filmPromo = useAppSelector((state) => state[NameSpace.Data].filmPromo);
   const currentGenre = useAppSelector((state) => state[NameSpace.Data].genre);
   const filmListData = useAppSelector((state) => state[NameSpace.Data].filmListByGenreData);
   const myListLength = useAppSelector((state) => state[NameSpace.Data].myListLength);
-  
+
   const filmListByGenreData = useMemo(
     () => currentGenre === 'All genres'
-    ? filmListData
-    : filmListData.filter((film) => film.genre === currentGenre),
+      ? filmListData
+      : filmListData.filter((film) => film.genre === currentGenre),
     [filmListData, currentGenre]
-    );
-    
-    
+  );
+
+
   if (!filmPromo) {
     return <NotFoundScreen />;
   }
@@ -92,8 +92,7 @@ export default function MainPage(): JSX.Element {
                     :
                     <svg viewBox="0 0 19 20" width={19} height={20}>
                       <use xlinkHref="#add" />
-                    </svg>
-                  }
+                    </svg>}
                   <span>My list</span>
                   <span className="film-card__count">{myListLength}</span>
                 </button>

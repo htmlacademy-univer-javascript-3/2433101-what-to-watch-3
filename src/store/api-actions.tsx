@@ -63,14 +63,14 @@ export const fetchMyList = createAsyncThunk<TFilms[], undefined, {
   state: State;
   extra: AxiosInstance;
 }>(
-  'data/fetchMyList', 
+  'data/fetchMyList',
   async (_arg, { extra: api }) => {
     const { data } = await api.get<TFilms[]>('/favorite');
     return data;
   }
 );
 
-export const postMyListFilmStatus = createAsyncThunk<TMyListFilm, TMyListFilmStatus, { 
+export const postMyListFilmStatus = createAsyncThunk<TMyListFilm, TMyListFilmStatus, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
@@ -79,7 +79,8 @@ export const postMyListFilmStatus = createAsyncThunk<TMyListFilm, TMyListFilmSta
   async ({ id, status }, { extra: api }) => {
     const { data } = await api.post<TMyListFilm>(`/favorite/${id}/${status}`);
     return data;
-});
+  }
+);
 
 export const fetchCommentsAction = createAsyncThunk<TComments[], string, {
   dispatch: AppDispatch;

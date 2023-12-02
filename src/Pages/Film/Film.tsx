@@ -86,8 +86,7 @@ function Film(): JSX.Element {
                     :
                     <svg viewBox="0 0 19 20" width={19} height={20}>
                       <use xlinkHref="#add" />
-                    </svg>
-                  }
+                    </svg>}
                   <span>My list</span>
                   <span className="film-card__count">{myListLength}</span>
                 </button>
