@@ -2,7 +2,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { NameSpace } from '../../const';
 import { TFilmPromo, TFilmsFilmId } from '../../components/types/films';
 import { TLoadDataProcess } from '../../components/types/state';
-import { fetchCommentsAction, fetchFilmPromoAction, fetchFilmsAction, fetchFilmsFilmIdAction, fetchSimilarFilmsAction, postCommentAction } from '../api-actions';
+import { fetchCommentsAction, fetchFilmPromoAction, fetchFilmsAction, fetchFilmsFilmIdAction, fetchMyList, fetchSimilarFilmsAction, postCommentAction, postMyListFilmStatus } from '../api-actions';
 
 
 const initialState: TLoadDataProcess = {
@@ -11,6 +11,8 @@ const initialState: TLoadDataProcess = {
   filmPromo: {} as TFilmPromo,
   similarFilms: [],
   filmsFilmId: {} as TFilmsFilmId,
+  myList: [],
+  myListLength: 0,
   comments: [],
   isFilmDataLoadingStatus: false,
 };
@@ -50,6 +52,20 @@ export const loadDataProcess = createSlice({
       })
       .addCase(postCommentAction.fulfilled, (state, action) => {
         state.comments.push(action.payload);
+      })
+      .addCase(fetchMyList.fulfilled, (state, action) => {
+        state.myList = action.payload;
+        state.myListLength = action.payload.length;
+      })
+      .addCase(postMyListFilmStatus.fulfilled, (state, action) => {
+        const film = action.payload;
+        if (film.isFavorite) {
+          state.myList.push(film);
+          state.myListLength++;
+        } else {
+          state.myList.filter((favorite) => favorite.id !== film.id);
+          state.myListLength--;
+        }
       });
   }
 });

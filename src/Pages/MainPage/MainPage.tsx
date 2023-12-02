@@ -5,14 +5,16 @@ import ShowMore from '../../components/show-more';
 import { useCallback, useMemo, useState } from 'react';
 import { NameSpace, defaultVisibleCountFilms } from '../../const';
 import UserBlock from '../../components/user-block';
-import { useAppSelector } from '../../components/hooks';
+import { useAppDispatch, useAppSelector } from '../../components/hooks';
 import NotFoundScreen from '../NotFoundScreen/NotFoundScreen';
 import GenreList from '../../components/genre-list';
+import { postMyListFilmStatus } from '../../store/api-actions';
 
 
 export default function MainPage(): JSX.Element {
   const [visibleCountFilms, setVisibleCountFilms] = useState(defaultVisibleCountFilms);
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const handleShowMoreClick = () => {
     setVisibleCountFilms(visibleCountFilms + 8);
@@ -22,21 +24,28 @@ export default function MainPage(): JSX.Element {
     setVisibleCountFilms(defaultVisibleCountFilms);
   }, []);
 
+  
   const filmPromo = useAppSelector((state) => state[NameSpace.Data].filmPromo);
   const currentGenre = useAppSelector((state) => state[NameSpace.Data].genre);
   const filmListData = useAppSelector((state) => state[NameSpace.Data].filmListByGenreData);
-
+  const myListLength = useAppSelector((state) => state[NameSpace.Data].myListLength);
+  
   const filmListByGenreData = useMemo(
     () => currentGenre === 'All genres'
-      ? filmListData
-      : filmListData.filter((film) => film.genre === currentGenre),
+    ? filmListData
+    : filmListData.filter((film) => film.genre === currentGenre),
     [filmListData, currentGenre]
-  );
-
-
+    );
+    
+    
   if (!filmPromo) {
     return <NotFoundScreen />;
   }
+
+  const handleMyFilmStatus = () => {
+    dispatch(postMyListFilmStatus({id: filmPromo.id, status: Number(!filmPromo.isFavorite)}));
+    navigate('/mylist');
+  };
 
   return (
     <>
@@ -75,12 +84,18 @@ export default function MainPage(): JSX.Element {
                   </svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list film-card__button" type="button" onClick={() => navigate('/mylist')}>
-                  <svg viewBox="0 0 19 20" width={19} height={20}>
-                    <use xlinkHref="#add" />
-                  </svg>
+                <button className="btn btn--list film-card__button" type="button" onClick={handleMyFilmStatus}>
+                  {filmPromo.isFavorite ?
+                    <svg viewBox="0 0 18 14" width={18} height={14}>
+                      <use xlinkHref="#in-list" />
+                    </svg>
+                    :
+                    <svg viewBox="0 0 19 20" width={19} height={20}>
+                      <use xlinkHref="#add" />
+                    </svg>
+                  }
                   <span>My list</span>
-                  <span className="film-card__count">test</span>
+                  <span className="film-card__count">{myListLength}</span>
                 </button>
               </div>
             </div>

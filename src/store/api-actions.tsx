@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AppDispatch, State } from '../components/types/state';
 import { AxiosInstance } from 'axios';
 import { APIRoute, AppRoute } from '../const';
-import { TComments, TFilmPromo, TFilms, TFilmsFilmId, TPostComment, TSimilarFilms } from '../components/types/films';
+import { TComments, TFilmPromo, TFilms, TFilmsFilmId, TMyListFilm, TMyListFilmStatus, TPostComment} from '../components/types/films';
 import { AuthData } from '../components/types/auth-data';
 import { dropToken, saveToken } from '../components/services/token';
 import { UserData } from '../components/types/user-data';
@@ -33,14 +33,14 @@ export const fetchFilmPromoAction = createAsyncThunk<TFilmPromo, undefined, {
   },
 );
 
-export const fetchSimilarFilmsAction = createAsyncThunk<TSimilarFilms[], string, {
+export const fetchSimilarFilmsAction = createAsyncThunk<TFilms[], string, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
   'data/fetchSimilarFilms',
   async (id, {extra: api}) => {
-    const {data} = await api.get<TSimilarFilms[]>(`${APIRoute.Films}/${id}/similar`);
+    const {data} = await api.get<TFilms[]>(`${APIRoute.Films}/${id}/similar`);
     return data;
   },
 );
@@ -57,6 +57,29 @@ export const fetchFilmsFilmIdAction = createAsyncThunk<TFilmsFilmId, string, {
     return data;
   },
 );
+
+export const fetchMyList = createAsyncThunk<TFilms[], undefined, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchMyList', 
+  async (_arg, { extra: api }) => {
+    const { data } = await api.get<TFilms[]>('/favorite');
+    return data;
+  }
+);
+
+export const postMyListFilmStatus = createAsyncThunk<TMyListFilm, TMyListFilmStatus, { 
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/postMyListFilmStatus',
+  async ({ id, status }, { extra: api }) => {
+    const { data } = await api.post<TMyListFilm>(`/favorite/${id}/${status}`);
+    return data;
+});
 
 export const fetchCommentsAction = createAsyncThunk<TComments[], string, {
   dispatch: AppDispatch;

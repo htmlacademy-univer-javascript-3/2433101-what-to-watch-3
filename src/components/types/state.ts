@@ -1,6 +1,6 @@
 import { AuthorizationStatus } from '../../const';
 import { store } from '../../store';
-import { TComments, TFilmPromo, TFilms, TFilmsFilmId, TSimilarFilms } from './films';
+import { TComments, TFilmPromo, TFilms, TFilmsFilmId } from './films';
 
 export type State = ReturnType<typeof store.getState>;
 
@@ -10,22 +10,14 @@ export type TUserProcess = {
   authorizationStatus: AuthorizationStatus;
 }
 
-export type TDataProcess = {
-  isFilmDataLoadingStatus: boolean;
-  filmListData: TFilms[];
-  filmListByGenreData: TFilms[];
-  similarFilms: TSimilarFilms[];
-  filmPromo?: TFilmPromo;
-  filmsFilmId?: TFilmsFilmId;
-  comments: TComments[];
-}
-
 export type TLoadDataProcess = {
   genre: string;
   filmListByGenreData: TFilms[];
   filmPromo?: TFilmPromo;
-  similarFilms: TSimilarFilms[];
+  similarFilms: TFilms[];
   filmsFilmId?: TFilmsFilmId;
+  myList: TFilms[];
+  myListLength: number;
   comments: TComments[];
   isFilmDataLoadingStatus: boolean;
 }

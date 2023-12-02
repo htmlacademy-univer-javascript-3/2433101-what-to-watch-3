@@ -1,26 +1,31 @@
 import { FilmList } from '../../components/film-list';
-import { useAppSelector } from '../../components/hooks';
+import { useAppDispatch, useAppSelector } from '../../components/hooks';
 import { LogoTop, LogoBottom } from '../../components/logo';
 import UserBlock from '../../components/user-block';
 import { NameSpace } from '../../const';
+import { fetchMyList } from '../../store/api-actions';
 
 
 function MyList(): JSX.Element {
-  const filmListByGenreData = useAppSelector((state) => state[NameSpace.Data].filmListByGenreData);
+  const dispatch = useAppDispatch();
+  dispatch(fetchMyList());
+
+  const myList = useAppSelector((state) => state[NameSpace.Data].myList);
+  const myListLength = useAppSelector((state) => state[NameSpace.Data].myListLength);
 
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
         <LogoTop />
         <h1 className="page-title user-page__title">
-          My list <span className="user-page__film-count">test</span>
+          My list <span className="user-page__film-count">{myListLength}</span>
         </h1>
         <UserBlock />
       </header>
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
         <div className="catalog__films-list">
-          <FilmList filmListData={filmListByGenreData}/>
+          <FilmList filmListData={myList}/>
         </div>
       </section>
       <LogoBottom />
