@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { FilmList } from '../../components/film-list';
 import { useAppDispatch, useAppSelector } from '../../components/hooks';
 import { LogoTop, LogoBottom } from '../../components/logo';
@@ -8,7 +9,9 @@ import { fetchMyList } from '../../store/api-actions';
 
 function MyList(): JSX.Element {
   const dispatch = useAppDispatch();
-  dispatch(fetchMyList());
+  useEffect(() => {
+    dispatch(fetchMyList());
+  }, [dispatch]);
 
   const myList = useAppSelector((state) => state[NameSpace.Data].myList);
   const myListLength = useAppSelector((state) => state[NameSpace.Data].myListLength);
