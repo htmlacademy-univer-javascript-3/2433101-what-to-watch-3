@@ -1,27 +1,34 @@
+import { useEffect } from 'react';
 import { FilmList } from '../../components/film-list';
+import { useAppDispatch, useAppSelector } from '../../components/hooks';
 import { LogoTop, LogoBottom } from '../../components/logo';
-import { TFilms } from '../../components/types/films';
-import { UserBlock } from '../../components/user-block';
+import UserBlock from '../../components/user-block';
+import { NameSpace } from '../../const';
+import { fetchMyList } from '../../store/api-actions';
 
 
-type TMyList = {
-  filmListByGenreData: TFilms[];
-}
+function MyList(): JSX.Element {
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(fetchMyList());
+  }, [dispatch]);
 
-function MyList({filmListByGenreData}: TMyList): JSX.Element {
+  const myList = useAppSelector((state) => state[NameSpace.Data].myList);
+  const myListLength = useAppSelector((state) => state[NameSpace.Data].myListLength);
+
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
         <LogoTop />
         <h1 className="page-title user-page__title">
-          My list <span className="user-page__film-count">test</span>
+          My list <span className="user-page__film-count">{myListLength}</span>
         </h1>
         <UserBlock />
       </header>
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
         <div className="catalog__films-list">
-          <FilmList filmListData={filmListByGenreData}/>
+          <FilmList filmListData={myList}/>
         </div>
       </section>
       <LogoBottom />

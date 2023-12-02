@@ -2,7 +2,7 @@ type TShowMore = {
   handleShowMoreClick: () => void;
 }
 
-export function ShowMore({handleShowMoreClick}: TShowMore): JSX.Element {
+function ShowMore({handleShowMoreClick}: TShowMore): JSX.Element {
   return (
     <div className="catalog__more">
       <button className="catalog__button" type="button" onClick={handleShowMoreClick}>
@@ -11,3 +11,5 @@ export function ShowMore({handleShowMoreClick}: TShowMore): JSX.Element {
     </div>
   );
 }
+
+export default ShowMore;

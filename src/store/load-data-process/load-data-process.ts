@@ -2,16 +2,17 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { NameSpace } from '../../const';
 import { TFilmPromo, TFilmsFilmId } from '../../components/types/films';
 import { TLoadDataProcess } from '../../components/types/state';
-import { fetchCommentsAction, fetchFilmPromoAction, fetchFilmsAction, fetchFilmsFilmIdAction, fetchSimilarFilmsAction, postCommentAction } from '../api-actions';
+import { fetchCommentsAction, fetchFilmPromoAction, fetchFilmsAction, fetchFilmsFilmIdAction, fetchMyList, fetchSimilarFilmsAction, postCommentAction, postMyListFilmStatus } from '../api-actions';
 
 
 const initialState: TLoadDataProcess = {
   genre: 'All genres',
-  filmListData: [],
   filmListByGenreData: [],
   filmPromo: {} as TFilmPromo,
   similarFilms: [],
   filmsFilmId: {} as TFilmsFilmId,
+  myList: [],
+  myListLength: 0,
   comments: [],
   isFilmDataLoadingStatus: false,
 };
@@ -23,11 +24,6 @@ export const loadDataProcess = createSlice({
     changeGenreAction: (state, action: PayloadAction<string>) => {
       state.genre = action.payload;
     },
-    changeFilmListByGenreAction: (state) => {
-      state.filmListByGenreData = state.genre === 'All genres'
-        ? state.filmListData
-        : state.filmListData.filter((film) => film.genre === state.genre);
-    },
   },
   extraReducers(builder) {
     builder
@@ -36,7 +32,6 @@ export const loadDataProcess = createSlice({
       })
       .addCase(fetchFilmsAction.fulfilled, (state, action) => {
         state.isFilmDataLoadingStatus = false;
-        state.filmListData = action.payload;
         state.filmListByGenreData = action.payload;
       })
       .addCase(fetchFilmPromoAction.pending, (state) => {
@@ -57,8 +52,22 @@ export const loadDataProcess = createSlice({
       })
       .addCase(postCommentAction.fulfilled, (state, action) => {
         state.comments.push(action.payload);
+      })
+      .addCase(fetchMyList.fulfilled, (state, action) => {
+        state.myList = action.payload;
+        state.myListLength = action.payload.length;
+      })
+      .addCase(postMyListFilmStatus.fulfilled, (state, action) => {
+        const film = action.payload;
+        if (film.isFavorite) {
+          state.myList.push(film);
+          state.myListLength++;
+        } else {
+          state.myList.filter((favorite) => favorite.id !== film.id);
+          state.myListLength--;
+        }
       });
   }
 });
 
-export const {changeGenreAction, changeFilmListByGenreAction} = loadDataProcess.actions;
+export const {changeGenreAction} = loadDataProcess.actions;

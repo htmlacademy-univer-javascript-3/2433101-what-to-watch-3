@@ -3,7 +3,8 @@ import { AppRoute, AuthorizationStatus, NameSpace } from '../const';
 import { useAppDispatch, useAppSelector } from './hooks';
 import { logoutAction } from '../store/api-actions';
 
-export function UserBlock() {
+
+function UserBlock() {
   const autorizationStatus = useAppSelector((state) => state[NameSpace.User].authorizationStatus);
 
   const dispatch = useAppDispatch();
@@ -35,3 +36,5 @@ export function UserBlock() {
     </ul>
   );
 }
+
+export default UserBlock;
