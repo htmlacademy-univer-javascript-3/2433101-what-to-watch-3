@@ -4,11 +4,12 @@ import { Tabs } from '../../components/tabs/tabs';
 import { FilmList } from '../../components/film-list';
 import { useAppDispatch, useAppSelector } from '../../components/hooks';
 import { useEffect } from 'react';
-import { fetchCommentsAction, fetchFilmsFilmIdAction, fetchSimilarFilmsAction, postMyListFilmStatus } from '../../store/api-actions';
+import { fetchCommentsAction, fetchFilmsFilmIdAction, fetchMyList, fetchSimilarFilmsAction, postMyListFilmStatus } from '../../store/api-actions';
 import NotFoundScreen from '../NotFoundScreen/NotFoundScreen';
 import { AuthorizationStatus, NameSpace, defaultVisibleSimilarFilms } from '../../const';
 import UserBlock from '../../components/user-block';
 import { LoadingScreen } from '../LoadingScreen/LoadingScreen';
+import MyListButton from '../../components/my-list-button';
 
 
 function Film(): JSX.Element {
@@ -27,7 +28,6 @@ function Film(): JSX.Element {
   const filmsFilmId = useAppSelector((state) => state[NameSpace.Data].filmsFilmId);
   const similarFilms = useAppSelector((state) => state[NameSpace.Data].similarFilms);
   const comments = useAppSelector((state) => state[NameSpace.Data].comments);
-  const myListLength = useAppSelector((state) => state[NameSpace.Data].myListLength);
   const isFilmDataLoadingStatus = useAppSelector((state) => state[NameSpace.Data].isFilmDataLoadingStatus);
   const isAuthorization = useAppSelector((state) => state[NameSpace.User].authorizationStatus === AuthorizationStatus.Auth);
 
@@ -40,11 +40,6 @@ function Film(): JSX.Element {
       <LoadingScreen />
     );
   }
-
-  const handleMyFilmStatus = () => {
-    dispatch(postMyListFilmStatus({id: filmsFilmId.id, status: Number(!filmsFilmId.isFavorite)}));
-    navigate('/mylist');
-  };
 
   return (
     <>
@@ -78,18 +73,7 @@ function Film(): JSX.Element {
                   </svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list film-card__button" type="button" onClick={handleMyFilmStatus}>
-                  {filmsFilmId.isFavorite ?
-                    <svg viewBox="0 0 18 14" width={18} height={14}>
-                      <use xlinkHref="#in-list" />
-                    </svg>
-                    :
-                    <svg viewBox="0 0 19 20" width={19} height={20}>
-                      <use xlinkHref="#add" />
-                    </svg>}
-                  <span>My list</span>
-                  <span className="film-card__count">{myListLength}</span>
-                </button>
+                <MyListButton id={filmsFilmId.id} isFavorite={filmsFilmId.isFavorite}/>
                 {isAuthorization && (
                   <button className="btn film-card__button" onClick={() => navigate(`/films/${filmsFilmId.id}/review`)}>
                     Add review

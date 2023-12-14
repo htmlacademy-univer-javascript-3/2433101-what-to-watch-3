@@ -61,10 +61,10 @@ export const loadDataProcess = createSlice({
         const film = action.payload;
         if (film.isFavorite) {
           state.myList.push(film);
-          state.myListLength++;
+          state.myListLength = state.myList.length;
         } else {
           state.myList.filter((favorite) => favorite.id !== film.id);
-          state.myListLength--;
+          state.myListLength = state.myList.length;
         }
       });
   }

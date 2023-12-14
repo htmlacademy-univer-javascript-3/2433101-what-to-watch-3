@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus, NameSpace } from '../const';
 import { useAppDispatch, useAppSelector } from './hooks';
 import { logoutAction } from '../store/api-actions';
@@ -8,6 +8,7 @@ function UserBlock() {
   const autorizationStatus = useAppSelector((state) => state[NameSpace.User].authorizationStatus);
 
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   return (
     <ul className="user-block">
@@ -20,6 +21,7 @@ function UserBlock() {
                 alt="User avatar"
                 width={63}
                 height={63}
+                onClick={() => navigate(AppRoute.MyList)}
               />
             </div>
           </li>

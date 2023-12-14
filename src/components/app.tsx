@@ -8,30 +8,26 @@ import Film from '../Pages/Film/Film';
 import AddReview from '../Pages/AddReview/AddReview';
 import Player from '../Pages/Player/Player';
 import PrivateRoute from './private-route';
-import HistoryRouter from './history-router';
-import { browserHistory } from './services/browser-history';
 
 
 function App(): JSX.Element {
   return (
-    <HistoryRouter history={browserHistory}>
-      <Routes>
-        <Route path={AppRoute.Main} element={<MainPage />} />
-        <Route path={AppRoute.SignIn} element={<SignIn />} />
-        <Route
-          path={AppRoute.MyList}
-          element={
-            <PrivateRoute>
-              <MyList />
-            </PrivateRoute>
-          }
-        />
-        <Route path={AppRoute.FilmsId} element={<Film />} />
-        <Route path={AppRoute.FilmsReview} element={<AddReview />} />
-        <Route path={AppRoute.Player} element={<Player />} />
-        <Route path={AppRoute.NotFoundScreen} element={<NotFoundScreen />} />
-      </Routes>
-    </HistoryRouter>
+    <Routes>
+      <Route path={AppRoute.Main} element={<MainPage />} />
+      <Route path={AppRoute.SignIn} element={<SignIn />} />
+      <Route
+        path={AppRoute.MyList}
+        element={
+          <PrivateRoute>
+            <MyList />
+          </PrivateRoute>
+        }
+      />
+      <Route path={AppRoute.FilmsId} element={<Film />} />
+      <Route path={AppRoute.FilmsReview} element={<AddReview />} />
+      <Route path={AppRoute.Player} element={<Player />} />
+      <Route path={AppRoute.NotFoundScreen} element={<NotFoundScreen />} />
+    </Routes>
   );
 }
 
