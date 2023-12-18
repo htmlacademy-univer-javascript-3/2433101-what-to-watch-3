@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { FilmList } from '../../components/film-list';
 import { useAppDispatch, useAppSelector } from '../../components/hooks';
-import { LogoTop, LogoBottom } from '../../components/logo';
-import UserBlock from '../../components/user-block';
+import { LogoTop, LogoBottom } from '../../components/logo/logo';
+import UserBlock from '../../components/user-block/user-block';
 import { NameSpace } from '../../const';
 import { fetchMyList } from '../../store/api-actions';
 

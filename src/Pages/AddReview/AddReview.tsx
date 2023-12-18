@@ -1,9 +1,9 @@
 import CommentSubmissionForm from '../../components/comment-submission-form';
-import { LogoTop } from '../../components/logo';
+import { LogoTop } from '../../components/logo/logo';
 import { Link, useParams } from 'react-router-dom';
-import UserBlock from '../../components/user-block';
+import UserBlock from '../../components/user-block/user-block';
 import { useAppDispatch, useAppSelector } from '../../components/hooks';
-import NotFoundScreen from '../NotFoundScreen/NotFoundScreen';
+import NotFoundScreen from '../not-found-screen/not-found-screen';
 import { useEffect } from 'react';
 import { fetchFilmsFilmIdAction } from '../../store/api-actions';
 import { NameSpace } from '../../const';

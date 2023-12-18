@@ -1,6 +1,6 @@
 import { Navigate } from 'react-router-dom';
-import { AppRoute, AuthorizationStatus, NameSpace } from '../const';
-import { useAppSelector } from './hooks';
+import { AppRoute, AuthorizationStatus, NameSpace } from '../../const';
+import { useAppSelector } from '../hooks';
 
 type TPrivateRoute = {
   children: JSX.Element;

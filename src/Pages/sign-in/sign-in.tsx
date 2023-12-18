@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { LogoBottom, LogoTop } from '../../components/logo';
+import { LogoBottom, LogoTop } from '../../components/logo/logo';
 import { loginAction } from '../../store/api-actions';
 import { AppRoute } from '../../const';
 import { useAppDispatch } from '../../components/hooks';
@@ -40,6 +40,7 @@ function SignIn(): JSX.Element {
                 placeholder="Email address"
                 name="user-email"
                 id="user-email"
+                data-testid="loginInput"
               />
               <label
                 className="sign-in__label visually-hidden"
@@ -57,6 +58,7 @@ function SignIn(): JSX.Element {
                 placeholder="Password"
                 name="user-password"
                 id="user-password"
+                data-testid="passwordInput"
               />
               <label
                 className="sign-in__label visually-hidden"

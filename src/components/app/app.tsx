@@ -1,13 +1,13 @@
 import { Route, Routes } from 'react-router-dom';
-import MainPage from '../Pages/MainPage/MainPage';
-import { AppRoute } from '../const';
-import SignIn from '../Pages/SignIn/SignIn';
-import NotFoundScreen from '../Pages/NotFoundScreen/NotFoundScreen';
-import MyList from '../Pages/MyList/MyList';
-import Film from '../Pages/Film/Film';
-import AddReview from '../Pages/AddReview/AddReview';
-import Player from '../Pages/Player/Player';
-import PrivateRoute from './private-route';
+import MainPage from '../../Pages/MainPage/MainPage';
+import { AppRoute } from '../../const';
+import SignIn from '../../Pages/sign-in/sign-in';
+import NotFoundScreen from '../../Pages/not-found-screen/not-found-screen';
+import MyList from '../../Pages/MyList/MyList';
+import Film from '../../Pages/Film/Film';
+import AddReview from '../../Pages/AddReview/AddReview';
+import Player from '../../Pages/Player/Player';
+import PrivateRoute from '../private-route/private-route';
 
 
 function App(): JSX.Element {

@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { AppRoute, AuthorizationStatus, NameSpace } from '../const';
-import { useAppDispatch, useAppSelector } from './hooks';
-import { logoutAction } from '../store/api-actions';
+import { AppRoute, AuthorizationStatus, NameSpace } from '../../const';
+import { useAppDispatch, useAppSelector } from '../hooks';
+import { logoutAction } from '../../store/api-actions';
 
 
 function UserBlock() {

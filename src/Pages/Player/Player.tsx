@@ -1,10 +1,10 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../components/hooks';
 import { NameSpace } from '../../const';
-import { LoadingScreen } from '../LoadingScreen/LoadingScreen';
+import { LoadingScreen } from '../loading-screen/loading-screen';
 import { useEffect, useRef, useState } from 'react';
 import { fetchFilmsFilmIdAction } from '../../store/api-actions';
-import NotFoundScreen from '../NotFoundScreen/NotFoundScreen';
+import NotFoundScreen from '../not-found-screen/not-found-screen';
 
 
 function Player(): JSX.Element {
