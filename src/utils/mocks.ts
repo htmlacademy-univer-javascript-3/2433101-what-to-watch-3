@@ -1,6 +1,12 @@
 import { internet, datatype, lorem, image, random, name} from 'faker';
-import { TMyListFilm } from '../components/types/films';
+import { TComments, TMyListFilm } from '../components/types/films';
+import { Action, ThunkDispatch } from '@reduxjs/toolkit';
+import { createApi } from '../components/services/api';
+import { State } from '../components/types/state';
 
+
+export type AppThunkDispatch = ThunkDispatch<State, ReturnType<typeof createApi>, Action>;
+export const extractActionsTypes = (actions: Action<string>[]) => actions.map(({ type }) => type);
 
 export const makeFakeFilmListByGenreData = () => ({
   id: datatype.uuid(),
@@ -47,12 +53,18 @@ export const makeFakeFilmsFilmId = () => ({
   isFavorite: random.boolean(),
 });
 
-export const makeFakeComments = () => ({
+export const makeFakeComments = (): TComments => ({
   id: datatype.uuid(),
   date: datatype.datetime().toString(),
   user: internet.userName(),
   comment: lorem.paragraph(),
   rating: random.number({ min: 0, max: 10, precision: 0.1 }), 
+});
+
+export const makeFakePostComment = () => ({
+  id: datatype.uuid(),
+  comment: lorem.paragraph(),
+  rating: random.number({ min: 0, max: 10, precision: 0.1 }),
 });
 
 export const makeFakeFavoriteFilm = ():TMyListFilm => ({

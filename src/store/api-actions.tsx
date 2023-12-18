@@ -94,14 +94,15 @@ export const fetchCommentsAction = createAsyncThunk<TComments[], string, {
   },
 );
 
-export const postCommentAction = createAsyncThunk<TComments, TPostComment, {
+export const postCommentAction = createAsyncThunk<void, TPostComment, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
   'data/postComments',
-  async ({id, comment, rating}, {extra: api}) => {
-    const {data} = await api.post<TComments>(`${APIRoute.Comments}/${id}`, {comment, rating});
+  async ({id, comment, rating}, {dispatch, extra: api}) => {
+    const {data} = await api.post(`${APIRoute.Comments}/${id}`, {comment, rating});
+    dispatch(redirectToRoute(`films/${id}`));
     return data;
   },
 );
@@ -114,7 +115,7 @@ export const checkAuthAction = createAsyncThunk<void, undefined, {
   'user/checkAuth',
   async (_arg, {extra: api}) => {
     await api.get(APIRoute.Login);
-  }
+  },
 );
 
 export const loginAction = createAsyncThunk<void, AuthData, {

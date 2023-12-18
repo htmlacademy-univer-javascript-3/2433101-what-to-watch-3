@@ -52,9 +52,6 @@ export const loadDataProcess = createSlice({
       .addCase(fetchCommentsAction.fulfilled, (state, action) => {
         state.comments = action.payload;
       })
-      .addCase(postCommentAction.fulfilled, (state, action) => {
-        state.comments.push(action.payload);
-      })
       .addCase(fetchMyList.fulfilled, (state, action) => {
         state.myList = action.payload;
         state.myListLength = action.payload.length;
