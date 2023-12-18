@@ -31,8 +31,10 @@ export const loadDataProcess = createSlice({
         state.isFilmDataLoadingStatus = true;
       })
       .addCase(fetchFilmsAction.fulfilled, (state, action) => {
-        state.isFilmDataLoadingStatus = false;
-        state.filmListByGenreData = action.payload;
+        if (action.payload !== undefined) {
+          state.isFilmDataLoadingStatus = false;
+          state.filmListByGenreData = action.payload;
+        }
       })
       .addCase(fetchFilmPromoAction.pending, (state) => {
         state.isFilmDataLoadingStatus = true;
@@ -63,7 +65,7 @@ export const loadDataProcess = createSlice({
           state.myList.push(film);
           state.myListLength = state.myList.length;
         } else {
-          state.myList.filter((favorite) => favorite.id !== film.id);
+          state.myList = state.myList.filter((favorite) => favorite.id !== film.id);
           state.myListLength = state.myList.length;
         }
       });
