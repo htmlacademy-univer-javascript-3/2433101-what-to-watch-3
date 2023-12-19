@@ -1,4 +1,4 @@
-import CommentSubmissionForm from '../../components/comment-submission-form';
+import CommentSubmissionForm from '../../components/comment-submission-form/comment-submission-form';
 import { LogoTop } from '../../components/logo/logo';
 import { Link, useParams } from 'react-router-dom';
 import UserBlock from '../../components/user-block/user-block';

@@ -1,6 +1,6 @@
-import { NameSpace } from '../const';
-import { postMyListFilmStatus } from '../store/api-actions';
-import { useAppDispatch, useAppSelector } from './hooks';
+import { NameSpace } from '../../const';
+import { postMyListFilmStatus } from '../../store/api-actions';
+import { useAppDispatch, useAppSelector } from '../hooks';
 
 
 type TMyListButton = {

@@ -21,7 +21,6 @@ function SignIn(): JSX.Element {
         login,
         password
       }));
-      navigate(AppRoute.Main);
     }
   };
 
@@ -32,7 +31,7 @@ function SignIn(): JSX.Element {
         <h1 className="page-title user-page__title">Sign in</h1>
       </header>
       <div className="sign-in user-page__content">
-        <form action="#" className="sign-in__form">
+        <form action="#" className="sign-in__form" onSubmit={() => navigate(AppRoute.Main)}>
           {(hasError) && (
             <div className="sign-in__message">
               <p>We can’t recognize this email <br/> and password combination. Please try again.</p>

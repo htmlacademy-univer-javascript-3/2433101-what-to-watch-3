@@ -1,15 +1,15 @@
 import { useNavigate } from 'react-router-dom';
 import { LogoTop, LogoBottom } from '../../components/logo/logo';
-import { FilmList } from '../../components/film-list';
-import ShowMore from '../../components/show-more';
+import { FilmList } from '../../components/film-list/film-list';
+import ShowMore from '../../components/show-more/show-more';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { NameSpace, defaultVisibleCountFilms } from '../../const';
 import UserBlock from '../../components/user-block/user-block';
 import { useAppDispatch, useAppSelector } from '../../components/hooks';
 import NotFoundScreen from '../not-found-screen/not-found-screen';
-import GenreList from '../../components/genre-list';
+import GenreList from '../../components/genre-list/genre-list';
 import { fetchFilmPromoAction } from '../../store/api-actions';
-import MyListButton from '../../components/my-list-button';
+import MyListButton from '../../components/my-list-button/my-list-button';
 
 
 export default function MainPage(): JSX.Element {

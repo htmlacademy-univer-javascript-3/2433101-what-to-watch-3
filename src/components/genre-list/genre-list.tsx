@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { useAppDispatch } from './hooks';
-import { changeGenreAction } from '../store/load-data-process/load-data-process';
+import { useAppDispatch } from '../hooks';
+import { changeGenreAction } from '../../store/load-data-process/load-data-process';
 import { memo } from 'react';
 
 

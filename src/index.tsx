@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { store } from './store';
 import { checkAuthAction, fetchFilmsAction, fetchMyList } from './store/api-actions';
 import { ToastContainer } from 'react-toastify';
-import HistoryRouter from './components/history-router';
+import HistoryRouter from './components/history-router/history-router';
 import { browserHistory } from './components/services/browser-history';
 
 

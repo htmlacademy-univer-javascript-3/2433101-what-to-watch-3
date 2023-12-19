@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { FilmList } from '../../components/film-list';
+import { FilmList } from '../../components/film-list/film-list';
 import { useAppDispatch, useAppSelector } from '../../components/hooks';
 import { LogoTop, LogoBottom } from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';

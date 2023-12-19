@@ -1,5 +1,5 @@
-import FilmCard from './film-card';
-import { TFilms } from './types/films';
+import FilmCard from '../film-card/film-card';
+import { TFilms } from '../types/films';
 
 
 type TFilmList = {
