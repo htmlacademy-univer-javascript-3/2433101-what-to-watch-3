@@ -76,7 +76,7 @@ export const postMyListFilmStatus = createAsyncThunk<TMyListFilm, TMyListFilmSta
   extra: AxiosInstance;
 }>(
   'data/postMyListFilmStatus',
-  async ({ id, status }, { extra: api }) => {
+  async ({ id, status }, {extra: api }) => {
     const { data } = await api.post<TMyListFilm>(`/favorite/${id}/${status}`);
     return data;
   }

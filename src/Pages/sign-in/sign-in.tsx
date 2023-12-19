@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { LogoBottom, LogoTop } from '../../components/logo/logo';
 import { loginAction } from '../../store/api-actions';
-import { AppRoute } from '../../const';
-import { useAppDispatch } from '../../components/hooks';
+import { AppRoute, NameSpace } from '../../const';
+import { useAppDispatch, useAppSelector } from '../../components/hooks';
 import { useNavigate } from 'react-router-dom';
+
 
 function SignIn(): JSX.Element {
   const [login, setLogin] = useState('');
@@ -11,6 +12,8 @@ function SignIn(): JSX.Element {
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  
+  const hasError = useAppSelector((state) => state[NameSpace.User].hasError);
 
   const handleSubmit = () => {
     if (login !== '' && password !== '') {
@@ -30,6 +33,11 @@ function SignIn(): JSX.Element {
       </header>
       <div className="sign-in user-page__content">
         <form action="#" className="sign-in__form">
+          {(hasError) && (
+            <div className="sign-in__message">
+              <p>We can’t recognize this email <br/> and password combination. Please try again.</p>
+            </div>
+          )}
           <div className="sign-in__fields">
             <div className="sign-in__field">
               <input

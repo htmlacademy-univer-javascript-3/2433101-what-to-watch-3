@@ -31,10 +31,8 @@ export const loadDataProcess = createSlice({
         state.isFilmDataLoadingStatus = true;
       })
       .addCase(fetchFilmsAction.fulfilled, (state, action) => {
-        if (action.payload !== undefined) {
-          state.isFilmDataLoadingStatus = false;
-          state.filmListByGenreData = action.payload;
-        }
+        state.isFilmDataLoadingStatus = false;
+        state.filmListByGenreData = action.payload;
       })
       .addCase(fetchFilmPromoAction.pending, (state) => {
         state.isFilmDataLoadingStatus = true;

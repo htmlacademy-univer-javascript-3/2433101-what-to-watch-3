@@ -5,16 +5,17 @@ import { useAppDispatch, useAppSelector } from './hooks';
 
 type TMyListButton = {
   id: string;
-  isFavorite: boolean;
 }
 
-export default function MyListButton({id, isFavorite}: TMyListButton): JSX.Element {
+export default function MyListButton({id}: TMyListButton): JSX.Element {
   const dispatch = useAppDispatch();
 
   const handleMyFilmStatus = () => {
     dispatch(postMyListFilmStatus({id: id, status: Number(!isFavorite)}));
   };
-
+  
+  const myListFilms = useAppSelector((state) => state[NameSpace.Data].myList);
+  const isFavorite = myListFilms.some((film) => film.id === id);
   const myListLength = useAppSelector((state) => state[NameSpace.Data].myListLength);
 
   return (

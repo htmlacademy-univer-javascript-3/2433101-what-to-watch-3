@@ -1,8 +1,9 @@
 import { internet, datatype, lorem, image, random, name} from 'faker';
-import { TComments, TMyListFilm } from '../components/types/films';
+import { TComments, TFilmPromo, TFilmsFilmId, TMyListFilm } from '../components/types/films';
 import { Action, ThunkDispatch } from '@reduxjs/toolkit';
 import { createApi } from '../components/services/api';
 import { State } from '../components/types/state';
+import { AuthorizationStatus } from '../const';
 
 
 export type AppThunkDispatch = ThunkDispatch<State, ReturnType<typeof createApi>, Action>;
@@ -90,4 +91,23 @@ export const makeFakeFavoriteFilm = ():TMyListFilm => ({
 export const makeFakeMyListFilmStatus = () => ({
   id: datatype.uuid(),
   status: 1,
+});
+
+export const makeFakeStore = (initialState?: Partial<State>): State => ({
+  USER: {
+    authorizationStatus: AuthorizationStatus.NoAuth,
+    hasError:false
+  },
+  DATA: {
+    genre: 'All genres',
+    filmListByGenreData: [],
+    filmPromo: {} as TFilmPromo,
+    similarFilms: [],
+    filmsFilmId: {} as TFilmsFilmId,
+    myList: [],
+    myListLength: 0,
+    comments: [],
+    isFilmDataLoadingStatus: false,
+  },
+  ...initialState ?? {},
 });

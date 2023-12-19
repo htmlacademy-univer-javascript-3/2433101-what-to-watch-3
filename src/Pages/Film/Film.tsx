@@ -73,7 +73,7 @@ function Film(): JSX.Element {
                   </svg>
                   <span>Play</span>
                 </button>
-                <MyListButton id={filmsFilmId.id} isFavorite={filmsFilmId.isFavorite}/>
+                <MyListButton id={filmsFilmId.id}/>
                 {isAuthorization && (
                   <button className="btn film-card__button" onClick={() => navigate(`/films/${filmsFilmId.id}/review`)}>
                     Add review

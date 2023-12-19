@@ -1,12 +1,13 @@
 import { MemoryHistory, createMemoryHistory } from 'history';
-import { AppRoute, AuthorizationStatus, NameSpace } from '../../const';
+import { AppRoute, AuthorizationStatus } from '../../const';
+import { makeFakeStore } from '../../utils/mocks';
 import { Route, Routes } from 'react-router-dom';
 import PrivateRoute from './private-route';
-import { render, screen } from '@testing-library/react';
+import { render, screen} from '@testing-library/react';
 import { withHistory, withStore } from '../../utils/mock-components';
 
 
-describe('PrivateRoute', () => {
+describe('Component: PrivateRoute', () => {
   let mockHistory: MemoryHistory;
 
   beforeAll(() => {
@@ -17,66 +18,67 @@ describe('PrivateRoute', () => {
     mockHistory.push(AppRoute.MyList);
   });
 
-  it('renders component for public route, when user not authorized', () => {
+  it('should render component for public route, when user not authorized', () => {
     const expectedText = 'public route';
     const notExpectedText = 'private route';
+
+    const mockFakeStore = makeFakeStore({
+      USER: {
+        ...makeFakeStore().USER,
+        authorizationStatus: AuthorizationStatus.NoAuth,
+      },
+    });
+
     const withHistoryComponent = withHistory(
       <Routes>
         <Route path={AppRoute.SignIn} element={<span>{expectedText}</span>} />
         <Route
           path={AppRoute.MyList}
-          element={
+          element={withStore(
             <PrivateRoute>
               <span>{notExpectedText}</span>
-            </PrivateRoute>
-          }
+            </PrivateRoute>,
+            mockFakeStore
+          ).withStoreComponent}
         />
       </Routes>,
       mockHistory
     );
-    
-    const { withStoreComponent } = withStore(withHistoryComponent, {
-      [NameSpace.User]: {
-        authorizationStatus: AuthorizationStatus.NoAuth,
-      },
-    });
 
-    render(withStoreComponent);
-
-    expect(screen.getByText(expectedText)).toBeInTheDocument(); /// error
+    render(withHistoryComponent);
+    expect(screen.getByText(expectedText)).toBeInTheDocument();
     expect(screen.queryByText(notExpectedText)).not.toBeInTheDocument();
   });
 
-  it('renders component for private route, when user authorized', () => {
-    const expectedText = 'private route';
-    const notExpectedText = 'public route';
-    const withHistoryComponent = withHistory(
-      <Routes>
-        <Route
-          path={AppRoute.SignIn}
-          element={<span>{notExpectedText}</span>}
-        />
-        <Route
-          path={AppRoute.MyList}
-          element={
-            <PrivateRoute>
-              <span>{expectedText}</span>
-            </PrivateRoute>
-          }
-        />
-      </Routes>,
-      mockHistory
-    );
+  it('should render component for private route, when user authorized', () => {
+    const expectedText = 'public route';
+    const notExpectedText = 'private route';
 
-    const { withStoreComponent } = withStore(withHistoryComponent, {
-      [NameSpace.User]: {
+    const mockFakeStore = makeFakeStore({
+      USER: {
+        ...makeFakeStore().USER,
         authorizationStatus: AuthorizationStatus.Auth,
       },
     });
 
-    render(withStoreComponent);
+    const withHistoryComponent = withHistory(
+      <Routes>
+        <Route path={AppRoute.SignIn} element={<span>{expectedText}</span>} />
+        <Route
+          path={AppRoute.MyList}
+          element={withStore(
+            <PrivateRoute>
+              <span>{notExpectedText}</span>
+            </PrivateRoute>,
+            mockFakeStore
+          ).withStoreComponent}
+        />
+      </Routes>,
+      mockHistory
+    );
 
-    expect(screen.getByText(expectedText)).toBeInTheDocument();
-    expect(screen.queryByText(notExpectedText)).not.toBeInTheDocument(); ///// error
+    render(withHistoryComponent);
+    expect(screen.getByText(notExpectedText)).toBeInTheDocument();
+    expect(screen.queryByText(expectedText)).not.toBeInTheDocument();
   });
 });

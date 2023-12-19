@@ -8,7 +8,7 @@ import UserBlock from '../../components/user-block/user-block';
 import { useAppDispatch, useAppSelector } from '../../components/hooks';
 import NotFoundScreen from '../not-found-screen/not-found-screen';
 import GenreList from '../../components/genre-list';
-import { fetchFilmPromoAction, fetchMyList } from '../../store/api-actions';
+import { fetchFilmPromoAction } from '../../store/api-actions';
 import MyListButton from '../../components/my-list-button';
 
 
@@ -81,7 +81,7 @@ export default function MainPage(): JSX.Element {
                   </svg>
                   <span>Play</span>
                 </button>
-                <MyListButton id={filmPromo.id} isFavorite={filmPromo.isFavorite}/>
+                <MyListButton id={filmPromo.id}/>
               </div>
             </div>
           </div>
