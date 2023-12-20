@@ -1,4 +1,5 @@
-import { NameSpace } from '../../const';
+import { useNavigate } from 'react-router-dom';
+import { AppRoute, AuthorizationStatus, NameSpace } from '../../const';
 import { postMyListFilmStatus } from '../../store/api-actions';
 import { useAppDispatch, useAppSelector } from '../hooks';
 
@@ -9,14 +10,19 @@ type TMyListButton = {
 
 export default function MyListButton({id}: TMyListButton): JSX.Element {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const handleMyFilmStatus = () => {
     dispatch(postMyListFilmStatus({id: id, status: Number(!isFavorite)}));
+    if (authState === AuthorizationStatus.NoAuth || authState === AuthorizationStatus.Unknown) {
+      navigate(AppRoute.SignIn);
+    }
   };
-  
+
   const myListFilms = useAppSelector((state) => state[NameSpace.Data].myList);
   const isFavorite = myListFilms.some((film) => film.id === id);
   const myListLength = useAppSelector((state) => state[NameSpace.Data].myListLength);
+  const authState = useAppSelector((state) => state[NameSpace.User].authorizationStatus);
 
   return (
     <button className="btn btn--list film-card__button" type="button" onClick={handleMyFilmStatus}>

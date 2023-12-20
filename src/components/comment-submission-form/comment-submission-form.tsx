@@ -28,6 +28,14 @@ function CommentSubmissionForm({id}: TCommentSubmissionForm): JSX.Element {
     }
   };
 
+  function isDisabledButtonPost() {
+    if (comment.length < 50 || comment.length > 400 || rating === 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   return (
     <div className="add-review">
       <form action="#" className="add-review__form" onSubmit={handleSubmitForm}>
@@ -155,7 +163,7 @@ function CommentSubmissionForm({id}: TCommentSubmissionForm): JSX.Element {
             onChange={handleComment}
           />
           <div className="add-review__submit">
-            <button className="add-review__btn" type="submit">
+            <button className="add-review__btn" type="submit" disabled={isDisabledButtonPost()}>
               Post
             </button>
           </div>
