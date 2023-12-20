@@ -4,6 +4,7 @@ import { Action, ThunkDispatch } from '@reduxjs/toolkit';
 import { createApi } from '../components/services/api';
 import { State } from '../components/types/state';
 import { AuthorizationStatus } from '../const';
+import FilmCard from '../components/film-card/film-card';
 
 
 export type AppThunkDispatch = ThunkDispatch<State, ReturnType<typeof createApi>, Action>;
@@ -110,4 +111,12 @@ export const makeFakeStore = (initialState?: Partial<State>): State => ({
     isFilmDataLoadingStatus: false,
   },
   ...initialState ?? {},
+});
+
+export const makeFakeFilmCard = () => ({
+  id: datatype.uuid(),
+  name: lorem.words(),
+  previewImage: image.imageUrl(),
+  previewVideoLink: internet.url(),
+  genre: random.word(),
 });

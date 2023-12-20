@@ -23,6 +23,6 @@ export default function VideoPlayer({isActive, srcVideo, srcImage}: TVideoPlayer
   }, [isActive]);
 
   return (
-    <video ref={videoRef} src={srcVideo} poster={srcImage} width={280} height={175} muted/>
+    <video ref={videoRef} src={srcVideo} poster={srcImage} width={280} height={175} data-testid="video" muted/>
   );
 }

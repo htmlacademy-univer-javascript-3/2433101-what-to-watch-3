@@ -17,7 +17,7 @@ function FilmCard({id, name, previewImage, previewVideoLink}: TFilmCard): JSX.El
   }
 
   return (
-    <article id={id} onMouseEnter={() => handleIsHover()} onMouseLeave={() => handleIsHover()} className="small-film-card catalog__films-card">
+    <article id={id} onMouseEnter={() => handleIsHover()} onMouseLeave={() => handleIsHover()} className="small-film-card catalog__films-card" data-testid='card'>
       <div className="small-film-card__image">
         <VideoPlayer isActive={isHover} srcVideo={previewVideoLink} srcImage={previewImage}/>
       </div>
