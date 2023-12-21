@@ -6,8 +6,8 @@ import NotFoundScreen from '../../Pages/not-found-screen/not-found-screen';
 import AddReview from '../../Pages/add-review/add-review';
 import PrivateRoute from '../private-route/private-route';
 import MyList from '../../Pages/my-list/my-list';
-import { Film } from '../../Pages/film/film';
-import { Player } from '../../Pages/player/player';
+import { FilmPage } from '../../Pages/film-page/film-page';
+import { PlayerPage } from '../../Pages/player-page/player-page';
 
 
 function App(): JSX.Element {
@@ -23,9 +23,9 @@ function App(): JSX.Element {
           </PrivateRoute>
         }
       />
-      <Route path={AppRoute.FilmsId} element={<Film />} />
+      <Route path={AppRoute.FilmsId} element={<FilmPage />} />
       <Route path={AppRoute.FilmsReview} element={<AddReview />} />
-      <Route path={AppRoute.Player} element={<Player />} />
+      <Route path={AppRoute.Player} element={<PlayerPage />} />
       <Route path={AppRoute.NotFoundScreen} element={<NotFoundScreen />} />
     </Routes>
   );

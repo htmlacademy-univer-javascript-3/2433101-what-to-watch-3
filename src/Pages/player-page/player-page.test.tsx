@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 import { withHistory, withStore } from '../../utils/mock-components';
 import { AppRoute } from '../../const';
 import { makeFakeFilmsFilmId, makeFakeStore } from '../../utils/mocks';
-import { Player } from './player';
+import { PlayerPage } from './player-page';
 
 describe('PlayerPage', () => {
   const film = makeFakeFilmsFilmId();
@@ -13,7 +13,7 @@ describe('PlayerPage', () => {
   const { withStoreComponent } = withStore(
     withHistory(
       <Routes>
-        <Route path={AppRoute.Player} element={<Player />}></Route>
+        <Route path={AppRoute.Player} element={<PlayerPage />}></Route>
       </Routes>,
       mockHistory
     ),

@@ -4,7 +4,7 @@ import { AppRoute, AuthorizationStatus, NameSpace } from '../../const';
 import { Route, Routes } from 'react-router-dom';
 import { makeFakeFilmsFilmId, makeFakeStore } from '../../utils/mocks';
 import { withHistory, withStore } from '../../utils/mock-components';
-import { Film } from './film';
+import { FilmPage } from './film-page';
 
 
 describe('Film', () => {
@@ -14,7 +14,7 @@ describe('Film', () => {
     const { withStoreComponent } = withStore(
       withHistory(
         <Routes>
-          <Route path={AppRoute.FilmsId} element={<Film />}></Route>
+          <Route path={AppRoute.FilmsId} element={<FilmPage />}></Route>
         </Routes>,
         mockHistory
       ),
@@ -41,7 +41,7 @@ describe('Film', () => {
     const { withStoreComponent } = withStore(
       withHistory(
         <Routes>
-          <Route path={AppRoute.FilmsId} element={<Film />}></Route>
+          <Route path={AppRoute.FilmsId} element={<FilmPage />}></Route>
         </Routes>,
         mockHistory
       ),

@@ -12,7 +12,7 @@ import { LoadingScreen } from '../loading-screen/loading-screen';
 import MyListButton from '../../components/my-list-button/my-list-button';
 
 
-export function Film(): JSX.Element {
+export function FilmPage(): JSX.Element {
   const { id } = useParams();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
