@@ -4,7 +4,7 @@ import { AppRoute, AuthorizationStatus, NameSpace } from '../../const';
 import { Route, Routes } from 'react-router-dom';
 import { makeFakeFilmsFilmId, makeFakeStore } from '../../utils/mocks';
 import { withHistory, withStore } from '../../utils/mock-components';
-import Film from './film';
+import { Film } from './film';
 
 
 describe('Film', () => {

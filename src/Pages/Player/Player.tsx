@@ -20,7 +20,7 @@ function formatTime(time: number): string {
     : `${formattedMinutes}:${formattedSeconds}`;
 }
 
-function Player(): JSX.Element{
+export function Player(): JSX.Element{
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const {id} = useParams();
@@ -128,5 +128,3 @@ function Player(): JSX.Element{
     </div>
   );
 }
-
-export default Player;

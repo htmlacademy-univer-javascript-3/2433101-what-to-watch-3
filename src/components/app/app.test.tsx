@@ -7,7 +7,7 @@ import App from './app';
 import SignIn from '../../Pages/sign-in/sign-in';
 import MyList from '../../Pages/my-list/my-list';
 import NotFoundScreen from '../../Pages/not-found-screen/not-found-screen';
-import Player from '../../Pages/player/player';
+import { Player } from '../../Pages/player/player';
 
 
 describe('App', () => {

@@ -12,7 +12,7 @@ import { LoadingScreen } from '../loading-screen/loading-screen';
 import MyListButton from '../../components/my-list-button/my-list-button';
 
 
-function Film(): JSX.Element {
+export function Film(): JSX.Element {
   const { id } = useParams();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -97,5 +97,3 @@ function Film(): JSX.Element {
     </>
   );
 }
-
-export default Film;

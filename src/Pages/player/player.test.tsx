@@ -4,8 +4,8 @@ import { createMemoryHistory } from 'history';
 import userEvent from '@testing-library/user-event';
 import { withHistory, withStore } from '../../utils/mock-components';
 import { AppRoute } from '../../const';
-import Player from './player';
 import { makeFakeFilmsFilmId, makeFakeStore } from '../../utils/mocks';
+import { Player } from './player';
 
 describe('PlayerPage', () => {
   const film = makeFakeFilmsFilmId();

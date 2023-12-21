@@ -3,11 +3,11 @@ import MainPage from '../../Pages/main-page/main-page';
 import { AppRoute } from '../../const';
 import SignIn from '../../Pages/sign-in/sign-in';
 import NotFoundScreen from '../../Pages/not-found-screen/not-found-screen';
-import Film from '../../Pages/film/film';
 import AddReview from '../../Pages/add-review/add-review';
 import PrivateRoute from '../private-route/private-route';
 import MyList from '../../Pages/my-list/my-list';
-import Player from '../../Pages/player/player';
+import { Film } from '../../Pages/film/film';
+import { Player } from '../../Pages/player/player';
 
 
 function App(): JSX.Element {
