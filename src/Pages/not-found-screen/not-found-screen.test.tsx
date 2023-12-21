@@ -9,7 +9,7 @@ describe('NotFoundScreen', () => {
     const expectedLinkText = 'Перейти на главную';
 
     render(withHistory(<NotFoundScreen />));
-    
+
     expect(screen.getByText(expectedText)).toBeInTheDocument();
     expect(screen.getByText(expectedLinkText)).toBeInTheDocument();
   });

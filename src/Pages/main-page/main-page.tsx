@@ -51,6 +51,7 @@ export default function MainPage(): JSX.Element {
           <img
             src={filmPromo.backgroundImage}
             alt={filmPromo.name}
+            data-testid='promo bg'
           />
         </div>
         <h1 className="visually-hidden">WTW</h1>
@@ -66,6 +67,7 @@ export default function MainPage(): JSX.Element {
                 alt={filmPromo.name}
                 width={218}
                 height={327}
+                data-testid='promo image'
               />
             </div>
             <div className="film-card__desc">

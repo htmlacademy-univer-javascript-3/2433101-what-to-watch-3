@@ -4,7 +4,7 @@ import { Tabs } from '../../components/tabs/tabs';
 import { FilmList } from '../../components/film-list/film-list';
 import { useAppDispatch, useAppSelector } from '../../components/hooks';
 import { useEffect } from 'react';
-import { fetchCommentsAction, fetchFilmsFilmIdAction, fetchMyList, fetchSimilarFilmsAction, postMyListFilmStatus } from '../../store/api-actions';
+import { fetchCommentsAction, fetchFilmsFilmIdAction, fetchSimilarFilmsAction } from '../../store/api-actions';
 import NotFoundScreen from '../not-found-screen/not-found-screen';
 import { AuthorizationStatus, NameSpace, defaultVisibleSimilarFilms } from '../../const';
 import UserBlock from '../../components/user-block/user-block';

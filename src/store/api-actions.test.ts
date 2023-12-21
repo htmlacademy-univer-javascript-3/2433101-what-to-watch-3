@@ -34,14 +34,14 @@ describe('Async actions', () => {
     });
 
     it('dispatch "checkAuthAction.pending" and "checkAuthAction.rejected" when server response 400', async () => {
-        mockAxiosAdapter.onGet(APIRoute.Login).reply(400);
-        await store.dispatch(checkAuthAction());
-        const actions = extractActionsTypes(store.getActions());
-        expect(actions).toEqual([
-          checkAuthAction.pending.type,
-          checkAuthAction.rejected.type,
-        ]);
-      });
+      mockAxiosAdapter.onGet(APIRoute.Login).reply(400);
+      await store.dispatch(checkAuthAction());
+      const actions = extractActionsTypes(store.getActions());
+      expect(actions).toEqual([
+        checkAuthAction.pending.type,
+        checkAuthAction.rejected.type,
+      ]);
+    });
   });
 
   describe('fetchFilms', () => {
@@ -60,14 +60,14 @@ describe('Async actions', () => {
     });
 
     it('dispatch "fetchFilmsAction.pending", "fetchFilmsAction.rejected", when server response 400', async () => {
-        mockAxiosAdapter.onGet(APIRoute.Films).reply(400, []);
-        await store.dispatch(fetchFilmsAction());
-        const actions = extractActionsTypes(store.getActions());
-        expect(actions).toEqual([
-          fetchFilmsAction.pending.type,
-          fetchFilmsAction.rejected.type,
-        ]);
-      });
+      mockAxiosAdapter.onGet(APIRoute.Films).reply(400, []);
+      await store.dispatch(fetchFilmsAction());
+      const actions = extractActionsTypes(store.getActions());
+      expect(actions).toEqual([
+        fetchFilmsAction.pending.type,
+        fetchFilmsAction.rejected.type,
+      ]);
+    });
   });
 
   describe('fetchFilmPromoAction', () => {
@@ -86,14 +86,14 @@ describe('Async actions', () => {
     });
 
     it('dispatch "fetchFilmPromoAction.pending", "fetchFilmPromoAction.rejected", when server response 400', async () => {
-        mockAxiosAdapter.onGet(APIRoute.FilmPromo).reply(400, []);
-        await store.dispatch(fetchFilmPromoAction());
-        const actions = extractActionsTypes(store.getActions());
-        expect(actions).toEqual([
-          fetchFilmPromoAction.pending.type,
-          fetchFilmPromoAction.rejected.type,
-        ]);
-      });
+      mockAxiosAdapter.onGet(APIRoute.FilmPromo).reply(400, []);
+      await store.dispatch(fetchFilmPromoAction());
+      const actions = extractActionsTypes(store.getActions());
+      expect(actions).toEqual([
+        fetchFilmPromoAction.pending.type,
+        fetchFilmPromoAction.rejected.type,
+      ]);
+    });
   });
 
   describe('fetchSimilarFilmsAction', () => {
@@ -113,15 +113,15 @@ describe('Async actions', () => {
     });
 
     it('dispatch "fetchSimilarFilmsAction.pending", "fetchSimilarFilmsAction.rejected", when server response 400', async () => {
-        const id = crypto.randomUUID();
-        mockAxiosAdapter.onGet(`${APIRoute.Films}/${id}/similar`).reply(400, []);
-        await store.dispatch(fetchSimilarFilmsAction(id));
-        const actions = extractActionsTypes(store.getActions());
-        expect(actions).toEqual([
-          fetchSimilarFilmsAction.pending.type,
-          fetchSimilarFilmsAction.rejected.type,
-        ]);
-      });
+      const id = crypto.randomUUID();
+      mockAxiosAdapter.onGet(`${APIRoute.Films}/${id}/similar`).reply(400, []);
+      await store.dispatch(fetchSimilarFilmsAction(id));
+      const actions = extractActionsTypes(store.getActions());
+      expect(actions).toEqual([
+        fetchSimilarFilmsAction.pending.type,
+        fetchSimilarFilmsAction.rejected.type,
+      ]);
+    });
   });
 
   describe('fetchFilmsFilmIdAction', () => {
@@ -141,15 +141,15 @@ describe('Async actions', () => {
     });
 
     it('dispatch "fetchFilmsFilmIdAction.pending", "fetchFilmsFilmIdAction.rejected", when server response 400', async () => {
-        const id = crypto.randomUUID();
-        mockAxiosAdapter.onGet(`${APIRoute.Films}/${id}`).reply(400, []);
-        await store.dispatch(fetchFilmsFilmIdAction(id));
-        const actions = extractActionsTypes(store.getActions());
-        expect(actions).toEqual([
-          fetchFilmsFilmIdAction.pending.type,
-          fetchFilmsFilmIdAction.rejected.type,
-        ]);
-      });
+      const id = crypto.randomUUID();
+      mockAxiosAdapter.onGet(`${APIRoute.Films}/${id}`).reply(400, []);
+      await store.dispatch(fetchFilmsFilmIdAction(id));
+      const actions = extractActionsTypes(store.getActions());
+      expect(actions).toEqual([
+        fetchFilmsFilmIdAction.pending.type,
+        fetchFilmsFilmIdAction.rejected.type,
+      ]);
+    });
   });
 
   describe('fetchMyList', () => {
@@ -168,14 +168,14 @@ describe('Async actions', () => {
     });
 
     it('dispatch "fetchMyList.pending", "fetchMyList.rejected", when server response 400', async () => {
-        mockAxiosAdapter.onGet('/favorite').reply(400, []);
-        await store.dispatch(fetchMyList());
-        const actions = extractActionsTypes(store.getActions());
-        expect(actions).toEqual([
-          fetchMyList.pending.type,
-          fetchMyList.rejected.type,
-        ]);
-      });
+      mockAxiosAdapter.onGet('/favorite').reply(400, []);
+      await store.dispatch(fetchMyList());
+      const actions = extractActionsTypes(store.getActions());
+      expect(actions).toEqual([
+        fetchMyList.pending.type,
+        fetchMyList.rejected.type,
+      ]);
+    });
   });
 
   describe('postMyListFilmStatus', () => {
@@ -231,15 +231,15 @@ describe('Async actions', () => {
     });
 
     it('dispatch "fetchCommentsAction.pending", "fetchCommentsAction.rejected", when server response 400', async () => {
-        const id = crypto.randomUUID();
-        mockAxiosAdapter.onGet(`${APIRoute.Comments}/${id}`).reply(400, []);
-        await store.dispatch(fetchCommentsAction(id));
-        const actions = extractActionsTypes(store.getActions());
-        expect(actions).toEqual([
-          fetchCommentsAction.pending.type,
-          fetchCommentsAction.rejected.type,
-        ]);
-      });
+      const id = crypto.randomUUID();
+      mockAxiosAdapter.onGet(`${APIRoute.Comments}/${id}`).reply(400, []);
+      await store.dispatch(fetchCommentsAction(id));
+      const actions = extractActionsTypes(store.getActions());
+      expect(actions).toEqual([
+        fetchCommentsAction.pending.type,
+        fetchCommentsAction.rejected.type,
+      ]);
+    });
   });
 
   describe('postCommentAction', () => {

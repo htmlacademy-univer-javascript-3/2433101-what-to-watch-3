@@ -14,7 +14,7 @@ export const makeFakeFilmListByGenreData = () => ({
   name: lorem.words(),
   previewImage: image.imageUrl(),
   previewVideoLink: internet.url(),
-  genre: random.word(),  
+  genre: random.word(),
 });
 
 export const makeFakeFilmPromo = () => ({
@@ -29,11 +29,11 @@ export const makeFakeFilmPromo = () => ({
 });
 
 export const makeFakeSimilarFilms = () => ({
-    id: datatype.uuid(),
-    name: lorem.words(),
-    previewImage: image.imageUrl(),
-    previewVideoLink: internet.url(),
-    genre: random.word(),  
+  id: datatype.uuid(),
+  name: lorem.words(),
+  previewImage: image.imageUrl(),
+  previewVideoLink: internet.url(),
+  genre: random.word(),
 });
 
 export const makeFakeFilmsFilmId = () => ({
@@ -59,7 +59,7 @@ export const makeFakeComments = (): TComments => ({
   date: datatype.datetime().toString(),
   user: internet.userName(),
   comment: lorem.paragraph(),
-  rating: random.number({ min: 0, max: 10, precision: 0.1 }), 
+  rating: random.number({ min: 0, max: 10, precision: 0.1 }),
 });
 
 export const makeFakePostComment = () => ({

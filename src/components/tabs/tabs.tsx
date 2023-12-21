@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { MoviePageOverview } from './movie-page-overview';
-import { MoviePageDetails } from './movie-page-details';
-import { MoviePageReviews } from './movie-page-reviews';
+import { MoviePageOverview } from './movie-page-overview/movie-page-overview';
+import { MoviePageDetails } from './movie-page-details/movie-page-details';
+import { MoviePageReviews } from './movie-page-reviews/movie-page-reviews';
 import { TComments, TFilmsFilmId } from '../types/films';
 
 
@@ -27,22 +27,23 @@ export function Tabs({filmsFilmId, comments}: TTabs): JSX.Element {
             alt={filmsFilmId.name}
             width={218}
             height={327}
+            data-testid='poster image'
           />
         </div>
         <div className="film-card__desc">
           <nav className="film-nav film-card__nav">
             <ul className="film-nav__list">
-              <li className="film-nav__item film-nav__item--active">
+              <li className={`film-nav__item ${activeTab === 'overview' ? 'film-nav__item--active' : ''}`}>
                 <Link to={'#'} className="film-nav__link" onClick={() => handleActiveTab('overview')}>
                   Overview
                 </Link>
               </li>
-              <li className="film-nav__item">
+              <li className={`film-nav__item ${activeTab === 'details' ? 'film-nav__item--active' : ''}`}>
                 <Link to={'#'} className="film-nav__link" onClick={() => handleActiveTab('details')}>
                   Details
                 </Link>
               </li>
-              <li className="film-nav__item">
+              <li className={`film-nav__item ${activeTab === 'reviews' ? 'film-nav__item--active' : ''}`}>
                 <Link to={'#'} className="film-nav__link" onClick={() => handleActiveTab('reviews')}>
                   Reviews
                 </Link>

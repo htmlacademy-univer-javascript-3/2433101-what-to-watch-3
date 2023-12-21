@@ -7,7 +7,7 @@ describe('LoadingScreen', () => {
     const expectedText = /Loading/i;
 
     render(<LoadingScreen />);
-    
+
     expect(screen.getByText(expectedText)).toBeInTheDocument();
   });
 });

@@ -16,7 +16,7 @@ describe('SignIn', () => {
     });
     const login = 'Email address';
     const password = 'Password';
-    
+
     const {withStoreComponent} = withStore(<SignIn />, mockFakeStore);
     const preparedComponent = withHistory(withStoreComponent);
     render(preparedComponent);
@@ -41,12 +41,12 @@ describe('SignIn', () => {
     render(preparedComponent);
 
     await userEvent.type(
-      screen.getByTestId(login), 
+      screen.getByTestId(login),
       expectedLogin,
     );
 
     await userEvent.type(
-      screen.getByTestId(password), 
+      screen.getByTestId(password),
       expectedPassword,
     );
 

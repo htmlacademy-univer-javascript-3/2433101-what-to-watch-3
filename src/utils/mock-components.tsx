@@ -28,7 +28,7 @@ type ComponentWithMockStore = {
   mockStore: MockStore;
   mockAxiosAdapter: MockAdapter;
 }
-  
+
 export function withStore(
   component: JSX.Element,
   initialState: Partial<State> = {},

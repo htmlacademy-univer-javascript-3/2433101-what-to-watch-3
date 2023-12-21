@@ -1,4 +1,4 @@
-import { TFilmsFilmId } from '../types/films';
+import { TFilmsFilmId } from '../../types/films';
 
 
 type TMoviePageOverview = {
@@ -43,7 +43,7 @@ export function MoviePageOverview({filmsFilmId}: TMoviePageOverview): JSX.Elemen
             Director: {filmsFilmId.director}
           </strong>
         </p>
-        <p className="film-card__starring">
+        <p className="film-card__starring" data-testid="starring">
           <strong>
             Starring: {filmsFilmId.starring}
           </strong>

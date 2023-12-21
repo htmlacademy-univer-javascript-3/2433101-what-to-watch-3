@@ -1,6 +1,6 @@
 import { TFilmPromo, TFilmsFilmId } from '../../components/types/films';
-import { makeFakeComments, makeFakeFavoriteFilm, makeFakeFilmListByGenreData, makeFakeFilmPromo, makeFakeFilmsFilmId, makeFakeMyListFilmStatus, makeFakePostComment, makeFakeSimilarFilms } from '../../utils/mocks';
-import { fetchCommentsAction, fetchFilmPromoAction, fetchFilmsAction, fetchFilmsFilmIdAction, fetchMyList, fetchSimilarFilmsAction, postCommentAction, postMyListFilmStatus } from '../api-actions';
+import { makeFakeComments, makeFakeFavoriteFilm, makeFakeFilmListByGenreData, makeFakeFilmPromo, makeFakeFilmsFilmId, makeFakeMyListFilmStatus, makeFakeSimilarFilms } from '../../utils/mocks';
+import { fetchCommentsAction, fetchFilmPromoAction, fetchFilmsAction, fetchFilmsFilmIdAction, fetchMyList, fetchSimilarFilmsAction, postMyListFilmStatus } from '../api-actions';
 import { changeGenreAction, loadDataProcess } from './load-data-process';
 
 
@@ -15,14 +15,14 @@ describe('LoadDataProcess Slice', () => {
     myListLength: 0,
     comments: [],
     isFilmDataLoadingStatus: false,
-  }
+  };
 
   it('Return initial state with empty action', () => {
     const emptyAction = { type: '' };
     const result = loadDataProcess.reducer(defaultState, emptyAction);
     expect(result).toEqual(defaultState);
   });
-  
+
   it('Return default initial state with empty action', () => {
     const emptyAction = { type: '' };
     const result = loadDataProcess.reducer(undefined, emptyAction);
@@ -33,7 +33,7 @@ describe('LoadDataProcess Slice', () => {
     const expectState = {
       ...defaultState,
       isFilmDataLoadingStatus: true,
-    }
+    };
     const result = loadDataProcess.reducer(undefined, fetchFilmsAction.pending);
     expect(result).toEqual(expectState);
   });
@@ -45,7 +45,7 @@ describe('LoadDataProcess Slice', () => {
       ...defaultState,
       filmListByGenreData: [filmListByGenreData],
       isFilmDataLoadingStatus: false,
-    }
+    };
     const result = loadDataProcess.reducer(initialState, fetchFilmsAction.fulfilled([filmListByGenreData], '', undefined));
     expect(result).toEqual(expectedState);
   });
@@ -54,10 +54,10 @@ describe('LoadDataProcess Slice', () => {
     const expectState = {
       ...defaultState,
       isFilmDataLoadingStatus: true,
-    }
+    };
     const result = loadDataProcess.reducer(undefined, fetchFilmPromoAction.pending);
     expect(result).toEqual(expectState);
-  })
+  });
 
   it('set "isFilmDataLoadingStatus" to "false", "filmListByGenreData" to NoEmpty with "fetchFilmPromoAction.fulfilled" action', () => {
     const filmPromo = makeFakeFilmPromo();
@@ -66,7 +66,7 @@ describe('LoadDataProcess Slice', () => {
       ...defaultState,
       filmPromo: filmPromo,
       isFilmDataLoadingStatus: false,
-    }
+    };
     const result = loadDataProcess.reducer(initialState, fetchFilmPromoAction.fulfilled(filmPromo, '', undefined));
     expect(result).toEqual(expectedState);
   });
@@ -76,7 +76,7 @@ describe('LoadDataProcess Slice', () => {
     const expectedState = {
       ...defaultState,
       similarFilms: [similarFilms],
-    }
+    };
     const result = loadDataProcess.reducer(defaultState, fetchSimilarFilmsAction.fulfilled([similarFilms], '', ''));
     expect(result).toEqual(expectedState);
   });
@@ -86,7 +86,7 @@ describe('LoadDataProcess Slice', () => {
     const expectedState = {
       ...defaultState,
       filmsFilmId: filmsFilmId,
-    }
+    };
     const result = loadDataProcess.reducer(defaultState, fetchFilmsFilmIdAction.fulfilled(filmsFilmId, '', ''));
     expect(result).toEqual(expectedState);
   });
@@ -96,7 +96,7 @@ describe('LoadDataProcess Slice', () => {
     const expectedState = {
       ...defaultState,
       comments: [comments],
-    }
+    };
     const result = loadDataProcess.reducer(defaultState, fetchCommentsAction.fulfilled([comments], '', ''));
     expect(result).toEqual(expectedState);
   });
@@ -107,7 +107,7 @@ describe('LoadDataProcess Slice', () => {
       ...defaultState,
       myList: [myList],
       myListLength: 1,
-    }
+    };
     const result = loadDataProcess.reducer(defaultState, fetchMyList.fulfilled([myList], '', undefined));
     expect(result).toEqual(expectedState);
   });

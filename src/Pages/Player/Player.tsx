@@ -62,7 +62,7 @@ function Player(): JSX.Element{
   };
 
   if (!filmsFilmId) {
-    return <NotFoundScreen />
+    return <NotFoundScreen />;
   }
 
   return (
@@ -109,7 +109,7 @@ function Player(): JSX.Element{
               <span>Play</span>
             </button>
             :
-            <button type="button" className="player__play" onClick={handleVideoPause}>
+            <button type="button" className="player__play" onClick={handleVideoPause} data-testid="video button">
               <svg viewBox="0 0 19 19" width={19} height={19}>
                 <use xlinkHref="#pause" />
               </svg>

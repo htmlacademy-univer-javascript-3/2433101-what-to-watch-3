@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { TFilmsFilmId } from '../types/films';
+import { TFilmsFilmId } from '../../types/films';
 
 type TMoviePageDatails = {
   filmsFilmId: TFilmsFilmId;

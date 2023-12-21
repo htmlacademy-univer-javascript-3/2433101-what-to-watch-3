@@ -23,23 +23,23 @@ describe('MyListButton', () => {
 
   it('render count if films correctly', () => {
     const makeFakeStore = (initialState?: Partial<State>): State => ({
-        USER: {
-          authorizationStatus: AuthorizationStatus.NoAuth,
-          hasError:false
-        },
-        DATA: {
-          genre: 'All genres',
-          filmListByGenreData: [],
-          filmPromo: {} as TFilmPromo,
-          similarFilms: [],
-          filmsFilmId: {} as TFilmsFilmId,
-          myList: [],
-          myListLength: 7,
-          comments: [],
-          isFilmDataLoadingStatus: false,
-        },
-        ...initialState ?? {},
-      });
+      USER: {
+        authorizationStatus: AuthorizationStatus.NoAuth,
+        hasError:false
+      },
+      DATA: {
+        genre: 'All genres',
+        filmListByGenreData: [],
+        filmPromo: {} as TFilmPromo,
+        similarFilms: [],
+        filmsFilmId: {} as TFilmsFilmId,
+        myList: [],
+        myListLength: 7,
+        comments: [],
+        isFilmDataLoadingStatus: false,
+      },
+      ...initialState ?? {},
+    });
     const withHistoryComponent = withHistory(<MyListButton id={'id'}/>);
     const { withStoreComponent } = withStore(
       withHistoryComponent,
