@@ -1,12 +1,14 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { makeFakeStore } from '../../utils/mocks';
+import { makeFakeFilmsFilmId, makeFakeStore } from '../../utils/mocks';
 import { withHistory, withStore } from '../../utils/mock-components';
 import GenreList from './genre-list';
 
 
 describe('GenreList', () => {
   it('render correctly', () => {
-    const handleTest = () => {};
+    const handleTest = () => {
+      makeFakeFilmsFilmId();
+    };
     const mockFakeStore = makeFakeStore();
     const withHistoryComponent = withHistory(<GenreList handleShowLessClick={handleTest}/>);
     const { withStoreComponent } = withStore(
@@ -27,7 +29,9 @@ describe('GenreList', () => {
   });
 
   it('choose genre correctly', () => {
-    const handleTest = () => {};
+    const handleTest = () => {
+      makeFakeFilmsFilmId();
+    };
     const mockFakeStore = makeFakeStore();
     const withHistoryComponent = withHistory(<GenreList handleShowLessClick={handleTest}/>);
     const { withStoreComponent } = withStore(

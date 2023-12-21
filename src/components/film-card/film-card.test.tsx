@@ -14,7 +14,7 @@ describe('FilmCard', () => {
   });
 
   it('render VideoPlayer on hover', async () => {
-    const filmCard= makeFakeFilmCard();
+    const filmCard = makeFakeFilmCard();
     const preparedComponent = withHistory(<FilmCard id={filmCard.id} name={filmCard.name} previewVideoLink={filmCard.previewVideoLink} previewImage={filmCard.previewImage}/>);
     render(preparedComponent);
 
@@ -26,7 +26,7 @@ describe('FilmCard', () => {
   });
 
   it('not render VideoPlayer on hover', async () => {
-    const filmCard= makeFakeFilmCard();
+    const filmCard = makeFakeFilmCard();
     const preparedComponent = withHistory(<FilmCard id={filmCard.id} name={filmCard.name} previewVideoLink={filmCard.previewVideoLink} previewImage={filmCard.previewImage}/>);
     render(preparedComponent);
 

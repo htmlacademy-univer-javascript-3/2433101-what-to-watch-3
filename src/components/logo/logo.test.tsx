@@ -12,4 +12,3 @@ describe('Logo', () => {
     expect(screen.getByTestId('logo-bottom')).toBeInTheDocument();
   });
 });
-  

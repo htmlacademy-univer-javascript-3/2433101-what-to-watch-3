@@ -7,7 +7,7 @@ describe('MoviePageOverview', () => {
   it('renders correctly', () => {
     const mockFakeFilm = makeFakeFilmsFilmId();
     render(<MoviePageOverview filmsFilmId={mockFakeFilm} />);
-  
+
     expect(screen.getByTestId('starring')).toBeInTheDocument();
     expect(screen.getByText(`Director: ${mockFakeFilm.director}`)).toBeInTheDocument();
     expect(screen.getByText(mockFakeFilm.scoresCount)).toBeInTheDocument();

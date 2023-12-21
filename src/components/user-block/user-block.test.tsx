@@ -19,7 +19,7 @@ describe('Component: Header', () => {
         },
       })
     );
-    
+
     render(withStoreComponent);
     expect(screen.getByText('Sign out')).toBeInTheDocument();
   });
