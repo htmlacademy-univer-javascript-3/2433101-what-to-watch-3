@@ -6,7 +6,7 @@ import { fetchFilmsFilmIdAction } from '../../store/api-actions';
 import NotFoundScreen from '../not-found-screen/not-found-screen';
 
 
-function formatTime(time: number): string {
+function getFormatTime(time: number): string {
   const hours = Math.floor(time / 3600);
   const minutes = Math.floor((time % 3600) / 60);
   const seconds = Math.floor(time % 60);
@@ -38,7 +38,7 @@ export function PlayerPage(): JSX.Element{
     }
   }, [id, dispatch]);
 
-  const currentContent = formatTime(currentTime);
+  const currentContent = getFormatTime(currentTime);
   const progressValue = isNaN(duration) || isNaN(currentTime) || duration === 0 ? 0 : (currentTime / duration) * 100;
 
   const handleFullScreenClick = () => {
