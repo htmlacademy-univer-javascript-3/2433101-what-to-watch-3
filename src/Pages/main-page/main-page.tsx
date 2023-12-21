@@ -3,7 +3,7 @@ import { LogoTop, LogoBottom } from '../../components/logo/logo';
 import { FilmList } from '../../components/film-list/film-list';
 import ShowMore from '../../components/show-more/show-more';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { NameSpace, defaultVisibleCountFilms } from '../../const';
+import { NameSpace, DEFAULT_VISIBLE_COUNT_FILMS } from '../../const';
 import UserBlock from '../../components/user-block/user-block';
 import { useAppDispatch, useAppSelector } from '../../components/hooks';
 import NotFoundScreen from '../not-found-screen/not-found-screen';
@@ -13,7 +13,7 @@ import MyListButton from '../../components/my-list-button/my-list-button';
 
 
 export default function MainPage(): JSX.Element {
-  const [visibleCountFilms, setVisibleCountFilms] = useState(defaultVisibleCountFilms);
+  const [visibleCountFilms, setVisibleCountFilms] = useState(DEFAULT_VISIBLE_COUNT_FILMS);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -22,7 +22,7 @@ export default function MainPage(): JSX.Element {
   };
 
   const handleShowLessClick = useCallback(() => {
-    setVisibleCountFilms(defaultVisibleCountFilms);
+    setVisibleCountFilms(DEFAULT_VISIBLE_COUNT_FILMS);
   }, []);
 
   useEffect(() => {

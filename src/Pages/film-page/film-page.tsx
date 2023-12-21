@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from '../../components/hooks';
 import { useEffect } from 'react';
 import { fetchCommentsAction, fetchFilmsFilmIdAction, fetchSimilarFilmsAction } from '../../store/api-actions';
 import NotFoundScreen from '../not-found-screen/not-found-screen';
-import { AuthorizationStatus, NameSpace, defaultVisibleSimilarFilms } from '../../const';
+import { AuthorizationStatus, NameSpace, DEFAULT_VISIBLE_SIMILAR_FILMS } from '../../const';
 import UserBlock from '../../components/user-block/user-block';
 import { LoadingScreen } from '../loading-screen/loading-screen';
 import MyListButton from '../../components/my-list-button/my-list-button';
@@ -89,7 +89,7 @@ export function FilmPage(): JSX.Element {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
           <div className="catalog__films-list">
-            <FilmList filmListData={similarFilms} visibleCountFilms={defaultVisibleSimilarFilms}/>
+            <FilmList filmListData={similarFilms} visibleCountFilms={DEFAULT_VISIBLE_SIMILAR_FILMS}/>
           </div>
         </section>
         <LogoBottom />

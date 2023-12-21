@@ -27,5 +27,5 @@ export enum NameSpace {
   Data = 'DATA',
 }
 
-export const defaultVisibleCountFilms = 8;
-export const defaultVisibleSimilarFilms = 4;
+export const DEFAULT_VISIBLE_COUNT_FILMS = 8;
+export const DEFAULT_VISIBLE_SIMILAR_FILMS = 4;
