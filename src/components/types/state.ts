@@ -8,6 +8,7 @@ export type AppDispatch = typeof store.dispatch;
 
 export type TUserProcess = {
   authorizationStatus: AuthorizationStatus;
+  hasError: boolean;
 }
 
 export type TLoadDataProcess = {

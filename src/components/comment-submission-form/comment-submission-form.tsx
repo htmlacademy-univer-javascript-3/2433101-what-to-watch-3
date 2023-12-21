@@ -1,0 +1,186 @@
+import { ChangeEvent, FormEventHandler, useState } from 'react';
+import { useAppDispatch } from '../hooks';
+import { postCommentAction } from '../../store/api-actions';
+
+
+type TCommentSubmissionForm = {
+  id: string;
+}
+
+function CommentSubmissionForm({id}: TCommentSubmissionForm): JSX.Element {
+  const dispatch = useAppDispatch();
+
+  const [comment, setComment] = useState('');
+  const [rating, setRating] = useState(0);
+
+  function handleRating(e: React.MouseEvent<HTMLInputElement>) {
+    setRating(Number(e.currentTarget.value));
+  }
+
+  function handleComment(e: ChangeEvent<HTMLTextAreaElement>) {
+    setComment(e.currentTarget.value);
+  }
+
+  const handleSubmitForm: FormEventHandler = (e) => {
+    e.preventDefault();
+    if (comment !== '' && rating !== 0) {
+      dispatch(postCommentAction({id, comment, rating}));
+    }
+  };
+
+  function isDisabledButtonPost() {
+    if (comment.length < 50 || comment.length > 400 || rating === 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  return (
+    <div className="add-review">
+      <form action="#" className="add-review__form" onSubmit={handleSubmitForm}>
+        <div className="rating">
+          <div className="rating__stars">
+            <input
+              className="rating__input"
+              id="star-10"
+              type="radio"
+              name="rating"
+              defaultValue={10}
+              data-testid="rating"
+              onClick={handleRating}
+            />
+            <label className="rating__label" htmlFor="star-10">
+              Rating 10
+            </label>
+            <input
+              className="rating__input"
+              id="star-9"
+              type="radio"
+              name="rating"
+              defaultValue={9}
+              data-testid="rating"
+              onClick={handleRating}
+            />
+            <label className="rating__label" htmlFor="star-9">
+              Rating 9
+            </label>
+            <input
+              className="rating__input"
+              id="star-8"
+              type="radio"
+              name="rating"
+              defaultValue={8}
+              data-testid="rating"
+              onClick={handleRating}
+            />
+            <label className="rating__label" htmlFor="star-8">
+              Rating 8
+            </label>
+            <input
+              className="rating__input"
+              id="star-7"
+              type="radio"
+              name="rating"
+              defaultValue={7}
+              data-testid="rating"
+              onClick={handleRating}
+            />
+            <label className="rating__label" htmlFor="star-7">
+              Rating 7
+            </label>
+            <input
+              className="rating__input"
+              id="star-6"
+              type="radio"
+              name="rating"
+              defaultValue={6}
+              data-testid="rating"
+              onClick={handleRating}
+            />
+            <label className="rating__label" htmlFor="star-6">
+              Rating 6
+            </label>
+            <input
+              className="rating__input"
+              id="star-5"
+              type="radio"
+              name="rating"
+              defaultValue={5}
+              data-testid="rating"
+              onClick={handleRating}
+            />
+            <label className="rating__label" htmlFor="star-5">
+              Rating 5
+            </label>
+            <input
+              className="rating__input"
+              id="star-4"
+              type="radio"
+              name="rating"
+              defaultValue={4}
+              data-testid="rating"
+              onClick={handleRating}
+            />
+            <label className="rating__label" htmlFor="star-4">
+              Rating 4
+            </label>
+            <input
+              className="rating__input"
+              id="star-3"
+              type="radio"
+              name="rating"
+              defaultValue={3}
+              data-testid="rating"
+              onClick={handleRating}
+            />
+            <label className="rating__label" htmlFor="star-3">
+              Rating 3
+            </label>
+            <input
+              className="rating__input"
+              id="star-2"
+              type="radio"
+              name="rating"
+              defaultValue={2}
+              data-testid="rating"
+              onClick={handleRating}
+            />
+            <label className="rating__label" htmlFor="star-2">
+              Rating 2
+            </label>
+            <input
+              className="rating__input"
+              id="star-1"
+              type="radio"
+              name="rating"
+              defaultValue={1}
+              data-testid="rating"
+              onClick={handleRating}
+            />
+            <label className="rating__label" htmlFor="star-1">
+              Rating 1
+            </label>
+          </div>
+        </div>
+        <div className="add-review__text">
+          <textarea
+            className="add-review__textarea"
+            name="review-text"
+            id="review-text"
+            placeholder="Review text"
+            defaultValue={comment}
+            onChange={handleComment}
+          />
+          <div className="add-review__submit">
+            <button className="add-review__btn" type="submit" disabled={isDisabledButtonPost()}>
+              Post
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  );
+}
+
+export default CommentSubmissionForm;
