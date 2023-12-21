@@ -47,6 +47,7 @@ function CommentSubmissionForm({id}: TCommentSubmissionForm): JSX.Element {
               type="radio"
               name="rating"
               defaultValue={10}
+              data-testid="rating"
               onClick={handleRating}
             />
             <label className="rating__label" htmlFor="star-10">
@@ -58,6 +59,7 @@ function CommentSubmissionForm({id}: TCommentSubmissionForm): JSX.Element {
               type="radio"
               name="rating"
               defaultValue={9}
+              data-testid="rating"
               onClick={handleRating}
             />
             <label className="rating__label" htmlFor="star-9">
@@ -69,6 +71,7 @@ function CommentSubmissionForm({id}: TCommentSubmissionForm): JSX.Element {
               type="radio"
               name="rating"
               defaultValue={8}
+              data-testid="rating"
               onClick={handleRating}
             />
             <label className="rating__label" htmlFor="star-8">
@@ -80,6 +83,7 @@ function CommentSubmissionForm({id}: TCommentSubmissionForm): JSX.Element {
               type="radio"
               name="rating"
               defaultValue={7}
+              data-testid="rating"
               onClick={handleRating}
             />
             <label className="rating__label" htmlFor="star-7">
@@ -91,6 +95,7 @@ function CommentSubmissionForm({id}: TCommentSubmissionForm): JSX.Element {
               type="radio"
               name="rating"
               defaultValue={6}
+              data-testid="rating"
               onClick={handleRating}
             />
             <label className="rating__label" htmlFor="star-6">
@@ -102,6 +107,7 @@ function CommentSubmissionForm({id}: TCommentSubmissionForm): JSX.Element {
               type="radio"
               name="rating"
               defaultValue={5}
+              data-testid="rating"
               onClick={handleRating}
             />
             <label className="rating__label" htmlFor="star-5">
@@ -113,6 +119,7 @@ function CommentSubmissionForm({id}: TCommentSubmissionForm): JSX.Element {
               type="radio"
               name="rating"
               defaultValue={4}
+              data-testid="rating"
               onClick={handleRating}
             />
             <label className="rating__label" htmlFor="star-4">
@@ -124,6 +131,7 @@ function CommentSubmissionForm({id}: TCommentSubmissionForm): JSX.Element {
               type="radio"
               name="rating"
               defaultValue={3}
+              data-testid="rating"
               onClick={handleRating}
             />
             <label className="rating__label" htmlFor="star-3">
@@ -135,6 +143,7 @@ function CommentSubmissionForm({id}: TCommentSubmissionForm): JSX.Element {
               type="radio"
               name="rating"
               defaultValue={2}
+              data-testid="rating"
               onClick={handleRating}
             />
             <label className="rating__label" htmlFor="star-2">
@@ -146,6 +155,7 @@ function CommentSubmissionForm({id}: TCommentSubmissionForm): JSX.Element {
               type="radio"
               name="rating"
               defaultValue={1}
+              data-testid="rating"
               onClick={handleRating}
             />
             <label className="rating__label" htmlFor="star-1">

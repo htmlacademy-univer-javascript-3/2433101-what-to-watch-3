@@ -1,26 +1,45 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../components/hooks';
 import { NameSpace } from '../../const';
-import { LoadingScreen } from '../loading-screen/loading-screen';
 import { useEffect, useRef, useState } from 'react';
 import { fetchFilmsFilmIdAction } from '../../store/api-actions';
 import NotFoundScreen from '../not-found-screen/not-found-screen';
 
 
-function Player(): JSX.Element {
-  const {id} = useParams();
+function formatTime(time: number): string {
+  const hours = Math.floor(time / 3600);
+  const minutes = Math.floor((time % 3600) / 60);
+  const seconds = Math.floor(time % 60);
+
+  const formattedHours = String(hours).padStart(2, '0');
+  const formattedMinutes = String(minutes).padStart(2, '0');
+  const formattedSeconds = String(seconds).padStart(2, '0');
+
+  return hours > 0
+    ? `${formattedHours}:${formattedMinutes}:${formattedSeconds}`
+    : `${formattedMinutes}:${formattedSeconds}`;
+}
+
+function Player(): JSX.Element{
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const filmsFilmId = useAppSelector((state) => state[NameSpace.Data].filmsFilmId);
-  const isFilmDataLoadingStatus = useAppSelector((state) => state[NameSpace.Data].isFilmDataLoadingStatus);
+  const {id} = useParams();
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
+
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+
+  const filmsFilmId = useAppSelector((state) => state[NameSpace.Data].filmsFilmId);
 
   useEffect(() => {
     if (id) {
       dispatch(fetchFilmsFilmIdAction(id));
     }
   }, [id, dispatch]);
+
+  const currentContent = formatTime(currentTime);
+  const progressValue = isNaN(duration) || isNaN(currentTime) || duration === 0 ? 0 : (currentTime / duration) * 100;
 
   const handleFullScreenClick = () => {
     if (videoRef.current) {
@@ -42,34 +61,45 @@ function Player(): JSX.Element {
     }
   };
 
-  if (isFilmDataLoadingStatus) {
-    return (
-      <LoadingScreen />
-    );
-  }
-
-  if (!id || !filmsFilmId) {
-    return (
-      <NotFoundScreen />
-    );
+  if (!filmsFilmId) {
+    return <NotFoundScreen />
   }
 
   return (
     <div className="player">
-      <video ref={videoRef} src={filmsFilmId.videoLink} className="player__video" poster={filmsFilmId.posterImage} />
+      <video
+        ref={videoRef}
+        src={filmsFilmId.videoLink}
+        className="player__video"
+        id={filmsFilmId.id}
+        poster={filmsFilmId.posterImage}
+        autoPlay
+        muted
+        onTimeUpdate={(e) => setCurrentTime(e.currentTarget.currentTime)}
+        onDurationChange={(e) => setDuration(e.currentTarget.duration)}
+      />
       <button type="button" className="player__exit" onClick={() => navigate(`/films/${filmsFilmId.id}`)}>
         Exit
       </button>
+
       <div className="player__controls">
         <div className="player__controls-row">
           <div className="player__time">
-            <progress className="player__progress" value={30} max={100} />
-            <div className="player__toggler" style={{ left: '30%' }}>
+            <progress className="player__progress" value={progressValue} max="100"></progress>
+            <div className="player__toggler" style={{ left: `${progressValue}%` }}>
               Toggler
             </div>
           </div>
-          <div className="player__time-value">1:30:29</div>
+          <div
+            className="player__time-value"
+            style={{
+              cursor: 'pointer',
+            }}
+          >
+            {currentContent}
+          </div>
         </div>
+
         <div className="player__controls-row">
           {!isPlaying ?
             <button type="button" className="player__play" onClick={handleVideoPlay}>
@@ -86,9 +116,10 @@ function Player(): JSX.Element {
               <span>Pause</span>
             </button>}
           <div className="player__name">Transpotting</div>
+
           <button type="button" className="player__full-screen" onClick={handleFullScreenClick}>
-            <svg viewBox="0 0 27 27" width={27} height={27}>
-              <use xlinkHref="#full-screen" />
+            <svg viewBox="0 0 27 27" width="27" height="27">
+              <use xlinkHref="#full-screen"></use>
             </svg>
             <span>Full screen</span>
           </button>

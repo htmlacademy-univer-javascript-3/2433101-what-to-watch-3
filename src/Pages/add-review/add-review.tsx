@@ -47,7 +47,7 @@ function AddReview(): JSX.Element {
                 </Link>
               </li>
               <li className="breadcrumbs__item">
-                <a className="breadcrumbs__link">Add review</a>
+                <a className="breadcrumbs__link" >Add review</a>
               </li>
             </ul>
           </nav>

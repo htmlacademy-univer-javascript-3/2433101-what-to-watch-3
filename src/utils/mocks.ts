@@ -4,7 +4,6 @@ import { Action, ThunkDispatch } from '@reduxjs/toolkit';
 import { createApi } from '../components/services/api';
 import { State } from '../components/types/state';
 import { AuthorizationStatus } from '../const';
-import FilmCard from '../components/film-card/film-card';
 
 
 export type AppThunkDispatch = ThunkDispatch<State, ReturnType<typeof createApi>, Action>;
